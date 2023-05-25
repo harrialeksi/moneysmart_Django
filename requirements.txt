@@ -3,3 +3,6 @@ djangorestframework-simplejwt==5.2.2
 python-dotenv==1.0.0
 pyjwt
 selenium==4.9.1
+bs4
+requests==2.31.0
+lxml==4.9.2

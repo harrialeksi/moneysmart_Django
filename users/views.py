@@ -10,7 +10,7 @@ from django.contrib.auth import (
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 import jwt
 from utils.email import send_email
 
@@ -50,14 +50,13 @@ def login_user(request):
             message = {'detail': 'Error'}
             return Response(message, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     else:
-        message = {'detail': 'Login'}
-        return Response(message, status=status.HTTP_200_OK)
+        return render(request, "login.html")
 
 #Register handler
 #made by @superbaby81230
 #date: 19/5/2023
 @api_view(['POST', 'GET'])
-def register_user(request):
+def signup_user(request):
     if request.method == "POST":
         data = request.data
         try:
@@ -127,6 +126,8 @@ def register_user(request):
         #             'detail': 'Failed to register'
         #         }
         #         return Response(message, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return render(request, "signup.html")
 
 #Verify email handler
 #made by @superbaby81230

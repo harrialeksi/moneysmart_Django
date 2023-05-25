@@ -16,3 +16,7 @@ ENV/
 #vs code
 .vscode
 .vscode/
+
+# temporary
+crediboo
+crediboo.zip

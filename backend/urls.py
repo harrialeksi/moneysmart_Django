@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from users.views import login_user, register_user, verifyEmail
+from users.views import login_user, signup_user, verifyEmail
 
 # urls = [
 #     path('products/', include('base.urls.product_urls')),
@@ -28,7 +28,7 @@ from users.views import login_user, register_user, verifyEmail
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', login_user, name='login'),
-    path('register/', register_user, name='register'),
+    path('signup/', signup_user, name='signup'),
     path('verify/<str:token>/', verifyEmail, name='verify-email'),
     path('credit-cards/', include('cards.urls')),
     # path('api/v1/', include(urls)),

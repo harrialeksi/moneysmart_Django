@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Card || compare-credit-card_best-credit-cards</title>
+
+  {% load static %}
+  <!-- ----jquery-ui----- -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+  <!-- Bootstrap 5 CSS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <!-- ----slider css-- -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  {% block head %}
+  {% endblock %}
+
+</head>
+
+<body>
+  <!-- --------Google translator----- -->
+  <div class="main-p-translate">
+    <div id="google_element" class="blue-dark-bg"></div>
+    <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+    <script>
+      function loadGoogleTranslate() {
+        new google.translate.TranslateElement({
+          includedLanguages: 'en,zh-CN,zh-TW',
+          layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+        }, 'google_element');
+
+        // Add event listener to the Google Translate dropdown
+        var googleTranslateElement = document.querySelector('.goog-te-combo');
+        googleTranslateElement.addEventListener('change', function () {
+          var selectedLanguage = this.value;
+          showLogo(selectedLanguage);
+        });
+      }
+    </script>
+  </div>
+  <!-- =======================
+              header 
+    ========================= -->
+    {% include 'layout/header.html' %}  
+  <!-- =======================
+          hero section 
+    ========================= -->
+  <div class="hero2-sec blue-bg py-4 ">
+    <div class="hero px-4 px-md-0 position-relative ">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center">
+          <a href="index.html" class="text-dark me-3 text-decoration-none">Home</a>
+          <a href="#" class="text-dark me-3 text-decoration-none" style="pointer-events:none">
+            <i class="fas fa-chevron-right"></i>
+          </a>
+          <a href="#" class="text-dark me-3 text-decoration-none">Credit Cards</a>
+        </div>
+        <h3 class="text-dark mt-4">Best Credit Cards in Hong Kong</h3>
+        <p class="fs-6 text-dark">Compare Hong Kong credit cards to earn most air miles, cashback and welcome offers,
+          apply through Crediboo to get extra rewards!
+          <br> Find out which credit cards suit your spending pattern the most to enjoy welcome offers, points, cash
+          rebates, air miles, cash vouchers, gifts and many more in your daily spending. Apply for the credit card that
+          gives you the best credit card offers!
+        </p>
+        <div class="d-flex flex-wrap">
+          <a href="#"
+            class="rounded-pill text-dark text-decoration-none py-2 px-3 my-2 me-3 d-block fs-5 capitalize border border-1 border-dark active-card">
+            Best credit cards
+          </a>
+          <a href="#"
+            class="rounded-pill text-dark text-decoration-none py-2 px-3 my-2 me-3 d-block fs-5 capitalize border border-1 border-dark">
+            Welcome Offers
+          </a>
+          <a href="#"
+            class="rounded-pill text-dark text-decoration-none py-2 px-3 my-2 me-3 d-block fs-5 capitalize border border-1 border-dark">
+            Cash Back
+          </a>
+          <a href="#"
+            class="rounded-pill text-dark text-decoration-none py-2 px-3 my-2 me-3 d-block fs-5 capitalize border border-1 border-dark">
+            Air Miles
+          </a>
+          <a href="#"
+            class="rounded-pill text-dark text-decoration-none py-2 px-3 my-2 me-3 d-block fs-5 capitalize border border-1 border-dark">
+            Online Shopping
+          </a>
+          <div class="dropdown">
+            <button type="button"
+              class="btn dropdown-toggle rounded-pill text-dark text-decoration-none py-2 px-3 my-2 d-block fs-5 text-capitalize border border-1 border-dark"
+              data-bs-toggle="dropdown">
+              More
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item text-dark" href="#">Octopus Card AAVS</a></li>
+              <li><a class="dropdown-item text-dark" href="#">Annual Fee Waiver</a></li>
+              <li><a class="dropdown-item text-dark" href="#">Bill Payment</a></li>
+              <li><a class="dropdown-item text-dark" href="#">Dining</a></li>
+              <li><a class="dropdown-item text-dark" href="#">Overseas Spending</a></li>
+              <li><a class="dropdown-item text-dark" href="#">Debit Card</a></li>
+              <li><a class="dropdown-item text-dark" href="#">UnionPay</a></li>
+              <li><a class="dropdown-item text-dark" href="#">Digital Wallets</a></li>
+              <li><a class="dropdown-item text-dark" href="#">Business Card</a></li>
+              <li><a class="dropdown-item text-dark" href="#">Student</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- =======================
+         card descriptions
+    ========================= -->
+  <section class="card-des pt-4 pb-5">
+    <div class="container ">
+      <div class="row">
+        <div class="col-sm-4 col-lg-3">
+          <h6 class="text-capitalize fs-6">Refine your results</h6>
+          <h2 class="mt-3 small">
+            Card Association
+          </h2>
+          <div>
+            <form action="" class="d-flex flex-sm-column flex-wrap">
+              <div class="d-flex align-items-start me-2 me-sm-0">
+                <input class="me-2 mt-2" id="ass-1" type="checkbox">
+                <label for="ass-1">Mastercard</label>
+              </div>
+              <div class="d-flex align-items-start me-2 me-sm-0">
+                <input class="me-2 mt-2" id="ass-2" type="checkbox">
+                <label for="ass-2">Visa</label>
+              </div>
+              <div class="d-flex align-items-start me-2 me-sm-0">
+                <input class="me-2 mt-2" id="ass-3" type="checkbox">
+                <label for="ass-3">UnionPay</label>
+              </div>
+              <div class="d-flex align-items-start me-2 me-sm-0">
+                <input class="me-2 mt-2" id="ass-4" type="checkbox">
+                <label for="ass-4">American Express</label>
+              </div>
+              <div class="d-block w-100">
+                <button type="reset" class=" text-primary small border-0 bg-transparent px-0 mt-sm-2">Reset
+                  Filter</button>
+              </div>
+            </form>
+          </div>
+          <h2 class="mt-3 small">
+            Providers
+          </h2>
+          <div>
+            <form action="" class="d-flex flex-sm-column flex-wrap">
+              <div class="d-flex align-items-start me-2 me-sm-0">
+                <input class="me-2 mt-2" name="providers" type="radio" id="p0" checked value="0">
+                <label for="p0">All providers</label>
+              </div>
+              {% for provider in providers %}
+              <div class="d-flex align-items-start me-2 me-sm-0">
+                <input class="me-2 mt-2" name="providers" type="radio" id="p{{provider.id}}" value="{{provider.id}}">
+                <label for="p{{provider.id}}">{{provider.name}}</label>
+              </div>
+              {% endfor %}              
+            </form>
+          </div>
+        </div>
+        {% block content %}
+        {% endblock %}
+      </div>
+    </div>
+  </section>
+  <!-- -----------------------
+       table 
+  ------------------------- -->
+  <section class="py-4 card-tbl">
+    <div class="container">
+      <h2 class="fs-2">Best Credit Cards in Hong Kong 2023</h2>
+      <div class="mt-3 my-shadow">
+        <div class="table border-secondary table-responsive">
+          <table class="w-100">
+            <thead>
+              <tr>
+                <th class="py-3 px-4">Credit Card</th>
+                <th class="py-3 px-4">MINIMUM SALARY</th>
+                <th class="py-3 px-4">ANNUAL FEE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="">
+                <td class="py-3 px-4"><a class="text-decoration:none" href="#">Standard Chartered Smart Card</a></td>
+                <td class="py-3 px-4">HK$96,000</td>
+                <td class="py-3 px-4">HK$0</td>
+              </tr>
+              <tr class="">
+                <td class="py-3 px-4"><a class="text-decoration:none" href="#">Standard Chartered Smart Card</a></td>
+                <td class="py-3 px-4">HK$96,000</td>
+                <td class="py-3 px-4">HK$0</td>
+              </tr>
+              <tr class="">
+                <td class="py-3 px-4"><a class="text-decoration:none" href="#">Standard Chartered Smart Card</a></td>
+                <td class="py-3 px-4">HK$96,000</td>
+                <td class="py-3 px-4">HK$0</td>
+              </tr>
+              <tr class="">
+                <td class="py-3 px-4"><a class="text-decoration:none" href="#">Standard Chartered Smart Card</a></td>
+                <td class="py-3 px-4">HK$96,000</td>
+                <td class="py-3 px-4">HK$0</td>
+              </tr>
+              <tr class="">
+                <td class="py-3 px-4"><a class="text-decoration:none" href="#">Standard Chartered Smart Card</a></td>
+                <td class="py-3 px-4">HK$96,000</td>
+                <td class="py-3 px-4">HK$0</td>
+              </tr>
+              <tr class="">
+                <td class="py-3 px-4"><a class="text-decoration:none" href="#">Standard Chartered Smart Card</a></td>
+                <td class="py-3 px-4">HK$96,000</td>
+                <td class="py-3 px-4">HK$0</td>
+              </tr>
+              <tr class="">
+                <td class="py-3 px-4"><a class="text-decoration:none" href="#">Standard Chartered Smart Card</a></td>
+                <td class="py-3 px-4">HK$96,000</td>
+                <td class="py-3 px-4">HK$0</td>
+              </tr>
+              <tr class="">
+                <td class="py-3 px-4"><a class="text-decoration:none" href="#">Standard Chartered Smart Card</a></td>
+                <td class="py-3 px-4">HK$96,000</td>
+                <td class="py-3 px-4">HK$0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="my-4">
+    <div class="container">
+
+      <!-- ----------card-main----- -->
+      <div class="mt-5">
+        <h2 class="fs-2">
+          Compare Credit Cards in Hong Kong 2022
+        </h2>
+        <div class="row mt-4">
+          <div class="col-md-6 my-3 col-lg-4 my-lg-2">
+            <div class="my-shadow h-100 bg-white py-3 px-4">
+              <h3 class="fw-md d-block py-1 fs-2 text-decoration-none color2-text m-0 p-0 lh-1">Air Miles<h3>
+                  <h3 class="text-dark d-block py-1 text-decoration-none fw-md fs-5 m-0 p-0 lh-1">Miles Credit
+                    Cards<h3>
+                      <ol class="m-0 p-0 ps-3 fs-6 fw-normal mt-2">
+                        <li class="my-2">Standard Chartered Asia Miles Mastercard: HK$4/ mile for dining and online
+                          spending </li>
+                        <li class="my-2">
+                          Citi PremierMiles Card: HK$3/ mile for foreign currency transactions
+                        </li>
+                        <li class="my-2"> American Express Cathay Pacific Elite Credit Card: HK6/ 1.5 mile for foreign
+                          currency spending
+                        </li>
+                      </ol>
+            </div>
+          </div>
+          <div class="col-md-6 my-3 col-lg-4 my-lg-2">
+            <div class="my-shadow h-100 bg-white py-3 px-4">
+              <h3 class="fw-md d-block py-1 fs-2 text-decoration-none color2-text m-0 p-0 lh-1">Cashback</h3>
+              <h3 class="text-dark d-block py-1 text-decoration-none fw-md fs-5 m-0 p-0 lh-1">Cashback Credit
+                Cards</h3>
+              <ol class="m-0 p-0 ps-3">
+                <li class="my-2">Standard Chartered Simply Cash Visa Card: 2% rebates on foreign currency transactions
+                </li>
+                <li class="my-2">
+                  Citi PremierMiles Card: HK$3/ mile for foreign currency transactions
+                </li>
+                <li class="my-2"> American Express Cathay Pacific Elite Credit Card: HK6/ 1.5 mile for foreign
+                  currency spending
+                </li>
+              </ol>
+            </div>
+          </div>
+          <div class="col-md-6 my-3 col-lg-4 my-lg-2">
+            <div class="my-shadow h-100 bg-white py-3 px-4">
+              <h3 class="fw-md d-block py-1 fs-2 text-decoration-none color2-text m-0 p-0 lh-1">Reward
+                Points</h3>
+              <h3 class="text-dark d-block py-1 text-decoration-none fw-md fs-5 m-0 p-0 lh-1">Reward Points
+                Credit Cards</h3>
+              <ol class="m-0 p-0 ps-3">
+                <li class="my-2">Citi Rewards Card: 5x points all-year-round at supermarkets, department stores, and
+                  telecom
+                  providers
+                </li>
+                <li class="my-2">
+                  HSBC Visa Signature Card: Up to 14x “RewardCash” for selected categories
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ----------card-main----- -->
+      <div class="mt-5">
+        <h2 class="fs-2">
+          Credit Card Promotions
+        </h2>
+        <div class="row mt-4">
+          <div class="col-md-6 my-3 col-lg-4 my-lg-2">
+            <h3 class="text-dark d-block py-1 text-decoration-none fw-md fs-5 m-0 p-0 lh-1">Year-Round
+              Offers</h3>
+            <p class="mb-0 pb-0">
+              Enjoy year-round privileges at dining, shopping and travel hotspot throughout the year with your credit
+              card. For movie lovers, get buy-1-get-1-free on Friday movie tickets at UA Cinemas with UnionPay Diamond
+              Credit Cards. Visa Signature cardholders can enjoy up to HK$200 off upon designated spending amount at
+              restaurants like Limewood and Sip Song.
+            </p>
+          </div>
+          <div class="col-md-6 my-3 col-lg-4 my-lg-2">
+            <h3 class="text-dark d-block py-1 text-decoration-none fw-md fs-5 m-0 p-0 lh-1">Free Airport
+              Lounge Access</h3>
+            <p class="mb-0 pb-0">
+              Credit Cards often provide complimentary airport lounge access which some might even allow free
+              companions entry. Take AE Platinum Card as an example, the principal card owner is entitled to a free
+              membership in Priority pass, which allows access to over 1,000 lounges in the world. Citi Prestige Card
+              cardholders can also get access to Mastercard Airport LoungeKey lounges worldwide.
+            </p>
+          </div>
+          <div class="col-md-6 my-3 col-lg-4 my-lg-2">
+            <h3 class="text-dark d-block py-1 text-decoration-none fw-md fs-5 m-0 p-0 lh-1">Welcome Gift </h3>
+            <p class="mb-0 pb-0">
+              Welcome offers come in various types including cash rebate, air miles, coupons or gifts. Popular gift
+              options including suitcases and electronic devices. For example, DBS COMPASS VISA gives you a Le Maurice
+              suitcase and WeWa UnionPay Card gives you a Jabra wireless headphone as a welcome gift.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- ---------text------ -->
+      <div class="row mt-5">
+        <div class="col-md-4">
+          <h3 class="fs-3">What Credit Card is Best?</h3>
+        </div>
+        <div class="col-md-8">
+          <p>There is no absolute for the best credit card, you should choose credit cards based on your spending
+            habits. Pick credit cards with different spending categories based on your habits to earn the most
+            rewards. For reward point credit cards, you can redeem cash rebates, air miles, coupons, and other gifts,
+            giving you higher flexibility. Air miles credit cards are suitable for frequent flyers who would take the
+            effort to research on collecting miles. Cashback credit cards are suitable for those who don’t spend a lot
+            and want to get rebates directly.</p>
+        </div>
+      </div>
+      <!-- ---------text------ -->
+      <div class="row mt-5">
+        <div class="col-md-4">
+          <h3 class="fs-3">Which is better: Visa or Mastercard credit card?</h3>
+        </div>
+        <div class="col-md-8">
+          <p>Visa and Mastercard credit cards are both globally accepted and offer different perks for members in
+            different tiers, the most common types of Visa and Mastercard credit cards include Visa Platinum, Visa
+            Signature, Visa Infinite, Titanium & Platinum Mastercard, World Mastercard and World Elite Mastercard.
+
+            <br>Both Visa and Mastercard offer its own network benefits including travel, luxury hotel, dining and
+            more when it comes to foreign spending, Mastercard often offers slightly better exchange rate, but for
+            everyday card users, there is not much difference between Visa and Mastercard. It is suggested to find the
+            right credit card by focusing on each card offer and perks of your choice, and be aware of annual fee,
+            cash back, air miles or rewards that you are looking for.
+          </p>
+        </div>
+      </div>
+      <!-- ---------text------ -->
+      <div class="row mt-5">
+        <div class="col-md-4">
+          <h3 class="fs-3">How many credit cards can I apply for?</h3>
+        </div>
+        <div class="col-md-8">
+          <p>There is no absolute limit on the number of credit cards you can have. Having more than one credit card
+            can allow you to get different credit card offers and benefits for different cards, you can also earn
+            various rewards like air miles or cashback on your daily spending.<br>
+
+            However, applying for too many credit cards at a time can hurt your credit score and the chances of credit
+            card approval. Even though the damage on credit scores are only temporary, if you are hoping to get a
+            mortgage or personal loan in the coming months, it is best to keep your credit report nice and clean.</p>
+        </div>
+      </div>
+      <!-- --------text+img------ -->
+
+      <!-- ----------links-list------- -->
+      <div class="row mt-5">
+        <h3 class="fs-2">Credit Card Recommendations 2023</h3>
+        <p>Which cards suit me the most?<br>
+          There's no best credit card that suits everyone. Let's pick a card based on your spending habits!</p>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <h4 class="fs-5">
+              Travel Credit Cards
+              <ul class="m-0 p-0 ps-4 mt-2">
+                <li><a href="#" class="text-decoration-none fs-6 fs-normal">Best Credit Cards in Hong Kong for Hotel
+                    Rewards and Booking Discounts</a></li>
+                <li><a href="#" class="text-decoration-none fs-6 fs-normal">Best Avios Credit Cards in Hong Kong</a>
+                </li>
+                <li><a href="#" class="text-decoration-none fs-6 fs-normal">Best Credit Cards for Airport Lounges in
+                    Hong Kong</a></li>
+                <li><a href="#" class="text-decoration-none fs-6 fs-normal">Best Credit Cards for Booking Hotels on
+                    Agoda </a></li>
+              </ul>
+            </h4>
+          </div>
+          <div class="col-sm-6">
+            <h4 class="fs-5">
+              Types of Credit Cards
+              <ul class="m-0 p-0 ps-4 mt-2">
+                <li><a href="#" class="text-decoration-none fs-6 fs-normal">Best MasterCard in Hong Kong</a></li>
+                <li><a href="#" class="text-decoration-none fs-6 fs-normal">Best Credit Cards for Expats and
+                    Foreigners in Hong Kong</a></li>
+              </ul>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class=" bg-light py-5 my-4">
+    <div class="container">
+      <p class=" mb-0 pb-0 fs-6">
+        <b> Disclaimer:</b> At Crediboo.hk, we strive to keep our information accurate and up to date. This
+        information may be different than what you see when you visit a financial institution, service provider or
+        specific product’s site. For any discrepancy in product information, please refer to the financial
+        institution’s website for the most updated version. All financial products and services are presented
+        without warranty. Additionally, this site may be compensated through third party advertisers. However, the
+        results of our comparison tools which are not marked as sponsored are always based on objective analysis
+        first.
+      </p>
+    </div>
+  </section>
+  <!-- =======================
+         footer
+    ========================= -->
+  {% include 'layout/footer.html' %}
+  <!-- Bootstrap 5 JS CDN (Optional) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="{% static 'js/main.js' %}"></script>
+  <!-- ------slick-js--- -->
+  <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+  <script>
+    $(function () {
+      $(".tabs").tabs();
+    });
+  </script>
+  <script>
+    $(document).ready(function () {
+      $('.slider').slick({
+        autoplay: false,
+        arrows: true,
+        infinite:false,
+        slidesToShow: 4,
+        responsive: [
+          {
+            breakpoint: 1300,
+            settings: {
+              slidesToShow: 3
+            }
+          },
+          {
+            breakpoint: 1000,
+            settings: {
+              slidesToShow: 2
+            }
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 1
+            }
+          },
+        ]
+      });
+    });
+
+  </script>
+</body>
+
+</html>

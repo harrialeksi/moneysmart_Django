@@ -7,7 +7,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 import time
-# from bs4 import BeautifulSoup
+import requests
+from bs4 import BeautifulSoup
 
 
 def get_cards(url):
@@ -31,10 +32,8 @@ def get_cards(url):
     # find anchor with "More detail" text-it's class name ="link-toggle"
     details = driver.find_elements("xpath", '//a[@class="link-toggle"]')
      # print the contents of each element
-    i = 0
+    
     for element in details:
-        i = i + 1
-        print(i)
         #click buttons
         driver.execute_script('arguments[0].click();', element)
         # time.sleep(1)
@@ -90,6 +89,31 @@ def get_cards(url):
         for i, element in enumerate(card_usp):
             card_usp_data.append({'ratio':  element.find_element('xpath', './/dd').text, 'text': element.find_element('xpath', './/dt').text})
 
+        try:
+            promotion = card.find_element('xpath', './/li[@class="tab-list is-active"][@data-id="promotions"]').get_attribute('innerHTML')
+        except NoSuchElementException:
+            promotion = None
+        try:
+            keyFeatures = card.find_element('xpath', './/li[@class="tab-list"][@data-id="key_features"]').get_attribute('innerHTML')
+        except NoSuchElementException:
+            keyFeatures = None
+        try:
+            annualInterest = card.find_element('xpath', './/li[@class="tab-list"][@data-id="annual_interest_rate_and_fees"]').get_attribute('innerHTML')
+        except NoSuchElementException:
+            annualInterest = None
+        try:
+            incomeRequirement = card.find_element('xpath', './/li[@class="tab-list"][@data-id="minimum_income_requirements"]').get_attribute('innerHTML')
+        except NoSuchElementException:
+            incomeRequirement = None
+        try:
+            cardAssociation = card.find_element('xpath', './/li[@class="tab-list"][@data-id="card_association"]').get_attribute('innerHTML')
+        except NoSuchElementException:
+            cardAssociation = None
+        try:
+            wirelessPayment = card.find_element('xpath', './/li[@class="tab-list"][@data-id="wireless_payment"]').get_attribute('innerHTML')
+        except NoSuchElementException:
+            wirelessPayment = None
+
         data.append({
             "img_src": img_src,
             "disclosure": disclosure,
@@ -99,11 +123,29 @@ def get_cards(url):
             "badge_primary": badge_primary,
             "snippet": snippet,
             "snippet_img": snippet_img,
-            'usp': card_usp_data
+            'usp': card_usp_data,
+            'promotion': promotion,
+            'keyFeatures': keyFeatures,
+            'annualInterest': annualInterest,
+            'incomeRequirement': incomeRequirement,
+            'cardAssociation': cardAssociation,
+            'wirelessPayment': wirelessPayment,
         })
 
     driver.quit()
     return data
+
+def get_card():
+    url = "https://www.moneysmart.hk/en/credit-cards/smart-card?provider_slugs%5B%5D=-1&category_slug=best-credit-cards&sort_by=recommended"
+    r = requests.get(url)
+    soup = BeautifulSoup(r.content, 'html.parser')
+    title = soup.select_one('div.details-header__title>h1').text
+    img = soup.select_one('div.sidebar__product-image>img').attrs['src']
+    badge_primary = soup.select_one('div.badge--primary>.badge__label').text
+    highlight = soup.select('div.product-highlight')
+    for elem in highlight:
+        print(elem)
+    
 
 # def get_cash_back():
 # for i, card in enumerate(cards):

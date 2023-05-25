@@ -4,7 +4,7 @@ from . import views
 
 app_name = "cards"
 urlpatterns = [
-    path("", views.best, name="best"),
+    path("", views.cards, name="cards"),
     path("<int:provider_id>/", views.card_provider, name="provider"),
     path("<int:provider_id>/<int:association_id>", views.card_provider_association, name="association"),
     # path("cash-back/", views.cash_back, name="cashback"),
