@@ -1,0 +1,90 @@
+ .bdr_clr_1{
+    border: 1px solid;
+    border-color:#0457e7 ;
+    border-radius: 25px;
+}
+.bdr_clr_2{
+    border: 1px solid;
+    border-color:#F4F4F4 ;
+    border-radius: 25px;
+}
+.font_1{
+    font-size: 50px;
+     font-weight: bolder;
+}
+.font_2{
+    font-size: 30px;
+     font-weight: bolder;
+}
+.font-18{
+    font-size: 18px;
+}
+.font-14{
+    font-size: 14px;
+}
+.font-12{
+    font-size: 12px;
+}
+.text_clr{
+    color: #1C74BB;
+}
+.bg_1{
+    background-color: #F8F8F8;
+}
+.bg_2{
+    background-image: url(../img/Group\ 43811.png );
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 180px;
+    background-position: left;
+    border-radius: 20px;
+    border: 2px solid #fff;
+}
+.bg_3{
+    background-color: #14395B;
+}
+.sky-bg{
+    background-color: #1C74BB;
+}
+.width_1{
+    height: 40px;
+     width: 58px;
+}
+.butn{
+    background-color: #ECF1F5;
+    color: #1C74BB;
+    border: 2px solid #C5DAEA;
+}
+@media only screen and (max-width: 480px) {
+    /* Styles for small screens */
+    .font_1{
+        font-size: 27px;
+         font-weight: bolder;
+    }
+    .font_2{
+        font-size: 20px;
+         font-weight: bolder;
+    }
+  }
+  @media only screen and (max-width: 576px) {
+    .width_1{
+        height: 40px;
+         width: 45px;
+    }
+  
+}
+  @media only screen and (min-width: 481px) and (max-width: 768px) {
+    /* Styles for medium screens */
+    .font_1{
+        font-size: 40px;
+         font-weight: bolder;
+    }
+    .font_2{
+        font-size: 30px;
+         font-weight: bolder;
+    }
+    
+  }
+ 
+    
+    

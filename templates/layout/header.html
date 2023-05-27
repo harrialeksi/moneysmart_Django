@@ -1,0 +1,916 @@
+{% load static %}
+<header class="blue-bg ">
+  <div class="container">
+    <div class="header-main d-flex align-items-center justify-content-between py-3 py-lg-0">
+
+      <div class="logo-container">
+        <a href="../index.html" class="logo d-block  ">
+          <img src="{% static 'img/english-logo.png' %}" alt="" class="w-100" id="english-logo">
+        </a>
+        <a href="../index.html" class="logo d-block  " id="english-logo">
+          <img src="{% static 'img/chinese-logo.png' %}" alt="" class="w-100" id="chinese-logo">
+        </a>
+        <!-- <img id="english-logo" src="img/logo.png" alt="English Logo">
+            <img id="chinese-logo" src="img/login-banner.png" alt="Chinese Logo"> -->
+      </div>
+      <script>
+        var englishLogo = $('#english-logo');
+        var chineseLogo = $('#chinese-logo');
+
+        function showLogo(language) {
+          if (language === 'en') {
+            englishLogo.show();
+            chineseLogo.hide();
+          } else if (language === 'zh-CN' || language === 'zh-TW') {
+            englishLogo.hide();
+            chineseLogo.show();
+          } else {
+            // Hide both logos if no language is selected
+            englishLogo.hide();
+            chineseLogo.hide();
+          }
+        }
+
+        // Call showLogo with the initial language
+        showLogo('en');
+      </script>
+
+      <nav class="d-none d-lg-block">
+        <ul class="d-flex align-items-center mb-0 pb-0">
+          <!-- --------------------
+                  start::card
+                  ------------------- -->
+          <li class="card-menu py-4">
+            <a href="{% url 'cards:cards' %}">Cards</a>
+            <!-- -------card-menu----- -->
+            <div class="sub-menu my-shadow card-sub-menu py-4">
+              <div class="container">
+                <div class="row">
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">
+                      COMPARE CREDIT CARDS
+                    </h3>
+                    <ul class="ps-0 ms-0">
+                      <li>
+                        <a href="{% url 'cards:cards' %}">Best Credit Cards</a>
+                      </li>
+                      <li>
+                        <a href="{% url 'cards:cash_back' %}">Cash Back Credit
+                          Cards</a>
+                      </li>
+                      <li>
+                        <a href="{% url 'cards:air_miles' %}">Air Miles Credit
+                          Cards</a>
+                      </li>
+                      <li>
+                        <a href="{% url 'cards:shopping_credit_card' %}">Online Shopping Credit
+                          Cards</a>
+                      </li>
+                      <li>
+                        <a href="{% url 'cards:welcome_offer' %}">Credit Card Welcome
+                          Offers</a>
+                      </li>
+                      <li>
+                        <a href="{% url 'cards:annual_fee_waiver' %}">Credit Cards With Annual
+                          Fee Waiver</a>
+                      </li>
+                      <li>
+                        <a href="{% url 'cards:air_miles' %}">Digital Wallet Credit
+                          Cards</a>
+                      </li>
+                      <li>
+                        <a href="{% url 'cards:digital_wallets' %}">Bill Payment Credit
+                          Cards</a>
+                      </li>
+                      <li>
+                        <a href="../credit-cards/compare-credit-card_best-credit-cards.html">UnionPay Credit Cards</a>
+                      </li>
+                      <li>
+                        <a href="../credit-cards/compare-credit-card_best-credit-cards.html">Student Credit Cards</a>
+                      </li>
+                      <li>
+                        <a href="../credit-cards/compare-credit-card_best-credit-cards.html">Travel/Overseas Spending
+                          Credit Cards</a>
+                      </li>
+                      <li>
+                        <a href="../credit-cards/compare-credit-card_best-credit-cards.html">Octopus Card AAVS Credit
+                          Cards</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">POPULAR GUIDES</h3>
+                    <ul class="ps-0 ms-0">
+                      <li>
+                        <a href="{% url 'cards:airport_lounge_access' %}">Credit
+                          Cards for Airport Lounge Access</a>
+                      </li>
+                      <li>
+                        <a href="../credit-cards/popular-guides_credit-cards-for-airport-lounge-access.html">Best Asia
+                          Miles Credit Cards</a>
+                      </li>
+                      <li>
+                        <a href="{% url 'cards:hotel_reward_booking' %}">Credit
+                          Cards with Hotel Promotions and Rewards</a>
+                      </li>
+                      <li>
+                        <a href="{% url 'cards:expat_foreigner_hong_kong_ms' %}">Credit
+                          Cards for Expat and Foreigner</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">
+                      Crediboo EXCLUSIVE PROMOTIONS
+                    </h3>
+                    <ul class="ps-0 ms-0">
+                      <li>
+                        <a href="{% url 'cards:citibank' %}">Citibank</a>
+                      </li>
+                      <li>
+                        <a href="{% url 'cards:standard_chartered' %}">Standard Chartered:Apple Gift
+                          Card</a>
+                      </li>
+                      <li>
+                        <a href="{% url 'cards:american_express' %}">Amex Credit Card HK$1,000
+                          Rewards</a>
+                      </li>
+                      <li>
+                        <a href="{% url 'cards:wewa_unionpay' %}">Wewa card:B&O Bluetooth
+                          Speaker</a>
+                      </li>
+                      <li>
+                        <a href="{% url 'cards:earnmore_unionpay_card' %}">EarnMORE card:OTO Massage Chair
+                          or AG+ Air Purifier</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">
+                      CREDIT CARD PROVIDERS
+                    </h3>
+                    <ul class="ps-0 ms-0">
+                      {% for provider in providers %}
+                      <li>
+                        <a href="{% url 'cards:cards' %}?provider={{provider.id}}">{{ provider.name }}</a>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <!-- --------------------
+                  start::loan
+                  ------------------- -->
+          <li class="loan-menu py-4">
+            <a href="{% url 'loans:loans' %}">Loans</a>
+            <!-- -------loan-menu----- -->
+            <div class="sub-menu my-shadow loan-sub-menu py-4">
+              <div class="container">
+                <div class="row">
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">
+                      COMPARE LOANS
+                    </h3>
+                    <ul class="ps-0 ms-0">
+                      <li>
+                        <a href="{% url 'loans:loans' %}">Best Personal Loans</a>
+                      </li>
+                      <li>
+                        <a href="../loans/compare-loans-best-personal-loans.html">Tax Loans</a>
+                      </li>
+                      <li>
+                        <a href="../loans/compare-loans-best-personal-loans.html">Lending Companies</a>
+                      </li>
+                      <li>
+                        <a href="../loans/compare-loans-best-personal-loans.html">Bank Loans</a>
+                      </li>
+                      <li>
+                        <a href="../loans/compare-loans-best-personal-loans.html">Debt Consolidation</a>
+                      </li>
+                      <li>
+                        <a href="../loans/compare-loans-best-personal-loans.html">Virtual Bank Loans</a>
+                      </li>
+                      <li>
+                        <a href="../loans/compare-loans-best-personal-loans.html">Car Loans</a>
+                      </li>
+                      <li>
+                        <a href="../loans/compare-loans-best-personal-loans.html">Mortgage</a>
+                      </li>
+                      <li>
+                        <a href="../loans/compare-loans-best-personal-loans.html">Refinance</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">
+                      POPULAR GUIDES
+                    </h3>
+                    <ul class="ps-0 ms-0">
+                      <li>
+                        <a href="../loans/popular-guides-best-scb-personal-loans.html">Best SCB Personal Loans</a>
+                      </li>
+                      <li>
+                        <a href="../loans/popular-guides-best-scb-personal-loans.html">Best WeLend Personal Loans</a>
+                      </li>
+                      <li>
+                        <a href="../loans/popular-guides-best-scb-personal-loans.html">Best Citibank Personal
+                          Loans</a>
+                      </li>
+                      <li>
+                        <a href="../loans/popular-guides-best-scb-personal-loans.html">Best DBS Personal Loans</a>
+                      </li>
+                      <li>
+                        <a href="../loans/popular-guides-best-scb-personal-loans.html">Best Education Loans</a>
+                      </li>
+                      <li>
+                        <a href="../loans/popular-guides-best-scb-personal-loans.html">Best Quick Loans in HK</a>
+                      </li>
+                      <li>
+                        <a href="../loans/popular-guides-best-scb-personal-loans.html">Best Low Interest Rate Loan</a>
+                      </li>
+                      <li>
+                        <a href="../loans/popular-guides-best-scb-personal-loans.html">Best Online Loans in HK</a>
+                      </li>
+                      <li>
+                        <a href="../loans/popular-guides-best-scb-personal-loans.html">All you need to know about
+                          APR</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">
+                      HOME LOANS TOOLS
+                    </h3>
+                    <ul class="ps-0 ms-0">
+                      <li>
+                        <a href="../loans/home-loans-tools-mortgage-calculator.html">Mortgage Calculator</a>
+                      </li>
+                      <li>
+                        <a href="../loans/home-loans-tools-mortgage-calculator.html">Property Valuation Tool</a>
+                      </li>
+                      <li>
+                        <a href="../loans/home-loans-tools-mortgage-calculator.html">Claim Crediboo Rewards</a>
+                      </li>
+                      <li>
+                        <a href="../loans/home-loans-tools-mortgage-calculator.html">DBS:$20,000 Rewards</a>
+                      </li>
+                      <li>
+                        <a href="../loans/home-loans-tools-mortgage-calculator.html">Citibank:$18,899 Rewards</a>
+                      </li>
+                      <li>
+                        <a href="../loans/home-loans-tools-mortgage-calculator.html">PrimeCredit:$12,000 Cash
+                          Bonus</a>
+                      </li>
+                      <li>
+                        <a href="../loans/home-loans-tools-mortgage-calculator.html">WeLend:$19,000 Cash Bonus</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">
+                      PERSONAL LOAN PROVIDERS
+                    </h3>
+                    <ul class="ps-0 ms-0">
+                      <li>
+                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">AEON Credit Service</a>
+                      </li>
+                      <li>
+                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">AEON Credit Service</a>
+                      </li>
+                      <li>
+                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">BOC Bank of China</a>
+                      </li>
+                      <li>
+                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">Citibank</a>
+                      </li>
+                      <li>
+                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">DBS</a>
+                      </li>
+                      <li>
+                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">Hang Seng</a>
+                      </li>
+                      <li>
+                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">PrimeCredit</a>
+                      </li>
+                      <li>
+                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">Promise</a>
+                      </li>
+                      <li>
+                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">Standard Chartered</a>
+                      </li>
+                      <li>
+                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">UA Loan</a>
+                      </li>
+                      <li>
+                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">WeLend</a>
+                      </li>
+                      <li>
+                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">CITIC Bank
+                          International</a>
+                      </li>
+                      <li>
+                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">HSBC</a>
+                      </li>
+                      <li>
+                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">WeLab Bank</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <!-- --------------------
+                  start::accounts
+               ------------------- -->
+          <li class="py-4 accounts-menu">
+            <a href="../accounts/compare-accounts-compare-saving-accounts.html">Accounts</a>
+            <!-- -------accounts-menu----- -->
+            <div class="sub-menu my-shadow accounts-sub-menu py-4">
+              <div class="container">
+                <div class="row">
+                  <!-- -------category-1----- -->
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">
+                      COMPARE ACCOUNTS
+                    </h3>
+                    <ul class="ps-0 ms-0">
+                      <li>
+                        <a href="../accounts/compare-accounts-compare-saving-accounts.html">Compare Saving
+                          Accounts</a>
+                      </li>
+                      <li>
+                        <a href="../accounts/compare-accounts-compare-saving-accounts.html">Compare Business
+                          Accounts</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- -------category-2----- -->
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">
+                      POPULAR GUIDES
+                    </h3>
+                    <ul class="ps-0 ms-0">
+                      <li>
+                        <a href="../accounts/popular-guides-best-hkd-time-deposit-interest-rates.html">Best HKD Time
+                          Deposit Interest Rates
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../accounts/popular-guides-best-hkd-time-deposit-interest-rates.html"> Bank Account
+                          Promotions Comparison
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../accounts/popular-guides-best-hkd-time-deposit-interest-rates.html"> Opening China
+                          Bank Account in Hong Kong</a>
+                      </li>
+                      <li>
+                        <a href="../accounts/popular-guides-best-hkd-time-deposit-interest-rates.html"> Account
+                          Minimum Deposit</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- -------category-3----- -->
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">
+                      SAVING ACCOUNTS PROVIDERS
+                    </h3>
+                    <ul class="ps-0 ms-0">
+                      <li>
+                        <a href="../accounts/saving-accounts-providers-citybank-accounts.html">Citibank Accounts </a>
+                      </li>
+                      <li>
+                        <a href="../accounts/saving-accounts-providers-citybank-accounts.html">Mox Bank Accounts</a>
+                      </li>
+                      <li>
+                        <a href="../accounts/saving-accounts-providers-citybank-accounts.html">DBS Accounts</a>
+                      </li>
+                      <li>
+                        <a href="../accounts/saving-accounts-providers-citybank-accounts.html">Standard Chartered
+                          Accounts </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- -------category-4----- -->
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">
+                      SAVING ACCOUNTS OPENING OFFERS
+                    </h3>
+                    <ul class="ps-0 ms-0">
+                      <li>
+                        <a href="../accounts/saving-accounts-opening-offers-citigold.html"> Citigold: up to HK$450
+                          rewards
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../accounts/saving-accounts-opening-offers-citigold.html">Mox: up to HK$1,000 cash
+                          reward</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <!-- --------------------
+                  start::investment
+               ------------------- -->
+          <li class="py-4 investment-menu">
+            <a href="../investment/compare-online-brokerages-online-brokerage.html">Investment</a>
+            <!-- -------investment-menu----- -->
+            <div class="sub-menu my-shadow investment-sub-menu py-4">
+              <div class="container">
+                <div class="row">
+                  <!-- -------category-1----- -->
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">
+                      COMPARE ONLINE BROKERAGES
+                    </h3>
+                    <ul class="ps-0 ms-0">
+                      <li>
+                        <a href="../investment/compare-online-brokerages-online-brokerage.html">
+                          Online Brokerage
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/compare-online-brokerages-online-brokerage.html">
+                          Hong Kong Stocks Accounts
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/compare-online-brokerages-online-brokerage.html">US Stocks Accounts
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/compare-online-brokerages-online-brokerage.html">IPO Accounts
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/compare-online-brokerages-online-brokerage.html">Crytocurrency Trading
+                          Accounts
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/compare-online-brokerages-online-brokerage.html">Robo Advisory Accounts
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/compare-online-brokerages-online-brokerage.html">Funds Trading Accounts
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- -------category-2----- -->
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">
+                      POPULAR GUIDES
+                    </h3>
+                    <ul class="ps-0 ms-0">
+                      <li>
+                        <a href="../investment/popular-guides-best-hkd-time-deposit-interest-rates.html">Latest
+                          Financial News Summary</a>
+                      </li>
+                      <li>
+                        <a href="../investment/popular-guides-best-hkd-time-deposit-interest-rates.html">
+                          ETF Beginner Guide
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/popular-guides-best-hkd-time-deposit-interest-rates.html">Short Selling
+                          101
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/popular-guides-best-hkd-time-deposit-interest-rates.html">Pros and Cons
+                          of Buying ETH
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/popular-guides-best-hkd-time-deposit-interest-rates.html"> US
+                          Securities
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/popular-guides-best-hkd-time-deposit-interest-rates.html"> What is
+                          Dollar Cost Averaging?
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/popular-guides-best-hkd-time-deposit-interest-rates.html">What to Know
+                          About Bonds
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/popular-guides-best-hkd-time-deposit-interest-rates.html">Fund Options
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/popular-guides-best-hkd-time-deposit-interest-rates.html">Getting
+                          Started with MPFs
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/popular-guides-best-hkd-time-deposit-interest-rates.html">
+                          Financial Freedom Beginner Guide
+
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/popular-guides-best-hkd-time-deposit-interest-rates.html">Passive
+                          Income Ideas
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- -------category-3----- -->
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">
+                      INVESTMENT ACCOUNTS PROVIDERS
+                    </h3>
+                    <ul class="ps-0 ms-0">
+                      <li>
+                        <a href="../investment/investment-accounts-providers-futu-hong.html">FUTU Hong Kong</a>
+                      </li>
+                      <li>
+                        <a href="../investment/investment-accounts-providers-futu-hong.html">
+                          Syfe
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/investment-accounts-providers-futu-hong.html">Webull
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/investment-accounts-providers-futu-hong.html"> Interactive Brokers
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/investment-accounts-providers-futu-hong.html"> Valuable Capital
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/investment-accounts-providers-futu-hong.html">Huatai International
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/investment-accounts-providers-futu-hong.html">uSMART
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/investment-accounts-providers-futu-hong.html">Longbridge
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/investment-accounts-providers-futu-hong.html">Kikitrade
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/investment-accounts-providers-futu-hong.html">Tiger Brokers
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/investment-accounts-providers-futu-hong.html">Charles Schwab
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- -------category-4----- -->
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">
+                      EXCLUSIVE OFFERS
+                    </h3>
+                    <ul class="ps-0 ms-0">
+                      <li>
+                        <a href="../investment/exclusive-offers-webull-up.html"> Webull:up to HK$1,400 rewards (no
+                          transaction required)</a>
+                      </li>
+                      <li>
+                        <a href="../investment/exclusive-offers-webull-up.html">
+                          Futu:up to HK$1,400 rewards
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/exclusive-offers-webull-up.html">Valuable Capital:up to HK$1,500
+                          rewards
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/exclusive-offers-webull-up.html"> Longbridge:HK$800 Apple Gift
+                          Card+HK$100 supermarket voucher
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/exclusive-offers-webull-up.html"> Huatai:up to HK$1,900 rewards</a>
+                      </li>
+                      <li>
+                        <a href="../investment/exclusive-offers-webull-up.html">
+                          Fosun:exclusive HK$700 voucher
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../investment/exclusive-offers-webull-up.html">Tiger:HK$300 voucher+HK$500 fractional
+                          shares</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <!-- --------------------
+                  start::blog
+               ------------------- -->
+          <li class="py-4 blog-menu">
+            <a href="../blogs/blog-dining.html">Blog</a>
+            <!-- -------blog-menu----- -->
+            <div class="sub-menu my-shadow blog-sub-menu py-4">
+              <div class="container">
+                <div class="row">
+                  <!-- -------category-1----- -->
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">
+                      EARN & SPEND
+                    </h3>
+                    <ul class="ps-0 ms-0">
+                      <li>
+                        <a href="../blogs/blog-dining.html">Dining
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../blogs/blog-dining.html"> Family
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- -------category-2----- -->
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">
+                      SAVE & BORROW
+                    </h3>
+                    <ul class="ps-0 ms-0">
+
+                      <li>
+                        <a href="../blogs/blog-budgeting.html">
+                          Budgeting
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../blogs/blog-budgeting.html"> Tax Loans
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../blogs/blog-budgeting.html">Personal Loans</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- -------category-3----- -->
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">
+                      GROW
+                    </h3>
+                    <ul class="ps-0 ms-0">
+                      <li>
+                        <a href="../blogs/blog-investments.html">
+                          Investments</a>
+                      </li>
+                      <li>
+                        <a href="../blogs/blog-investments.html">
+                          Career
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- -------category-4----- -->
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">
+                      PROTECT
+                    </h3>
+                    <ul class="ps-0 ms-0">
+                      <li>
+                        <a href="../blogs/blog-travel.html">
+                          Travel</a>
+                      </li>
+                      <li>
+                        <a href="../blogs/blog-travel.html">
+                          VHIS</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <!-- ---------------------
+                  start::rewards
+               ------------------- -->
+          <li class="py-4 rewards-menu">
+            <a href="../rewards/latest-reward-deals.html">Rewards</a>
+            <!-- -------rewards-menu----- -->
+            <div class="sub-menu my-shadow rewards-sub-menu py-4">
+              <div class="container">
+                <div class="row">
+                  <div class="col-3">
+                    <h3 class="fs-6 fw-bold">
+                      Rewards
+                    </h3>
+                    <ul class="ps-0 ms-0">
+                      <li>
+                        <a href="../rewards/latest-reward-deals.html">Latest Reward Deals
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../rewards/latest-reward-deals.html">Claim Rewards
+                        </a>
+                      </li>
+                      <li>
+                        <a href="../rewards/latest-reward-deals.html"> Claim Status</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="py-4 user-icon list-style-none">
+            <a href="../faqs.html" class="d-flex align-items-center">
+              FAQs
+            </a>
+          </li>
+          <li class="py-4 user-icon list-style-none">
+            <a href="{% url 'login' %}" class="d-flex align-items-center">
+              <i class="fas fa-user me-2 py-2 rounded-circle px-2"></i>
+              <div><span>Login</span></div>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <a class="text-white fs-4 toggler d-lg-none">
+        <i class="fas fa-bars"></i>
+      </a>
+      <!-- -------------------
+             mbl menu 
+          ------------------ -->
+      <div class="mbl-nav h-100 d-lg-none ">
+        <div class="d-flex d-lg-none justify-content-end ">
+          <div
+            class="col-12 col-sm-5 col-md-4 top-0 end-0 position-absolute vh-100 bg-white shadow border-2 border-primary">
+            <a class="bg-warning d-flex justify-content-end text-white text-decoration-none fs-3 blue-bg  py-4 px-3">
+              <i class="fas fa-times position-absolute close-icon" style="left:15px;top:10px"></i>
+            </a>
+            <div class="mbl-menu">
+              <ul class="list-unstyled mb-0">
+                <li class="py-3 user-icon list-style-none border border-1  px-3">
+                  <a href="../login.html" class="d-flex align-items-center text-decoration-none text-dark fs-5">
+                    <i class="fas fa-user me-2 py-2 rounded-circle px-2 text-white"></i>
+                    <div><span>Login</span></div>
+                  </a>
+                </li>
+              </ul>
+              <div class=" d-flex flex-column justify-content-start">
+                <div class="w-100 px-3 py-2 text-dark fw-md fs-5">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span>
+                      <a href="../index.html"
+                        class="text-dark hov-opacity text-decoration-none px-3 py-2 ext-dark fw-md fs-5">Home</a>
+                    </span>
+                  </div>
+                  <div class="navbar d-flex flex-column justify-content-start">
+                    <div class="menu w-100 px-3 py-2 text-dark fw-md fs-5">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span>
+                          Cards
+                        </span>
+                        <i class="fas fa-chevron-down"></i>
+                      </div>
+                      <div class="submenu w-100 mt-2">
+                        <a href="../credit-cards/compare-credit-card_best-credit-cards.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Compare
+                          Credit Cards</a>
+                        <a href="../credit-cards/popular-guides_credit-cards-for-airport-lounge-access.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Popular
+                          Guides</a>
+                        <a href="../credit-cards/crediboo-exclusive_citibank.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Crediboo
+                          Exclusive Promotions</a>
+                        <a href="../credit-cards/credit-card-providers-aeon.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Credit
+                          Card Providers</a>
+                      </div>
+                    </div>
+                    <div class="menu w-100 px-3 py-2 text-dark fw-md fs-5">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span>
+                          Loans
+                        </span>
+                        <i class="fas fa-chevron-down"></i>
+                      </div>
+                      <div class="submenu w-100 mt-2">
+                        <a href="../loans/compare-loans-best-personal-loans.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Compare
+                          Loans</a>
+                        <a href="../loans/popular-guides-best-scb-personal-loans.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Popular
+                          Guides</a>
+                        <a href="../loans/home-loans-tools-mortgage-calculator.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Home
+                          Loans Tools</a>
+                        <a href="../loans/personal-loan-providers-aeon-credit-service.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Personal
+                          Loan Providers</a>
+                      </div>
+                    </div>
+                    <div class="menu w-100 px-3 py-2 text-dark fw-md fs-5">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span>
+                          Accounts
+                        </span>
+                        <i class="fas fa-chevron-down"></i>
+                      </div>
+                      <div class="submenu w-100 mt-2">
+                        <a href="../accounts/compare-accounts-compare-saving-accounts.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Compare
+                          Accounts</a>
+                        <a href="../accounts/popular-guides-best-hkd-time-deposit-interest-rates.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Popular
+                          Guides</a>
+                        <a href="../accounts/saving-accounts-providers-citybank-accounts.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Saving
+                          Accounts Providers</a>
+                        <a href="../accounts/saving-accounts-opening-offers-citigold.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Saving
+                          Accounts Opening Offers</a>
+                      </div>
+                    </div>
+                    <div class="menu w-100 px-3 py-2 text-dark fw-md fs-5">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span>
+                          Investment
+                        </span>
+                        <i class="fas fa-chevron-down"></i>
+                      </div>
+                      <div class="submenu w-100 mt-2">
+                        <a href="../investment/compare-online-brokerages-online-brokerage.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Compare
+                          Online Brokerages</a>
+                        <a href="../investment/popular-guides-best-hkd-time-deposit-interest-rates.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Popular
+                          Guides</a>
+                        <a href="../investment/investment-accounts-providers-futu-hong.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Investment
+                          Accounts Providers</a>
+                        <a href="../investment/exclusive-offers-webull-up.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Exclusive
+                          Offers</a>
+                      </div>
+                    </div>
+                    <div class="menu w-100 px-3 py-2 text-dark fw-md fs-5">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span>
+                          Blog
+                        </span>
+                        <i class="fas fa-chevron-down"></i>
+                      </div>
+                      <div class="submenu w-100 mt-2">
+                        <a href="../blogs/blog-dining.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Earn &
+                          Spend</a>
+                        <a href="../blogs/blog-budgeting.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Save &
+                          Borrow</a>
+                        <a href="../blogs/blog-investments.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Grow</a>
+                        <a href="../blogs/blog-travel.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Protect</a>
+                      </div>
+                    </div>
+                    <div class="menu w-100 px-3 py-2 text-dark fw-md fs-5">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span>
+                          Rewards
+                        </span>
+                        <i class="fas fa-chevron-down"></i>
+                      </div>
+                      <div class="submenu w-100 mt-2">
+                        <a href="../rewards/latest-reward-deals.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Latest
+                          Reward Deals</a>
+                        <a href="../rewards/latest-reward-deals.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Claim
+                          Rewards</a>
+                        <a href="../rewards/latest-reward-deals.html"
+                          class="text-dark hov-opacity text-decoration-none px-3 py-2 fs-6 fw-normal bg-grey">Claim
+                          Status</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</header>

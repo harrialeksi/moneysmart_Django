@@ -7,12 +7,11 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 import time
-# from bs4 import BeautifulSoup
+import requests
+from bs4 import BeautifulSoup
 
 
 def get_cards(url):
-    cardUriList = ['credit-cards', 'cash-back', 'air-miles', 'travel-overseas-spending', 'welcome-offer', 'online-shopping',
-                   'annual-fee-waiver', 'unionpay', 'student', 'digital-wallets', 'business-card', 'octopus-card-aavs']
 
     # initialize the webdriver
     driver = webdriver.Chrome()
@@ -31,10 +30,8 @@ def get_cards(url):
     # find anchor with "More detail" text-it's class name ="link-toggle"
     details = driver.find_elements("xpath", '//a[@class="link-toggle"]')
      # print the contents of each element
-    i = 0
+    
     for element in details:
-        i = i + 1
-        print(i)
         #click buttons
         driver.execute_script('arguments[0].click();', element)
         # time.sleep(1)
@@ -90,6 +87,35 @@ def get_cards(url):
         for i, element in enumerate(card_usp):
             card_usp_data.append({'ratio':  element.find_element('xpath', './/dd').text, 'text': element.find_element('xpath', './/dt').text})
 
+        try:
+            promotion = card.find_element('xpath', './/li[@class="tab-list is-active"][@data-id="promotions"]').get_attribute('innerHTML')
+        except NoSuchElementException:
+            promotion = None
+        try:
+            keyFeatures = card.find_element('xpath', './/li[@class="tab-list"][@data-id="key_features"]').get_attribute('innerHTML')
+        except NoSuchElementException:
+            keyFeatures = None
+        try:
+            annualInterest = card.find_element('xpath', './/li[@class="tab-list"][@data-id="annual_interest_rate_and_fees"]').get_attribute('innerHTML')
+        except NoSuchElementException:
+            annualInterest = None
+        try:
+            incomeRequirement = card.find_element('xpath', './/li[@class="tab-list"][@data-id="minimum_income_requirements"]').get_attribute('innerHTML')
+        except NoSuchElementException:
+            incomeRequirement = None
+        try:
+            cardAssociation = card.find_element('xpath', './/li[@class="tab-list"][@data-id="card_association"]').get_attribute('innerHTML')
+        except NoSuchElementException:
+            cardAssociation = None
+        try:
+            wirelessPayment = card.find_element('xpath', './/li[@class="tab-list"][@data-id="wireless_payment"]').get_attribute('innerHTML')
+        except NoSuchElementException:
+            wirelessPayment = None
+        try:
+            repayment = card.find_element('xpath', './/li[@class="tab-list"][@data-id="repayment_summary"]').get_attribute('innerHTML')
+        except NoSuchElementException:
+            repayment = None
+
         data.append({
             "img_src": img_src,
             "disclosure": disclosure,
@@ -99,30 +125,20 @@ def get_cards(url):
             "badge_primary": badge_primary,
             "snippet": snippet,
             "snippet_img": snippet_img,
-            'usp': card_usp_data
+            'usp': card_usp_data,
+            'promotion': promotion,
+            'keyFeatures': keyFeatures,
+            'annualInterest': annualInterest,
+            'incomeRequirement': incomeRequirement,
+            'cardAssociation': cardAssociation,
+            'wirelessPayment': wirelessPayment,
+            'repayment': repayment,
         })
 
     driver.quit()
     return data
 
-# def get_cash_back():
-# for i, card in enumerate(cards):
-#     card_image_src = card.find_element('xpath', '//div[@class="listing-card__image"]//img').get_attribute("src")
-#     # card_state = card.find_element(By.CLASS_NAME, 'listing-card__disclosure').text
-#     card_bonus1 = card.find_element('xpath', '//div[@class="badge badge--exclusive"]//div[@class="badge__label"]').text
-#     card_bonus2 = card.find_element('xpath', '//div[@class="badge badge--primary"]//div[@class="badge__label"]').text
-#     card_title = card.find_element('xpath', '//h2[@class="listing-card__title"]').text
-#     card_promotion_snippet_content = card.find_element(By.CLASS_NAME, 'promotion-snippet__content').text
-#     card_snipp_image = card.find_element('xpath', '//div[@class="promotion-snippet__image"]//img').get_attribute("src")
-# card_usp = card.find_elements(By.CLASS_NAME, 'listing-card__usp-group')
-# card_usp_data = []
-# for i, element in enumerate(card_usp):
-#     card_usp_data.append({'ratio':  element.find_element('xpath', '//dd').text, 'text': element.find_element('xpath', '//dt').text})
-# card_promotion = card.find_element(By.XPATH, '//h2[@class="listing-card__title"]')
-# print(card_promotion.text)
-
-
-
-
-#     print(element.text)
-#  # close the webdriver
+def get_loans():
+    urls = [
+        ''
+    ]

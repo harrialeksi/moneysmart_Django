@@ -1,0 +1,59 @@
+{% block head_section %} {% load static %}
+<section class="py-4 bg-grey">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center">
+      <a href="index.html" class="text-dark me-3 text-decoration-none">Home</a>
+      <a
+        href="#"
+        class="text-dark me-3 text-decoration-none"
+        style="pointer-events: none"
+      >
+        <i class="fas fa-chevron-right"></i>
+      </a>
+      <a href="#" class="text-dark me-3 text-decoration-none">Credit Cards</a>
+      <a
+        href="#"
+        class="text-dark me-3 text-decoration-none"
+        style="pointer-events: none"
+      >
+        <i class="fas fa-chevron-right"></i>
+      </a>
+      <a href="#" class="text-dark me-3 text-decoration-none">{{broadcrump}}</a>
+    </div>
+    <div class="row mt-4">
+      <div class="col-md-8 col-lg-9">
+        <h1 class="fs-1">{{title}}</h1>
+        <p>{{description}}</p>
+      </div>
+      <div class="col-sm-6 ms-auto col-md-4 col-lg-3">
+        <img
+          src="{% static 'img/airport-laungage-card.png' %}"
+          alt="airport-laungage"
+          class="w-100"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-4 blue-bg">
+  <div class="container">
+    <h2 class="fs-5 text-dark">{{subtitle}}</h2>
+    <p class="mt-4 mb-0 pb-0 text-dark">{{ sub_desc}}</p>
+    <div class="mt-2 row">
+      {% for category in categories %}
+      <div class="col-sm-6 my-2 my-md-0 col-md-4">
+        <a
+          href="#{{category.link}}"
+          class="d-block text-decoration-none text-dark h-100"
+        >
+          <div class="bg-white h-100 py-3 px-3">
+            <h3 class="fs-6 fw-normal">{{category.category}}</h3>
+            <h3 class="fs-6 fw-md">{{category.desc}}</h3>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

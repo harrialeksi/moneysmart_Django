@@ -11,19 +11,21 @@ class Card(models.Model):
     association = models.ForeignKey(
         "Association", null=True, on_delete=models.PROTECT, related_name='association')
     image = models.CharField(max_length=200, null=True)
-
-    def __str__(self):
-        return self.title
-
-
-class CardDetail(models.Model):
     disclosure = models.CharField(max_length=30, null=True)
     execlusive = models.CharField(max_length=20, null=True)
     badge_label = models.CharField(max_length=20, null=True)
     badge_primary = models.CharField(max_length=20, null=True)
     snippet = models.TextField(null=True)
     snippet_img = models.CharField(max_length=200, null=True)
-    card = models.ForeignKey("Card", related_name='card_details', on_delete=models.CASCADE)
+    promotion = models.TextField(null=True)
+    keyfeatures = models.TextField(null=True)
+    annualinterest = models.TextField(null=True)
+    incomeequirement = models.TextField(null=True)
+    cardassociation = models.TextField(null=True)
+    wirelesspayment = models.TextField(null=True)
+
+    def __str__(self):
+        return self.title
 
 
 class CardUsp(models.Model):
