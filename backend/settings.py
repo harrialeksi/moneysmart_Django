@@ -39,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'users',
-    'cards'
+    'cards',
+    'loans'
 ]
 
 MIDDLEWARE = [
@@ -137,7 +139,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'superbaby81230@gmail.com'
 EMAIL_HOST_PASSWORD = 'University1230!'
 EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+EMAIL_USE_SSL = True
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [

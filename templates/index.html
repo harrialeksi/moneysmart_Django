@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+{% include 'layout/head.html' %}
+
+<body>
+  <!-- --------Google translator----- -->
+  {% include 'layout/translate.html' %}
+  <!-- =======================
+              header 
+    ========================= -->
+
+  {% include 'layout/header.html' %}
+  <!-- =======================
+          hero section 
+    ========================= -->
+  <div class="hero-sec home-hero blue-bg py-md-0">
+    <div class="hero-main px-4 px-md-0 position-relative d-flex flex-wrap align-items-center">
+      <div class="hero-txt col-12 col-md-6 py-3">
+        <h1 class="text-dark fs-1 lh-sm fw-bold text-center text-md-start">Smart Money, Smart Life.</h1>
+        <p class="fs-6 text-dark text-center text-md-start mt-2">Get the best credit cards, loans and travel insurance
+          in Hong Kong.</p>
+        <div class="d-lg-flex">
+          <a href="signup.html"
+            class="d-block text-center px-5 py-3 s-5 fw-bold text-decoration-none rounded-2 mt-2 me-lg-3 btn-bg hov-opacity text-white">Sign
+            Up</a>
+          <a href="login.html"
+            class="d-block text-center px-5 py-3 s-5 fw-bold text-decoration-none rounded-2 mt-2  hov-opacity text-dark blue-border">Log
+            In</a>
+        </div>
+      </div>
+      <div class="hero-img h-100 col-12 col-md-6">
+        <img src="{% static 'img/home-hero.png' %}" alt="" class="w-100 h-100">
+      </div>
+      <div class="hero-svg h-100 col-6 position-absolute d-none d-md-block">
+        <svg class="h-100" viewBox="0 0 295 456" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M 0 456 H 295 C 241 435 228 424 209 408 C 99 305 44.7604 130.617 40.6133 0 H 0 V 456 Z" fill="#fff">
+          </path>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <!-- =======================
+       Finance products section 
+    ========================= -->
+  <div class="container py-4">
+    <div>
+      <h2 class="fs-2 text-center">Compare, choose and apply for the best personal finance products</h2>
+      <div class="row justify-content-center mt-4 finance-prod">
+        <div class="col-xl-2 col-lg-3 col-sm-4 col-6 my-3">
+          <a href="loans/compare-loans-best-personal-loans.html"
+            class="shadow rounded-2 py-3 text-decoration-none d-flex flex-column justify-content-center">
+            <div class="col-6 mx-auto px-2">
+              <img src="{% static 'img/prodc3.png' %}" alt="" class="w-100">
+            </div>
+            <p class="text-center mt-3 text-dark ">Personal Loans</p>
+          </a>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-sm-4 col-6 my-3">
+          <a href="credit-cards/compare-credit-card_best-credit-cards.html"
+            class="shadow rounded-1 py-3 text-decoration-none d-flex flex-column justify-content-center">
+            <div class="col-6 mx-auto px-2">
+              <img src="{% static 'img/prodc4.png' %}" alt="" class="w-100">
+            </div>
+            <p class="text-center mt-3 text-dark ">Credit Cards</p>
+          </a>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-sm-4 col-6 my-3">
+          <a href="accounts/compare-accounts-compare-saving-accounts.html"
+            class="shadow rounded-1 py-3 text-decoration-none d-flex flex-column justify-content-center">
+            <div class="col-6 mx-auto px-2">
+              <img src="{% static 'img/prod8.png' %}" alt="" class="w-100">
+            </div>
+            <p class="text-center mt-3 text-dark ">Accounts</p>
+          </a>
+        </div>
+        <!-- <div class="col-xl-2 col-lg-3 col-sm-4 col-6 my-3">
+          <a href="rewards/latest-reward-deals.html"
+            class="shadow rounded-1 py-3 text-decoration-none d-flex flex-column justify-content-center">
+            <div class="col-6 mx-auto px-2">
+              <img src="img/prodc2.png" alt="" class="w-100">
+            </div>
+            <p class="text-center mt-3 text-dark ">Reward Deals</p>
+          </a>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-sm-4 col-6 my-3">
+          <a href="loans/home-loans-tools-mortgage-calculator.html"
+            class="shadow rounded-1 py-3 text-decoration-none d-flex flex-column justify-content-center">
+            <div class="col-6 mx-auto px-2">
+              <img src="img/prodc6.png" alt="" class="w-100">
+            </div>
+            <p class="text-center mt-3 text-dark ">Home Loans</p>
+          </a>
+        </div> -->
+        <div class="col-xl-2 col-lg-3 col-sm-4 col-6 my-3">
+          <a href="blogs/blog-dining.html"
+            class="shadow rounded-1 py-3 text-decoration-none d-flex flex-column justify-content-center">
+            <div class="col-6 mx-auto px-2">
+              <img src="{% static 'img/prodc1.png' %}" alt="" class="w-100">
+            </div>
+            <p class="text-center mt-3 text-dark ">More</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- =======================
+    start::get instant reward section 
+    ========================= -->
+  <!-- <div class="container py-5">
+    <div class="row my-5">
+      <div class="col-md-6">
+        <img src="img/reward3.jpg" class="w-100" alt="">
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <h2 class="fs-1">Create a Crediboo account and get instant rewards for the things you love</h2>
+        <p class="fs-6 mt-3">Join for free and enjoy exclusive cashback deals on Google
+          Play™、Netflix、Nintendo、PlayStation Store、Steam & more. More exclusive offers to come!</p>
+        <a href="rewards/latest-reward-deals.html"
+          class="mt-2 my-btn d-inline-block text-light text-decoration-none fw-bold fs-6 text-capitalize btn-bg py-3 px-4">Find
+          out how</a>
+      </div>
+    </div>
+  </div> -->
+  <!-- =======================
+    start::top deals 
+    ========================= -->
+  <!-- <div class="container py-4">
+    <div>
+      <h2 class="fs-1 fw-bold">Don't Miss Our Top Deals</h2>
+      <div class="row mt-4 finance-prod">
+        <div class="col-lg-4 col-md-6 my-3">
+          <div class="shadow h-100 rounded-2 py-4 px-3 d-block text-decoration-none ">
+            <h3 class="fs-2 text-dark fw-md">
+              SCB Credit Cards: Up to $1,599 Rewards
+            </h3>
+            <p class="fs-6 text-dark"><i>Ending 31st May 2023</i> </p>
+            <div class="col-4 mt-4">
+              <img src="img/top-deal-1.webp" alt="" class="w-100 rounded-circle">
+            </div>
+            <p class="text-dark mt-3">Apply for SC Smart Card now via Crediboo to get extra <b>HK$1,200 Apple Gift
+                Card or HK$1,200 Supermarket Gift Card or Shokz OpenRun Pro – EK Limited Edition S810 (Colour randomly
+                distributed) (Retail price: HK$1,599)</b></p>
+            <p class="text-dark mt-5">[Referral Program] After applying for the card, get extra <b>HK$300 supermarket
+                vouchers </b>by referring each relatives and friends to apply as well! The more you refer, the more
+              rewards you get!</p>
+            <a href="credit-cards/compare-credit-card_best-credit-cards.html"
+              class="mt-4 blue-txt text-primary text-decoration-none d-inline-block text-center py-1 px-3 border border-primary border-1 rounded-pill">See
+              more details</a>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 my-3">
+          <div class="shadow h-100 rounded-2 py-4 px-3 d-block text-decoration-none ">
+            <h3 class="fs-2 text-dark fw-md">
+              Personal Loan: Up to $15,699 Rewards
+            </h3>
+            <p class="fs-6 text-dark"><i>Ending 31st May 2023</i> </p>
+            <div class="col-4 mt-4">
+              <img src="img/top-deal-2.webp" alt="" class="w-100 rounded-circle">
+            </div>
+            <p class="text-dark mt-3">May offer! Successfully apply for Citi Speedy Cash Loan during 1 - 31 May and
+              drawdown the specific loan products can enjoy <b>up to $15,699 Rewards !</b></p>
+            <a href="credit-cards/compare-credit-card_best-credit-cards.html"
+              class="mt-4 blue-txt text-primary text-decoration-none d-inline-block text-center py-1 px-3 border border-primary border-1 rounded-pill">Compare
+              Now</a>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 my-3">
+          <div class="shadow h-100 rounded-2 py-4 px-3 d-block text-decoration-none ">
+            <h3 class="fs-2 text-dark fw-md">
+              Travel Insurance: Up to 35% Off
+            </h3>
+            <p class="fs-6 text-dark"><i>Ending 31st May 2023</i> </p>
+            <div class="col-4 mt-4">
+              <img src="img/top-deal-1.webp" alt="" class="w-100 rounded-circle">
+            </div>
+            <p class="text-dark mt-3">Crediboo helps you compare 40+ Travel Insurance products in one go. Find the
+              Best Travel Insurance Plan with Covid-19 coverage, flight delay or luggage loss coverage, and enjoy <b>up
+                to 35% off Exclusive Discount or Supermarket e-coupon on specific products now!</b></p>
+            <a href="credit-cards/compare-credit-card_best-credit-cards.html"
+              class="mt-4 blue-txt text-primary text-decoration-none d-inline-block text-center py-1 px-3 border border-primary border-1 rounded-pill">
+              Start Comparing</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- =======================
+    trusted loan section 
+    ========================= -->
+  <div class="container">
+    <div class="row flex-column flex-md-row align-items-center  py-4 py-md-5">
+      <div class="col-md-6">
+        <h2 class="fs-1">Trusted Personal Loans</h2>
+        <p class="fs-6 mt-3">Providing you with carefully selected loan products from trusted financial institutions
+          without any hidden fees or costs.</p>
+        <a href="loans/personal-loan-providers-aeon-credit-service.html"
+          class="mt-2 my-btn d-inline-block text-light text-decoration-none fw-bold fs-6 text-capitalize btn-bg py-3 px-4">Compare
+          Personal Loans</a>
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <img src="{% static 'img/loan.png' %}" class="w-100" alt="">
+      </div>
+    </div>
+  </div>
+  <!-- =======================
+   Compare Credit Cards section 
+    ========================= -->
+  <div class="container ">
+    <div class="row flex-column-reverse flex-md-row align-items-center py-4 py-md-5">
+      <div class="col-md-6 mt-4 mt-md-0">
+        <img src="{% static 'img/credit-card.png' %}" class="w-100" alt="">
+      </div>
+      <div class="col-md-6">
+        <h2 class="fs-1">Compare Credit Cards</h2>
+        <p class="fs-6 mt-3">Covering all major credit cards to ensure that your spending needs are served, with easy
+          online applications and the best deals all in one place.</p>
+        <a href="credit-cards/compare-credit-card_best-credit-cards.html"
+          class="mt-2 my-btn d-inline-block text-light text-decoration-none fw-bold fs-6 text-capitalize btn-bg py-3 px-4">Compare
+          credit cards</a>
+      </div>
+    </div>
+  </div>
+  <!-- =======================
+   Compare Travel Insurance section 
+    ========================= -->
+  <div class="container">
+    <div class="row flex-column flex-md-row align-items-center py-4 py-md-5">
+      <div class="col-md-6 mt-4 mt-md-0">
+        <h2 class="fs-1">Compare Accounts</h2>
+        <p class="fs-6 mt-3">Compare Accounts with coverage including Covid-19, trip cancellation and loss or
+          damage of baggage in one go.</p>
+        <a href="accounts/compare-accounts-compare-saving-accounts.html"
+          class="mt-2 my-btn d-inline-block text-light text-decoration-none fw-bold fs-6 text-capitalize btn-bg py-3 px-4">Find
+          Accounts</a>
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <img src="{% static 'img/compare-accounts.jpg' %}" class="w-100" alt="">
+      </div>
+    </div>
+  </div>
+
+  <!-- =======================
+    finance not stressful 
+    ========================= -->
+  <div class="container">
+    <div class=" py-5">
+      <h2 class="fs-1 fw-md">Personal finance doesn’t have to be stressful</h2>
+      <p class="fs-6">Stay on top of your finances - get tips and insights from our blog.</p>
+      <div class="row mt-4 finance-prod">
+        <div class="col-lg-4 col-md-6 my-3">
+          <div class="shadow h-100 rounded-2 py-4 px-4 d-block text-decoration-none ">
+            <h3 class="fs-5 fw-md">
+              Latest HKD Time Deposit Rates
+            </h3>
+            <div class="mt-4">
+              <img src="{% static 'img/pf1.png' %}" alt="" class="w-100">
+            </div>
+            <p class="fs-6 text-dark mt-5 pb-0">ZH version only.</p>
+            <a href="#" class="blue-txt text-primary text-decoration-none d-inline-block text-center">Read More</a>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 my-3">
+          <div class="shadow h-100 rounded-2 py-4 px-4 d-block text-decoration-none ">
+            <h3 class="fs-5 fw-md">
+              Guide to buying HK Disneyland Tickets
+            </h3>
+            <div class="mt-4">
+              <img src="{% static 'img/pf2.png' %}" alt="" class="w-100">
+            </div>
+            <p class="fs-6 text-dark mt-5 pb-0">ZH version only.</p>
+            <a href="#" class="blue-txt text-primary text-decoration-none d-inline-block text-center">Read More</a>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 my-3">
+          <div class="shadow h-100 rounded-2 py-4 px-4 d-block text-decoration-none ">
+            <h3 class="fs-5 fw-md">
+              Guide to Financial Freedom (FIRE)
+            </h3>
+            <div class="mt-4">
+              <img src="{% static 'img/pf3.png' %}" alt="" class="w-100">
+            </div>
+            <p class="fs-6 text-dark mt-5 pb-0">ZH version only.</p>
+            <a href="#" class="blue-txt text-primary text-decoration-none d-inline-block text-center">Read More</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =======================
+    finance goals
+    ========================= -->
+
+  <section class="bg-light">
+    <div class="container">
+      <div class=" py-5">
+        <h2 class="fs-1 text-center fw-md">Our Core Values</h2>
+      
+        <div class="row mt-4 finance-prod">
+          <div class="col-lg-4 col-md-6 my-3">
+            <div class="h-100 rounded-2 py-4  d-block text-decoration-none ">
+              <div class="col-3 mx-auto mx-md-0">
+                <img src="{% static 'img/step-1.png' %}" alt="" class="w-100">
+              </div>
+              <h3 class="fs-5 fw-md mt-4 text-center text-md-start">
+                Trust and Reliability
+              </h3>
+              <p class="fs-6 text-dark mt-4 pb-0 text-center text-md-start">With Crediboo, you can trust that our information is accurate and up-to-date. We
+                have established strong partnerships with trusted financial institutions to ensure reliability in the
+                products we recommend. Your financial security is our priority.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 my-3">
+            <div class="h-100 rounded-2 py-4  d-block text-decoration-none ">
+              <div class="col-3 mx-auto mx-md-0">
+                <img src="{% static 'img/step2b.png' %}" alt="" class="w-100">
+              </div>
+              <h3 class="fs-5 fw-md mt-4 text-center text-md-start">
+                Comprehensive Comparison
+              </h3>
+              <p class="fs-6 text-dark mt-4 pb-0 text-center text-md-start">Get a complete picture of your options with our comprehensive comparison. We
+                provide detailed insights into features, benefits, and fees, helping you make informed decisions. Find
+                the best credit cards, bank accounts, and loans tailored to your needs.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 my-3">
+            <div class="h-100 rounded-2 py-4  d-block text-decoration-none ">
+              <div class="col-3 mx-auto mx-md-0">
+                <img src="{% static 'img/step-3.png' %}" alt="" class="w-100">
+              </div>
+              <h3 class="fs-5 fw-md mt-4 text-center text-md-start">
+                User-Focused Approach
+              </h3>
+              <p class="fs-6 text-dark mt-4 pb-0 text-center text-md-start">At Crediboo, we prioritize your needs. Our user-focused approach allows you to
+                customize your search and filter results based on your preferences. We value your feedback and
+                continuously improve our platform to enhance your experience. Take control of your financial journey
+                with personalized solutions.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+  
+  <!-- -----------------------------
+         credit descriptions
+  --------------------------- -->
+  <section>
+    <div class="container">
+      <div class="py-5">
+        <h2 class="fs-2">
+          Compare Credit Cards in Hong Kong 2023
+        </h2>
+        <div class="row mt-4">
+          <div class="col-md-6 my-3 col-lg-4 my-lg-2">
+            <div class="border border-1 border-dark rounded-5 p-2 h-100">
+              <div class="h-100 bg-white py-3 px-4 border border-2 border-warning rounded-5 bg-warning">
+                <h3 class="fw-md d-block py-1 fs-2 text-decoration-none color2-text m-0 p-0 lh-1">Air Miles<h3>
+                    <h3 class="text-dark d-block py-1 text-decoration-none fw-md fs-5 m-0 p-0 lh-1">Miles CreditCards
+                      <h3>
+                        <ol class="m-0 p-0 ps-3 fs-6 fw-normal mt-2">
+                          <li class="my-2">Standard Chartered Asia Miles Mastercard: HK$4/ mile for dining and online
+                            spending </li>
+                          <li class="my-2">
+                            Citi PremierMiles Card: HK$3/ mile for foreign currency transactions
+                          </li>
+                          <li class="my-2"> American Express Cathay Pacific Elite Credit Card: HK6/ 1.5 mile for foreign
+                            currency spending
+                          </li>
+                        </ol>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 my-3 col-lg-4 my-lg-2">
+            <div class="border border-1 border-dark rounded-5 p-2 h-100">
+              <div class="h-100 bg-white py-3 px-4 border border-2 border-warning rounded-5 bg-warning">
+                <h3 class="fw-md d-block py-1 fs-2 text-decoration-none color2-text m-0 p-0 lh-1">Cashback</h3>
+                <h3 class="text-dark d-block py-1 text-decoration-none fw-md fs-5 m-0 p-0 lh-1">Cashback Credit
+                  Cards</h3>
+                <ol class="m-0 p-0 ps-3">
+                  <li class="my-2">Standard Chartered Simply Cash Visa Card: 2% rebates on foreign currency transactions
+                  </li>
+                  <li class="my-2">
+                    Citi PremierMiles Card: HK$3/ mile for foreign currency transactions
+                  </li>
+                  <li class="my-2"> American Express Cathay Pacific Elite Credit Card: HK6/ 1.5 mile for foreign
+                    currency spending
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 my-3 col-lg-4 my-lg-2">
+            <div class="border border-1 border-dark rounded-5 p-2 h-100">
+              <div class="h-100 bg-white py-3 px-4 border border-2 border-warning rounded-5 bg-warning">
+                <h3 class="fw-md d-block py-1 fs-2 text-decoration-none color2-text m-0 p-0 lh-1">Reward
+                  Points</h3>
+                <h3 class="text-dark d-block py-1 text-decoration-none fw-md fs-5 m-0 p-0 lh-1">Reward Points
+                  Credit Cards</h3>
+                <ol class="m-0 p-0 ps-3">
+                  <li class="my-2">Citi Rewards Card: 5x points all-year-round at supermarkets, department stores, and
+                    telecom
+                    providers
+                  </li>
+                  <li class="my-2">
+                    HSBC Visa Signature Card: Up to 14x “RewardCash” for selected categories
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- =======================
+      contact
+    ========================= -->
+    <div class="contact blue-bg my-4 mt-5">
+      <div class="container ">
+        <div class="row flex-column flex-md-row align-items-center py-4 py-md-4">
+          <div class="col-md-6">
+            <img src="{% static 'img/subscribe-form.png' %}" class="w-100" alt="">
+          </div>
+          <div class="col-md-6 mt-4 mt-md-0 ps-4">
+            <h2 class="fs-1 fw-bold text-dark">Get in the know.
+            </h2>
+            <p class="fs-3 lh-sm text-dark">Subscribe to our newsletter for the latest articles and deals.
+            </p>
+            <form action="" class="mt-3">
+              <input type="email" placeholder="Email address"
+                class="py-2 bg-white text-dark px-3 fs-5 border border-1 border-primary w-100">
+              <button type="submit"
+                class="mt-4 my-btn d-inline-block text-light text-decoration-none fw-bold fs-6 text-capitalize btn-bg py-3 px-4 border-0">
+                Subscribe Now
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- =======================
+         footer
+    ========================= -->
+  {% include 'layout/footer.html' %}
+  
+</body>
+
+</html>

@@ -12,8 +12,6 @@ from bs4 import BeautifulSoup
 
 
 def get_cards(url):
-    cardUriList = ['credit-cards', 'cash-back', 'air-miles', 'travel-overseas-spending', 'welcome-offer', 'online-shopping',
-                   'annual-fee-waiver', 'unionpay', 'student', 'digital-wallets', 'business-card', 'octopus-card-aavs']
 
     # initialize the webdriver
     driver = webdriver.Chrome()
@@ -113,6 +111,10 @@ def get_cards(url):
             wirelessPayment = card.find_element('xpath', './/li[@class="tab-list"][@data-id="wireless_payment"]').get_attribute('innerHTML')
         except NoSuchElementException:
             wirelessPayment = None
+        try:
+            repayment = card.find_element('xpath', './/li[@class="tab-list"][@data-id="repayment_summary"]').get_attribute('innerHTML')
+        except NoSuchElementException:
+            repayment = None
 
         data.append({
             "img_src": img_src,
@@ -130,41 +132,13 @@ def get_cards(url):
             'incomeRequirement': incomeRequirement,
             'cardAssociation': cardAssociation,
             'wirelessPayment': wirelessPayment,
+            'repayment': repayment,
         })
 
     driver.quit()
     return data
 
-def get_card():
-    url = "https://www.moneysmart.hk/en/credit-cards/smart-card?provider_slugs%5B%5D=-1&category_slug=best-credit-cards&sort_by=recommended"
-    r = requests.get(url)
-    soup = BeautifulSoup(r.content, 'html.parser')
-    title = soup.select_one('div.details-header__title>h1').text
-    img = soup.select_one('div.sidebar__product-image>img').attrs['src']
-    badge_primary = soup.select_one('div.badge--primary>.badge__label').text
-    highlight = soup.select('div.product-highlight')
-    for elem in highlight:
-        print(elem)
-    
-
-# def get_cash_back():
-# for i, card in enumerate(cards):
-#     card_image_src = card.find_element('xpath', '//div[@class="listing-card__image"]//img').get_attribute("src")
-#     # card_state = card.find_element(By.CLASS_NAME, 'listing-card__disclosure').text
-#     card_bonus1 = card.find_element('xpath', '//div[@class="badge badge--exclusive"]//div[@class="badge__label"]').text
-#     card_bonus2 = card.find_element('xpath', '//div[@class="badge badge--primary"]//div[@class="badge__label"]').text
-#     card_title = card.find_element('xpath', '//h2[@class="listing-card__title"]').text
-#     card_promotion_snippet_content = card.find_element(By.CLASS_NAME, 'promotion-snippet__content').text
-#     card_snipp_image = card.find_element('xpath', '//div[@class="promotion-snippet__image"]//img').get_attribute("src")
-# card_usp = card.find_elements(By.CLASS_NAME, 'listing-card__usp-group')
-# card_usp_data = []
-# for i, element in enumerate(card_usp):
-#     card_usp_data.append({'ratio':  element.find_element('xpath', '//dd').text, 'text': element.find_element('xpath', '//dt').text})
-# card_promotion = card.find_element(By.XPATH, '//h2[@class="listing-card__title"]')
-# print(card_promotion.text)
-
-
-
-
-#     print(element.text)
-#  # close the webdriver
+def get_loans():
+    urls = [
+        ''
+    ]

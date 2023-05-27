@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  {% load static %}
+  {% include 'layout/head.html' %}
+<body>
+  <!-- --------Google translator----- -->
+  {% include 'layout/translate.html' %}
+  <!-- =======================
+              header 
+    ========================= -->
+  {% include 'layout/header.html' %}  
+  <!-- =======================
+          hero section 
+    ========================= -->
+  {% include 'layout/head_section.html' %} 
+  <!-- =======================
+         card descriptions
+    ========================= -->
+  {% block content %}
+  {% endblock %}
+  <!-- =======================
+         footer
+    ========================= -->
+  {% include 'layout/footer.html' %}
+  <script>
+    $(function () {
+      $("#tabs").tabs();
+    });
+  </script>
+  <script>
+    $(document).ready(function () {
+      $('.slider').slick({
+        autoplay: false,
+        arrows: true,
+        infinite:false,
+        slidesToShow: 4,
+        responsive: [
+          {
+            breakpoint: 1300,
+            settings: {
+              slidesToShow: 3
+            }
+          },
+          {
+            breakpoint: 1000,
+            settings: {
+              slidesToShow: 2
+            }
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 1
+            }
+          },
+        ]
+      });
+    });
+
+  </script>
+</body>
+
+</html>

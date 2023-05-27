@@ -1,53 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Credit Card || compare-credit-card_best-credit-cards</title>
-
   {% load static %}
-  <!-- ----jquery-ui----- -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
-  <!-- Bootstrap 5 CSS CDN -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
-  <!-- Font Awesome CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="{% static 'css/main.css' %}">
-  <!-- ----slider css-- -->
-  <link rel="stylesheet" type="text/css"
-    href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
-  <!-- jQuery CDN -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-  {% block head %}
-  {% endblock %}
-
-</head>
-
+  {% include 'layout/head.html' %}
 <body>
   <!-- --------Google translator----- -->
-  <div class="main-p-translate">
-    <div id="google_element" class="blue-dark-bg"></div>
-    <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
-    <script>
-      function loadGoogleTranslate() {
-        new google.translate.TranslateElement({
-          includedLanguages: 'en,zh-CN,zh-TW',
-          layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
-        }, 'google_element');
-
-        // Add event listener to the Google Translate dropdown
-        var googleTranslateElement = document.querySelector('.goog-te-combo');
-        googleTranslateElement.addEventListener('change', function () {
-          var selectedLanguage = this.value;
-          showLogo(selectedLanguage);
-        });
-      }
-    </script>
-  </div>
+  {% include 'layout/translate.html' %}
   <!-- =======================
               header 
     ========================= -->
@@ -122,53 +80,7 @@
   <section class="card-des pt-4 pb-5">
     <div class="container ">
       <div class="row">
-        <div class="col-sm-4 col-lg-3">
-          <h6 class="text-capitalize fs-6">Refine your results</h6>
-          <h2 class="mt-3 small">
-            Card Association
-          </h2>
-          <div>
-            <form action="" class="d-flex flex-sm-column flex-wrap">
-              <div class="d-flex align-items-start me-2 me-sm-0">
-                <input class="me-2 mt-2" id="ass-1" type="checkbox">
-                <label for="ass-1">Mastercard</label>
-              </div>
-              <div class="d-flex align-items-start me-2 me-sm-0">
-                <input class="me-2 mt-2" id="ass-2" type="checkbox">
-                <label for="ass-2">Visa</label>
-              </div>
-              <div class="d-flex align-items-start me-2 me-sm-0">
-                <input class="me-2 mt-2" id="ass-3" type="checkbox">
-                <label for="ass-3">UnionPay</label>
-              </div>
-              <div class="d-flex align-items-start me-2 me-sm-0">
-                <input class="me-2 mt-2" id="ass-4" type="checkbox">
-                <label for="ass-4">American Express</label>
-              </div>
-              <div class="d-block w-100">
-                <button type="reset" class=" text-primary small border-0 bg-transparent px-0 mt-sm-2">Reset
-                  Filter</button>
-              </div>
-            </form>
-          </div>
-          <h2 class="mt-3 small">
-            Providers
-          </h2>
-          <div>
-            <form action="" class="d-flex flex-sm-column flex-wrap">
-              <div class="d-flex align-items-start me-2 me-sm-0">
-                <input class="me-2 mt-2" name="providers" type="radio" id="p0" checked value="0">
-                <label for="p0">All providers</label>
-              </div>
-              {% for provider in providers %}
-              <div class="d-flex align-items-start me-2 me-sm-0">
-                <input class="me-2 mt-2" name="providers" type="radio" id="p{{provider.id}}" value="{{provider.id}}">
-                <label for="p{{provider.id}}">{{provider.name}}</label>
-              </div>
-              {% endfor %}              
-            </form>
-          </div>
-        </div>
+        {% include 'layout/sidebar.html' %}
         {% block content %}
         {% endblock %}
       </div>
@@ -437,14 +349,6 @@
          footer
     ========================= -->
   {% include 'layout/footer.html' %}
-  <!-- Bootstrap 5 JS CDN (Optional) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Custom JS -->
-  <script src="{% static 'js/main.js' %}"></script>
-  <!-- ------slick-js--- -->
-  <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
   <script>
     $(function () {
       $(".tabs").tabs();

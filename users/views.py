@@ -21,40 +21,52 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 # Create your views here.
 
-#Login handler
-#made by @superbaby81230
-#date: 19/5/2023
+# Login handler
+# made by @superbaby81230
+# date: 19/5/2023
+
+
 @api_view(['GET', 'POST'])
 def login_user(request):
     if request.method == "POST":
-        data = request.data
+        email = request.POST['email']
+        password = request.POST['password']
         try:
             user = authenticate(
-                request, username=data['email'], password=data['password']
+                username=email, password=password
             )
             if user:
                 if not user.is_active:
                     # ==========================================
-                    return ('users:active_email')
+                    return render(request, 'pages/login.html', {'error': 'Inactivate User.'})
                 else:
                     login(request, user)
                     # ================================
-                    return redirect('users:avtivate_email')
+                    return redirect('cards:cards')
             else:
-                message = {'detail': 'Invalid Credentials'}
-                return Response(message, status=status.HTTP_406_NOT_ACCEPTABLE)
+                message = {'error': 'Incorrect email or password.'}
+                return render(request, 'pages/login.html', message)
         except KeyError:
-            message = {'detail': 'Field not completed'}
-            return Response(message, status=status.HTTP_400_BAD_REQUEST)
+            message = {'error': 'Field not completed'}
+            return render(request, 'pages/login.html', message)
         except:
-            message = {'detail': 'Error'}
+            message = {'error': 'Failed login'}
             return Response(message, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     else:
-        return render(request, "login.html")
+        return render(request, "pages/login.html")
 
-#Register handler
-#made by @superbaby81230
-#date: 19/5/2023
+
+def authenticated_view(request):
+    if request.user.is_authenticated:
+        return render(request, 'authenticated.html')
+    else:
+        return redirect('login')
+
+# Register handler
+# made by @superbaby81230
+# date: 19/5/2023
+
+
 @api_view(['POST', 'GET'])
 def signup_user(request):
     if request.method == "POST":
@@ -68,6 +80,77 @@ def signup_user(request):
                 password=make_password(data['password']),
                 is_active=False,
             )
+
+            # create token
+            token = RefreshToken.for_user(user).access_token
+
+            subject = f"{APP_NAME} Activation email"
+            body = f"Hi {user.username} welcome to {APP_NAME}.\n Please use below link for active your account! \n\n" \
+                f"{APP_DOMAIN}/api/v1/users/verify/{str(token)}/"
+
+            result = send_email(subject, body, user.email)
+            if result:
+                message = {
+                    'detail': f'Welcome to {APP_NAME}. You should verify your email.Please check your Inbox. We sent an email.',
+                }
+                return render(request, 'pages/signup.html', message)
+            else:
+                message = {
+                    'error': 'There\'s a problem on sending email.',
+                    'token': f"{APP_DOMAIN}/api/v1/users/verify/{str(token)}/"
+                }
+                return render(request, 'pages/login.html', message)
+        except KeyError:
+            message = {'detail': 'Invalid field'}
+            return render(request, 'pages/login.html', message)
+        # except:
+        #     # user = User.objects.get(username=data['email'])
+
+        #     # # update the user's password
+        #     # user.password = make_password(data['password'])
+        #     # user.save()
+
+        #     # if user and not user.is_active:
+
+        #     #     # create token
+        #     #     token = RefreshToken.for_user(user).access_token
+
+        #     #     # send activation email to user
+        #     #     subject = f"{APP_NAME} Activation email"
+        #     #     body = f"Hi {user.username} welcome back to {APP_NAME}.\n Please use below link for active your account! \n\n" \
+        #     #         f"{APP_DOMAIN}/api/v1/users/verify/{str(token)}/"
+
+        #     #     result = send_email(subject, body, user.email)
+
+        #     #     if result:
+        #     #         message = {
+        #     #             'detail': 'User with this email already exists but is not active. You should verify your email.Please check your Inbox. We sent an email.Using new password'
+        #     #         }
+        #     #         return Response(message, status=status.HTTP_400_BAD_REQUEST)
+        #     #     else:
+        #     #         message = {
+        #     #             'detail': 'There\'s a problem on sending email.',
+        #     #             'token': f"{APP_DOMAIN}/api/v1/users/verify/{str(token)}/"
+        #     #         }
+        #     #         return Response(message, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        #     # elif user and user.is_active:
+        #         message = {
+        #             'detail': 'Failed to register'
+        #         }
+        #         return Response(message, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return render(request, "pages/signup.html")
+
+
+# Reset Password handler
+# made by @superbaby81230
+# date: 25/5/2023
+@api_view(['POST', 'GET'])
+def reset_passowrd(request):
+    if request.method == "POST":
+        data = request.data
+        try:
+            user = User.objects.get(email=data['email'])
 
             # create token
             token = RefreshToken.for_user(user).access_token
@@ -107,7 +190,7 @@ def signup_user(request):
         #     #     subject = f"{APP_NAME} Activation email"
         #     #     body = f"Hi {user.username} welcome back to {APP_NAME}.\n Please use below link for active your account! \n\n" \
         #     #         f"{APP_DOMAIN}/api/v1/users/verify/{str(token)}/"
-                
+
         #     #     result = send_email(subject, body, user.email)
 
         #     #     if result:
@@ -127,11 +210,13 @@ def signup_user(request):
         #         }
         #         return Response(message, status=status.HTTP_400_BAD_REQUEST)
     else:
-        return render(request, "signup.html")
+        return render(request, "pages/reset-password.html")
 
-#Verify email handler
-#made by @superbaby81230
-#date: 19/5/2023
+# Verify email handler
+# made by @superbaby81230
+# date: 19/5/2023
+
+
 @api_view(['GET'])
 def verifyEmail(request, token):
     try:
