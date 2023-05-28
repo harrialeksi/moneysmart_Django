@@ -38,22 +38,22 @@ def login_user(request):
             if user:
                 if not user.is_active:
                     # ==========================================
-                    return render(request, 'pages/login.html', {'error': 'Inactivate User.'})
+                    return render(request, 'pages/auth/login.html', {'error': 'Inactivate User.'})
                 else:
                     login(request, user)
                     # ================================
                     return redirect('cards:cards')
             else:
                 message = {'error': 'Incorrect email or password.'}
-                return render(request, 'pages/login.html', message)
+                return render(request, 'pages/auth/login.html', message)
         except KeyError:
             message = {'error': 'Field not completed'}
-            return render(request, 'pages/login.html', message)
+            return render(request, 'pages/auth/login.html', message)
         except:
             message = {'error': 'Failed login'}
             return Response(message, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     else:
-        return render(request, "pages/login.html")
+        return render(request, "pages/auth/login.html")
 
 
 def authenticated_view(request):
@@ -93,16 +93,16 @@ def signup_user(request):
                 message = {
                     'detail': f'Welcome to {APP_NAME}. You should verify your email.Please check your Inbox. We sent an email.',
                 }
-                return render(request, 'pages/signup.html', message)
+                return render(request, 'pages/auth/signup.html', message)
             else:
                 message = {
                     'error': 'There\'s a problem on sending email.',
                     'token': f"{APP_DOMAIN}/api/v1/users/verify/{str(token)}/"
                 }
-                return render(request, 'pages/login.html', message)
+                return render(request, 'pages/auth/login.html', message)
         except KeyError:
             message = {'detail': 'Invalid field'}
-            return render(request, 'pages/login.html', message)
+            return render(request, 'pages/auth/login.html', message)
         # except:
         #     # user = User.objects.get(username=data['email'])
 
@@ -139,7 +139,7 @@ def signup_user(request):
         #         }
         #         return Response(message, status=status.HTTP_400_BAD_REQUEST)
     else:
-        return render(request, "pages/signup.html")
+        return render(request, "pages/auth/signup.html")
 
 
 # Reset Password handler
@@ -210,7 +210,7 @@ def reset_passowrd(request):
         #         }
         #         return Response(message, status=status.HTTP_400_BAD_REQUEST)
     else:
-        return render(request, "pages/reset-password.html")
+        return render(request, "pages/auth/reset-password.html")
 
 # Verify email handler
 # made by @superbaby81230

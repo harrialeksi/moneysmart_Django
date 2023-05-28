@@ -45,7 +45,7 @@ def cards(request):
 
     # # Send the JSON response
     # return HttpResponse(data, content_type='application/json')
-    return render(request, "pages/cards.html", {"cards": queryset, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": queryset, "providers": providers, "number": number})
 
 
 def airport_lounge_access(request):
@@ -146,96 +146,96 @@ def cash_back(request):
     number = Card.objects.filter(category__contains='1,').count()
     cards = Card.objects.filter(category__contains='1,')
     providers = Provider.objects.all()
-    return render(request, "pages/cards.html", {"cards": cards, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
 
 def air_miles(request):
     number = Card.objects.filter(category__contains='2,').count()
     cards = Card.objects.filter(category__contains='2,')
     providers = Provider.objects.all()
 
-    return render(request, "pages/cards.html", {"cards": cards, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
 
 def overseas_spending(request):
     number = Card.objects.filter(category__contains='3,').count()
     cards = Card.objects.filter(category__contains='3,')
     providers = Provider.objects.all()
-    return render(request, "pages/cards.html", {"cards": cards, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
 
 def welcome_offer(request):
     number = Card.objects.filter(category__contains='4,').count()
     cards = Card.objects.filter(category__contains='4,')
     providers = Provider.objects.all()
-    return render(request, "pages/cards.html", {"cards": cards, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
 
 def shopping_credit_card(request):
     number = Card.objects.filter(category__contains='5,').count()
     cards = Card.objects.filter(category__contains='5,')
     providers = Provider.objects.all()
-    return render(request, "pages/cards.html", {"cards": cards, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
 
 def annual_fee_waiver(request):
     number = Card.objects.filter(category__contains='6,').count()
     cards = Card.objects.filter(category__contains='6,')
     providers = Provider.objects.all()
-    return render(request, "pages/cards.html", {"cards": cards, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
 
 def unionpay(request):
     number = Card.objects.filter(category__contains='7,').count()
     cards = Card.objects.filter(category__contains='7,')
     providers = Provider.objects.all()
-    return render(request, "pages/cards.html", {"cards": cards, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
 
 def student(request):
     number = Card.objects.filter(category__contains='8,').count()
     cards = Card.objects.filter(category__contains='8,')
     providers = Provider.objects.all()
-    return render(request, "pages/cards.html", {"cards": cards, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
 
 def digital_wallets(request):
     number = Card.objects.filter(category__contains='9,').count()
     cards = Card.objects.filter(category__contains='9,')
     providers = Provider.objects.all()
-    return render(request, "pages/cards.html", {"cards": cards, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
 
 
 def business_card(request):
     number = Card.objects.filter(category__contains='10,').count()
     cards = Card.objects.filter(category__contains='10,')
     providers = Provider.objects.all()
-    return render(request, "pages/cards.html", {"cards": cards, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
 
 def octopus_card_aavs(request):
     number = Card.objects.filter(category__contains='11').count()
     cards = Card.objects.filter(category__contains='11')
     providers = Provider.objects.all()
-    return render(request, "pages/cards.html", {"cards": cards, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
 
 def citibank(request):
     number = Card.objects.filter(provider_id=8).count()
     cards = Card.objects.filter(provider_id=8)
     providers = Provider.objects.all()
-    return render(request, "pages/cards.html", {"cards": cards, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
 
 def standard_chartered(request):
     number = Card.objects.filter(provider_id=20).count()
     cards = Card.objects.filter(provider_id=20)
     providers = Provider.objects.all()
-    return render(request, "pages/cards.html", {"cards": cards, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
 
 def american_express(request): #===========================================
     number = Card.objects.filter(provider_id=3).count()
     cards = Card.objects.filter(provider_id=3)
     providers = Provider.objects.all()
-    return render(request, "pages/cards.html", {"cards": cards, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
 
 def wewa_unionpay(request): #================================================
     number = Card.objects.filter(provider_id=8).count()
     cards = Card.objects.filter(provider_id=8)
     providers = Provider.objects.all()
-    return render(request, "pages/cards.html", {"cards": cards, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
 
 def earnmore_unionpay_card(request):#==========================================
     number = Card.objects.filter(provider_id=8).count()
     cards = Card.objects.filter(provider_id=8)
     providers = Provider.objects.all()
-    return render(request, "pages/cards.html", {"cards": cards, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
