@@ -37,11 +37,6 @@ def loans(request):
     banks = Bank.objects.all()
     features = Feature.objects.all()
 
-    # # Serialize the data to JSON format
-    # data = serializers.serialize('json', queryset)
-
-    # # Send the JSON response
-    # return HttpResponse(data, content_type='application/json')
     return render(request, "pages/loans.html", {"cards": queryset, "providers": banks, "number": number})
 
 
