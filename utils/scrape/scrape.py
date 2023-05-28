@@ -17,7 +17,7 @@ def get_cards(url):
     driver = webdriver.Chrome()
     # navigate to the webpage
     driver.get(url)
-    i = 0
+
     # click "Load more" button amap
     moreButton = driver.find_elements("xpath", '//div[@class="pagination-button"]/button')
     
@@ -137,8 +137,3 @@ def get_cards(url):
 
     driver.quit()
     return data
-
-def get_loans():
-    urls = [
-        ''
-    ]
