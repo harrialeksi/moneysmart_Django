@@ -6,9 +6,35 @@ from utils.scrape.scrape import get_cards
 from .models import Card, CardUsp, Category, Provider
 
 
-def cards(request):
+def get_cards(category, provider):
+    if category == None:
+        if provider == "0" or provider == None:
+            number = Card.objects.count()
+            queryset = Card.objects.prefetch_related('card_usp').all()[:20]
+        else:
+            number = Card.objects.filter(provider_id=provider).count()
+            queryset = Card.objects.prefetch_related(
+                'card_usp').filter(provider_id=provider)[:20]
+    else:
+        if category == 11:
+            query = str(category)
+        else:
+            query = str(category) + ','
+        if provider == "0" or provider == None:
+            number = Card.objects.filter(category__contains=query).count()
+            queryset = Card.objects.filter(
+                category__contains=query).prefetch_related('card_usp').all()[:20]
+        else:
+            number = Card.objects.filter(category__contains=query).filter(
+                provider_id=provider).count()
+            queryset = Card.objects.filter(category__contains=query).prefetch_related(
+                'card_usp').filter(provider_id=provider)[:20]
+    return number, queryset
+
+
+def cards(request, category=None):
     url = 'https://www.moneysmart.hk/en/credit-cards'
-    print(request.GET.get('provider'))
+    provider = request.GET.get('provider')
     # cards = get_cards(url)
 
     # # Delete all rows in CardDetail, CardUsp table
@@ -31,21 +57,16 @@ def cards(request):
     #     row.wirelesspayment = card['wirelessPayment']
     #     row.save()
 
-        # for usp in card['usp']:
-        #     car_usp = CardUsp.objects.create(dd=usp['ratio'], dt=usp['text'], card_id=row.id)
-        #     car_usp.save()
+    # for usp in card['usp']:
+    #     car_usp = CardUsp.objects.create(dd=usp['ratio'], dt=usp['text'], card_id=row.id)
+    #     car_usp.save()
+
+    providers = Provider.objects.all()
 
     # Retrieve all cards joined with their related card details
-    number = Card.objects.count()
-    queryset = Card.objects.prefetch_related('card_usp').all()[:20]
-    providers = Provider.objects.all()
-    Content = Category.objects.get(id=12)
-    # # Serialize the data to JSON format
-    # data = serializers.serialize('json', queryset)
+    number, queryset = get_cards(category, provider)
 
-    # # Send the JSON response
-    # return HttpResponse(data, content_type='application/json')
-    return render(request, "pages/cards/cards.html", {"cards": queryset, "providers": providers, "number": number, "doc": Content.doc})
+    return render(request, "pages/cards/cards.html", {"cards": queryset, "providers": providers, "number": number, 'prov': provider})
 
 
 def airport_lounge_access(request):
@@ -53,7 +74,7 @@ def airport_lounge_access(request):
     desctiption = "High income is not necessarily a prerequisite for free access to airport lounges. Eligible cardholders can enjoy complimentary access with friends and families. Choose the ones that suit you the most."
     subtitle = "Which cards should be used for airport lounge visits?"
     sub_desc = "Click the cards below to learn more:"
-    categories = [{"link": "plaza-premium-lounges", "category": "Plaza Premium Lounges",
+    categories = [{"link": "plaza-premium", "category": "Plaza Premium Lounges",
                    "desc": "Citi PremierMiles, Citi Prestige, Citi Rewards Card, AMEX Explorer Card"},
                   {"link": "centurion-lounge", "category": "Centurion Lounge ",
                    "desc": "American Express® Platinum Credit Card"},
@@ -64,8 +85,9 @@ def airport_lounge_access(request):
     queryset = Card.objects.prefetch_related('card_usp').filter(Q(title="Citi Prestige Card") | Q(title="Citi Rewards MasterCard") | Q(
         title="American Express Explorer® Credit Card") | Q(title="The Platinum Card") | Q(title="Citi Prestige Card"))
 
-    return render(request, "pages/popular-guides_credit-cards-for-airport-lounge-access.html", {"broadcrump": broadcrump, "title": title, "description": desctiption,
+    return render(request, "pages/cards/popular-guides_credit-cards-for-airport-lounge-access.html", {"broadcrump": broadcrump, "title": title, "description": desctiption,
                                                                                                 "subtitle": subtitle, "sub_desc": sub_desc, "categories": categories, "cards": queryset})
+
 
 def best_asia_miles(request):
     title = "Best Asia Miles Cards in Hong Kong (Updated in Oct 2022)"
@@ -83,8 +105,9 @@ def best_asia_miles(request):
     queryset = Card.objects.prefetch_related('card_usp').filter(Q(title="Citi Prestige Card") | Q(title="Citi Rewards MasterCard") | Q(
         title="American Express Explorer® Credit Card") | Q(title="The Platinum Card") | Q(title="Citi Prestige Card"))
 
-    return render(request, "pages/popular-guides_credit-cards-for-airport-lounge-access.html", {"broadcrump": broadcrump, "title": title, "description": desctiption,
+    return render(request, "pages/cards/best-asia-miles-cards.html", {"broadcrump": broadcrump, "title": title, "description": desctiption,
                                                                                                 "subtitle": subtitle, "sub_desc": sub_desc, "categories": categories, "cards": queryset})
+
 
 def hotel_reward_booking(request):
 
@@ -105,7 +128,7 @@ def hotel_reward_booking(request):
     queryset = Card.objects.prefetch_related('card_usp').filter(Q(title="The Platinum Card") | Q(
         title="Citi PremierMiles Card") | Q(title="American Express® Platinum Credit Card") | Q(title="Citi Cash Back Card"))
 
-    return render(request, "pages/hotel_reward_booking.html", {"broadcrump": broadcrump, "title": title, "description": desctiption,
+    return render(request, "pages/cards/hotel_reward_booking.html", {"broadcrump": broadcrump, "title": title, "description": desctiption,
                                                                "subtitle": subtitle, "sub_desc": sub_desc, "categories": categories, "cards": queryset})
 
 
@@ -126,125 +149,40 @@ def expat_foreigner_hong_kong_ms(request):
     queryset = Card.objects.prefetch_related('card_usp').filter(Q(title="Citi Cash Back Card") | Q(title="Standard Chartered Smart Card") | Q(title="DBS Black World Mastercard") | Q(title="Standard Chartered Cathay Mastercard") | Q(
         title="Citi Prestige Card") | Q(title="Hang Seng enJoy Card") | Q(title="Citi Rewards MasterCard"))
 
-    return render(request, "pages/expat-foreigner-hong-kong-ms.html", {"broadcrump": broadcrump, "title": title, "description": desctiption,
+    return render(request, "pages/cards/expat-foreigner-hong-kong-ms.html", {"broadcrump": broadcrump, "title": title, "description": desctiption,
                                                                        "subtitle": subtitle, "sub_desc": sub_desc, "categories": categories, "cards": queryset})
 
-def card_provider(request, provider_id):
-    cards = Card.objects.filter(provider_id=provider_id)
-    data = serializers.serialize('json', cards)
-    return HttpResponse(data, content_type='application/json')
-
-
-def card_provider_association(request, provider_id, association_id):
-    cards = Card.objects.filter(
-        provider_id=provider_id, association_id=association_id)
-    data = serializers.serialize('json', cards)
-    return HttpResponse(data, content_type='application/json')
-
-
-def cash_back(request):
-    number = Card.objects.filter(category__contains='1,').count()
-    cards = Card.objects.filter(category__contains='1,')
-    providers = Provider.objects.all()
-    Content = Category.objects.get(id=1)
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
-
-def air_miles(request):
-    number = Card.objects.filter(category__contains='2,').count()
-    cards = Card.objects.filter(category__contains='2,')
-    providers = Provider.objects.all()
-    Content = Category.objects.get(id=2)
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
-
-def overseas_spending(request):
-    number = Card.objects.filter(category__contains='3,').count()
-    cards = Card.objects.filter(category__contains='3,')
-    providers = Provider.objects.all()
-    Content = Category.objects.get(id=3)
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
-
-def welcome_offer(request):
-    number = Card.objects.filter(category__contains='4,').count()
-    cards = Card.objects.filter(category__contains='4,')
-    providers = Provider.objects.all()
-    Content = Category.objects.get(id=4)
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
-
-def shopping_credit_card(request):
-    number = Card.objects.filter(category__contains='5,').count()
-    cards = Card.objects.filter(category__contains='5,')
-    providers = Provider.objects.all()
-    Content = Category.objects.get(id=5)
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
-
-def annual_fee_waiver(request):
-    number = Card.objects.filter(category__contains='6,').count()
-    cards = Card.objects.filter(category__contains='6,')
-    providers = Provider.objects.all()
-    Content = Category.objects.get(id=6)
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
-
-def unionpay(request):
-    number = Card.objects.filter(category__contains='7,').count()
-    cards = Card.objects.filter(category__contains='7,')
-    providers = Provider.objects.all()
-    Content = Category.objects.get(id=7)
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
-
-def student(request):
-    number = Card.objects.filter(category__contains='8,').count()
-    cards = Card.objects.filter(category__contains='8,')
-    providers = Provider.objects.all()
-    Content = Category.objects.get(id=8)
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
-
-def digital_wallets(request):
-    number = Card.objects.filter(category__contains='9,').count()
-    cards = Card.objects.filter(category__contains='9,')
-    providers = Provider.objects.all()
-    Content = Category.objects.get(id=9)
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
-
-
-def business_card(request):
-    number = Card.objects.filter(category__contains='10,').count()
-    cards = Card.objects.filter(category__contains='10,')
-    providers = Provider.objects.all()
-    Content = Category.objects.get(id=10)
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
-
-def octopus_card_aavs(request):
-    number = Card.objects.filter(category__contains='11').count()
-    cards = Card.objects.filter(category__contains='11')
-    providers = Provider.objects.all()
-    Content = Category.objects.get(id=11)
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
 
 def citibank(request):
     number = Card.objects.filter(provider_id=8).count()
     cards = Card.objects.filter(provider_id=8)
     providers = Provider.objects.all()
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "prov": 8})
+
 
 def standard_chartered(request):
     number = Card.objects.filter(provider_id=20).count()
     cards = Card.objects.filter(provider_id=20)
     providers = Provider.objects.all()
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number,"prov": 20})
 
-def american_express(request): #===========================================
+
+def american_express(request):  # ===========================================
     number = Card.objects.filter(provider_id=3).count()
     cards = Card.objects.filter(provider_id=3)
     providers = Provider.objects.all()
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "prov": 3})
 
-def wewa_unionpay(request): #================================================
+
+def wewa_unionpay(request):  # ================================================
     number = Card.objects.filter(provider_id=8).count()
     cards = Card.objects.filter(provider_id=8)
     providers = Provider.objects.all()
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "prov": 3})
 
-def earnmore_unionpay_card(request):#==========================================
+
+# ==========================================
+def earnmore_unionpay_card(request):
     number = Card.objects.filter(provider_id=8).count()
     cards = Card.objects.filter(provider_id=8)
     providers = Provider.objects.all()

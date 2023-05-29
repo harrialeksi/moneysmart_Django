@@ -55,45 +55,45 @@
                         <a href="{% url 'cards:cards' %}">Best Credit Cards</a>
                       </li>
                       <li>
-                        <a href="{% url 'cards:cash_back' %}">Cash Back Credit
+                        <a href="{% url 'cards:category' category=1 %}">Cash Back Credit
                           Cards</a>
                       </li>
                       <li>
-                        <a href="{% url 'cards:air_miles' %}">Air Miles Credit
+                        <a href="{% url 'cards:category' category=2 %}">Air Miles Credit
                           Cards</a>
                       </li>
                       <li>
-                        <a href="{% url 'cards:shopping_credit_card' %}">Online Shopping Credit
+                        <a href="{% url 'cards:category' category=3 %}">Online Shopping Credit
                           Cards</a>
                       </li>
                       <li>
-                        <a href="{% url 'cards:welcome_offer' %}">Credit Card Welcome
+                        <a href="{% url 'cards:category' category=4 %}">Credit Card Welcome
                           Offers</a>
                       </li>
                       <li>
-                        <a href="{% url 'cards:annual_fee_waiver' %}">Credit Cards With Annual
+                        <a href="{% url 'cards:category' category=5 %}">Credit Cards With Annual
                           Fee Waiver</a>
                       </li>
                       <li>
-                        <a href="{% url 'cards:digital_wallets' %}">Digital Wallet Credit
+                        <a href="{% url 'cards:category' category=6 %}">Digital Wallet Credit
                           Cards</a>
                       </li>
                       <li>
-                        <a href="{% url 'cards:bill_payment_credit_card' %}">Bill Payment Credit
+                        <a href="{% url 'cards:category' category=7 %}">Bill Payment Credit
                           Cards</a>
                       </li>
                       <li>
-                        <a href="{% url 'cards:unionpay' %}">UnionPay Credit Cards</a>
+                        <a href="{% url 'cards:category' category=8 %}">UnionPay Credit Cards</a>
                       </li>
                       <li>
-                        <a href="{% url 'cards:student' %}">Student Credit Cards</a>
+                        <a href="{% url 'cards:category' category=9 %}">Student Credit Cards</a>
                       </li>
                       <li>
-                        <a href="{% url 'cards:overseas_spending' %}">Travel/Overseas Spending
+                        <a href="{% url 'cards:category' category=10 %}">Travel/Overseas Spending
                           Credit Cards</a>
                       </li>
                       <li>
-                        <a href="{% url 'cards:octopus_card_aavs' %}">Octopus Card AAVS Credit
+                        <a href="{% url 'cards:category' category=11 %}">Octopus Card AAVS Credit
                           Cards</a>
                       </li>
                     </ul>
@@ -106,7 +106,7 @@
                           Cards for Airport Lounge Access</a>
                       </li>
                       <li>
-                        <a href="../credit-cards/popular-guides_credit-cards-for-airport-lounge-access.html">Best Asia
+                        <a href="{% url 'cards:best_asia_miles' %}"">Best Asia
                           Miles Credit Cards</a>
                       </li>
                       <li>
