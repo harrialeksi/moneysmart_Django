@@ -34,26 +34,48 @@
   <div>
     <form action="" class="d-flex flex-sm-column flex-wrap">
       <div class="d-flex align-items-start me-2 me-sm-0">
+        {% if prov|add:"0" == 0 or prov == None %}
         <input
-          class="me-2 mt-2"
-          name="providers"
+          class="me-2 mt-2 provider"
+          name="provider0"
           type="radio"
           id="p0"
           checked
           value="0"
         />
+        {% else %}
+        <input
+          class="me-2 mt-2 provider"
+          name="provider0"
+          type="radio"
+          id="p0"
+          value="0"
+        />
+        {% endif %}
         <label for="p0">All providers</label>
       </div>
       {% for provider in providers %}
       <div class="d-flex align-items-start me-2 me-sm-0">
+        {% if prov|add:"0" == provider.id|add:"0" %}
         <input
-          class="me-2 mt-2"
-          name="providers"
+          class="me-2 mt-2 provider"
+          name="provider{{provider.id}}"
+          type="radio"
+          checked
+          id="p{{provider.id}}"
+          value="{{provider.id}}"
+        />
+        <label for="p{{provider.id}}">{{provider.name}}</label>
+        {% else %}
+        <input
+          class="me-2 mt-2 provider"
+          name="provider{{provider.id}}"
           type="radio"
           id="p{{provider.id}}"
           value="{{provider.id}}"
         />
         <label for="p{{provider.id}}">{{provider.name}}</label>
+        {% endif %}
       </div>
       {% endfor %}
     </form>
