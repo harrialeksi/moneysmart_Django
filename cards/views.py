@@ -186,8 +186,8 @@ def business_card(request):
     return render(request, "cards.html", {"cards": cards, "providers": providers, "number": number})
 
 def octopus_card_aavs(request):
-    number = Card.objects.filter(category__contains='11,').count()
-    cards = Card.objects.filter(category__contains='11,')
+    number = Card.objects.filter(category__contains='11').count()
+    cards = Card.objects.filter(category__contains='11')
     providers = Provider.objects.all()
     return render(request, "cards.html", {"cards": cards, "providers": providers, "number": number})
 
