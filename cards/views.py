@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 from django.db.models import Prefetch, Case, When, Value, BooleanField, Count, Q
 from utils.scrape.scrape import get_cards
-from .models import Card, CardUsp, Provider
+from .models import Card, CardUsp, Category, Provider
 
 
 def get_cards(category, provider):
