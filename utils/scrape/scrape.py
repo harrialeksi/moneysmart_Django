@@ -119,6 +119,14 @@ def get_cards(url):
             travel_inconvenience = card.find_element('xpath', './/li[@class="tab-list"][@data-id="travel_inconvenience"]').get_attribute('innerHTML')
         except NoSuchElementException:
             travel_inconvenience = None
+        try:
+            interestRate = card.find_element('xpath', './/li[@class="tab-list"][@data-id="interest_rate"]').get_attribute('innerHTML')
+        except NoSuchElementException:
+            interestRate = None
+        try:
+            bonus_interest_rate = card.find_element('xpath', './/li[@class="tab-list"][@data-id="bonus_interest_rate"]').get_attribute('innerHTML')
+        except NoSuchElementException:
+            bonus_interest_rate = None
 
         data.append({
             "img_src": img_src,
@@ -137,7 +145,9 @@ def get_cards(url):
             'cardAssociation': cardAssociation,
             'wirelessPayment': wirelessPayment,
             'repayment': repayment,
-            'travel_inconvenience': travel_inconvenience
+            'travel_inconvenience': travel_inconvenience,
+            "interestRate": interestRate,
+            "bonusInterestRate": bonus_interest_rate
         })
 
     driver.quit()

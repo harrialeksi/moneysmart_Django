@@ -3,68 +3,66 @@ from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 from django.db.models import Prefetch, Case, When, Value, BooleanField, Count, Q
 from utils.scrape.scrape import get_cards
-from .models import Card, CardUsp, Category, Provider
+from .models import Account, AccountUsp, Category, Provider
 
 
-def get_cards(category, provider):
+def get_Accounts(category, provider):
     if category == None:
         if provider == "0" or provider == None:
-            number = Card.objects.count()
-            queryset = Card.objects.prefetch_related('card_usp').all()[:20]
+            number = Account.objects.count()
+            queryset = Account.objects.prefetch_related('account_usp').all()[:20]
         else:
-            number = Card.objects.filter(provider_id=provider).count()
-            queryset = Card.objects.prefetch_related(
-                'card_usp').filter(provider_id=provider)[:20]
+            number = Account.objects.filter(provider_id=provider).count()
+            queryset = Account.objects.prefetch_related(
+                'account_usp').filter(provider_id=provider)[:20]
     else:
         if category == 11:
             query = str(category)
         else:
             query = str(category) + ','
         if provider == "0" or provider == None:
-            number = Card.objects.filter(category__contains=query).count()
-            queryset = Card.objects.filter(
-                category__contains=query).prefetch_related('card_usp').all()[:20]
+            number = Account.objects.filter(category__contains=query).count()
+            queryset = Account.objects.filter(
+                category__contains=query).prefetch_related('account_usp').all()[:20]
         else:
-            number = Card.objects.filter(category__contains=query).filter(
+            number = Account.objects.filter(category__contains=query).filter(
                 provider_id=provider).count()
-            queryset = Card.objects.filter(category__contains=query).prefetch_related(
-                'card_usp').filter(provider_id=provider)[:20]
+            queryset = Account.objects.filter(category__contains=query).prefetch_related(
+                'account_usp').filter(provider_id=provider)[:20]
     return number, queryset
 
 
-def cards(request, category=None):
-    url = 'https://www.moneysmart.hk/en/credit-cards'
+def accounts(request, category=None):
+    url = 'https://www.moneysmart.hk/en/savings-account'
     provider = request.GET.get('provider')
-    # cards = get_cards(url)
+    accounts = get_cards(url)
 
-    # # Delete all rows in CardDetail, CardUsp table
-    # CardUsp.objects.all().delete()
+    # Delete all rows in CardDetail, CardUsp table
+    AccountUsp.objects.all().delete()
 
-    # for card in cards:
-    #     row = Card.objects.get(title=card['title'])
-    #     row.image = card['img_src']
-    #     row.disclosure = card['disclosure']
-    #     row.execlusive = card['badge_execlusive']
-    #     row.badge_label = card['badge_label']
-    #     row.badge_primary = card['badge_primary']
-    #     row.snippet = card['snippet']
-    #     row.snippet_img = card['snippet_img']
-    #     row.promotion = card['promotion']
-    #     row.keyfeatures = card['keyFeatures']
-    #     row.annualinterest = card['annualInterest']
-    #     row.incomeequirement = card['incomeRequirement']
-    #     row.cardassociation = card['cardAssociation']
-    #     row.wirelesspayment = card['wirelessPayment']
-    #     row.save()
+    for card in accounts:
+        row = Account.objects.get(title=card['title'])
+        row.image = card['img_src']
+        row.disclosure = card['disclosure']
+        row.execlusive = card['badge_execlusive']
+        row.badge_label = card['badge_label']
+        row.badge_primary = card['badge_primary']
+        row.snippet = card['snippet']
+        row.snippet_img = card['snippet_img']
+        row.promotion = card['promotion']
+        row.keyfeatures = card['keyFeatures']
+        row.interest_rate = card['interestRate']
+        row.bonus_interest_rate = card['bonusInterestRate']
+        row.save()
 
-    # for usp in card['usp']:
-    #     car_usp = CardUsp.objects.create(dd=usp['ratio'], dt=usp['text'], card_id=row.id)
-    #     car_usp.save()
+        for usp in card['usp']:
+            car_usp = AccountUsp.objects.create(dd=usp['ratio'], dt=usp['text'], card_id=row.id)
+            car_usp.save()
 
     providers = Provider.objects.all()
 
     # Retrieve all cards joined with their related card details
-    number, queryset = get_cards(category, provider)
+    number, queryset = get_Accounts(category, provider)
 
     return render(request, "pages/cards/cards.html", {"cards": queryset, "providers": providers, "number": number, 'prov': provider})
 
