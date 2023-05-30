@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 from django.db.models import Prefetch, Case, When, Value, BooleanField, Count, Q
 from utils.scrape.scrape import get_cards
-from .models import Card, CardUsp, Provider
+from .models import Card, CardUsp, Category, Provider
 
 
 def cards(request):
@@ -39,13 +39,13 @@ def cards(request):
     number = Card.objects.count()
     queryset = Card.objects.prefetch_related('card_usp').all()[:20]
     providers = Provider.objects.all()
-
+    Content = Category.objects.get(id=12)
     # # Serialize the data to JSON format
     # data = serializers.serialize('json', queryset)
 
     # # Send the JSON response
     # return HttpResponse(data, content_type='application/json')
-    return render(request, "pages/cards/cards.html", {"cards": queryset, "providers": providers, "number": number})
+    return render(request, "pages/cards/cards.html", {"cards": queryset, "providers": providers, "number": number, "doc": Content.doc})
 
 
 def airport_lounge_access(request):
@@ -146,69 +146,79 @@ def cash_back(request):
     number = Card.objects.filter(category__contains='1,').count()
     cards = Card.objects.filter(category__contains='1,')
     providers = Provider.objects.all()
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
+    Content = Category.objects.get(id=1)
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
 
 def air_miles(request):
     number = Card.objects.filter(category__contains='2,').count()
     cards = Card.objects.filter(category__contains='2,')
     providers = Provider.objects.all()
-
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
+    Content = Category.objects.get(id=2)
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
 
 def overseas_spending(request):
     number = Card.objects.filter(category__contains='3,').count()
     cards = Card.objects.filter(category__contains='3,')
     providers = Provider.objects.all()
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
+    Content = Category.objects.get(id=3)
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
 
 def welcome_offer(request):
     number = Card.objects.filter(category__contains='4,').count()
     cards = Card.objects.filter(category__contains='4,')
     providers = Provider.objects.all()
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
+    Content = Category.objects.get(id=4)
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
 
 def shopping_credit_card(request):
     number = Card.objects.filter(category__contains='5,').count()
     cards = Card.objects.filter(category__contains='5,')
     providers = Provider.objects.all()
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
+    Content = Category.objects.get(id=5)
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
 
 def annual_fee_waiver(request):
     number = Card.objects.filter(category__contains='6,').count()
     cards = Card.objects.filter(category__contains='6,')
     providers = Provider.objects.all()
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
+    Content = Category.objects.get(id=6)
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
 
 def unionpay(request):
     number = Card.objects.filter(category__contains='7,').count()
     cards = Card.objects.filter(category__contains='7,')
     providers = Provider.objects.all()
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
+    Content = Category.objects.get(id=7)
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
 
 def student(request):
     number = Card.objects.filter(category__contains='8,').count()
     cards = Card.objects.filter(category__contains='8,')
     providers = Provider.objects.all()
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
+    Content = Category.objects.get(id=8)
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
 
 def digital_wallets(request):
     number = Card.objects.filter(category__contains='9,').count()
     cards = Card.objects.filter(category__contains='9,')
     providers = Provider.objects.all()
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
+    Content = Category.objects.get(id=9)
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
 
 
 def business_card(request):
     number = Card.objects.filter(category__contains='10,').count()
     cards = Card.objects.filter(category__contains='10,')
     providers = Provider.objects.all()
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
+    Content = Category.objects.get(id=10)
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
 
 def octopus_card_aavs(request):
     number = Card.objects.filter(category__contains='11').count()
     cards = Card.objects.filter(category__contains='11')
     providers = Provider.objects.all()
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number})
+    Content = Category.objects.get(id=11)
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "doc": Content.doc})
 
 def citibank(request):
     number = Card.objects.filter(provider_id=8).count()

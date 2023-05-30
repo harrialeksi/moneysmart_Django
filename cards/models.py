@@ -45,3 +45,4 @@ class Association(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=100, null=True)
     slug = models.CharField(max_length=100, null=True)
+    doc = models.TextField(null=True)
