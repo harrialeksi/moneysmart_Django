@@ -5,8 +5,8 @@ from django.db import models
 
 class Loan(models.Model):
     title = models.CharField(max_length=30, null=True)
-    feature = models.ForeignKey(
-        "Feature", null=True, on_delete=models.PROTECT, related_name='feature')
+    category = models.CharField(max_length=100, null=True)
+    feature_id = models.CharField(max_length=20, null=True)
     bank = models.ForeignKey(
         "Bank", null=True, on_delete=models.PROTECT, related_name='bank')
     image = models.CharField(max_length=200, null=True)
@@ -19,6 +19,7 @@ class Loan(models.Model):
     promotion = models.TextField(null=True)
     keyfeatures = models.TextField(null=True)
     repayment = models.TextField(null=True)
+
 
     def __str__(self):
         return self.title
@@ -37,3 +38,7 @@ class Feature(models.Model):
 class Bank(models.Model):
     name = models.CharField(max_length=50)
 
+class Category(models.Model):
+    name = models.CharField(max_length=100, null=True)
+    slug = models.CharField(max_length=100, null=True)
+    doc = models.TextField(null=True)
