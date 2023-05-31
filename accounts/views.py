@@ -62,4 +62,4 @@ def accounts(request, category=None):
     # Retrieve all cards joined with their related card details
     number, queryset = get_accounts(category, provider)
 
-    return render(request, "pages/accounts/accounts.html", {"cards": queryset, "number": number, "provider_caption":"Providers", "providers": providers, "prov": provider})
+    return render(request, "pages/accounts/accounts.html", {"cards": queryset, "number": number, "provider_caption":"Providers", "providers": providers, "prov": provider,})

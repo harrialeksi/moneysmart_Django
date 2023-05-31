@@ -36,5 +36,6 @@ urlpatterns = [
     path('credit-cards/', include('cards.urls')),
     path('personal-loan/', include('loans.urls')),
     path('savings-account/', include('accounts.urls')),
+    path('online-brokerage/', include('investment.urls')),
     # path('api/v1/', include(urls)),
 ]

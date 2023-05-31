@@ -17,10 +17,8 @@ class Account(models.Model):
     snippet_img = models.CharField(max_length=200, null=True)
     promotion = models.TextField(null=True)
     keyfeatures = models.TextField(null=True)
-    annualinterest = models.TextField(null=True)
-    incomeequirement = models.TextField(null=True)
-    cardassociation = models.TextField(null=True)
-    wirelesspayment = models.TextField(null=True)
+    interestrate = models.TextField(null=True)
+    bonusinterestrate = models.TextField(null=True)
 
     def __str__(self):
         return self.title

@@ -106,7 +106,7 @@
                           Cards for Airport Lounge Access</a>
                       </li>
                       <li>
-                        <a href="{% url 'cards:best_asia_miles' %}"">Best Asia
+                        <a href="{% url 'cards:best_asia_miles' %}">Best Asia
                           Miles Credit Cards</a>
                       </li>
                       <li>
@@ -420,7 +420,7 @@
                   start::investment
                ------------------- -->
           <li class="py-4 investment-menu">
-            <a href="../investment/compare-online-brokerages-online-brokerage.html">Investment</a>
+            <a href="{% url 'investment:investments' %}">Investment</a>
             <!-- -------investment-menu----- -->
             <div class="sub-menu my-shadow investment-sub-menu py-4">
               <div class="container">
@@ -432,34 +432,34 @@
                     </h3>
                     <ul class="ps-0 ms-0">
                       <li>
-                        <a href="../investment/compare-online-brokerages-online-brokerage.html">
+                        <a href="{% url 'investment:investments' %}">
                           Online Brokerage
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/compare-online-brokerages-online-brokerage.html">
+                        <a href="{% url 'investment:category' category=1 %}">
                           Hong Kong Stocks Accounts
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/compare-online-brokerages-online-brokerage.html">US Stocks Accounts
+                        <a href="{% url 'investment:category' category=2 %}">US Stocks Accounts
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/compare-online-brokerages-online-brokerage.html">IPO Accounts
+                        <a href="{% url 'investment:category' category=3 %}">IPO Accounts
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/compare-online-brokerages-online-brokerage.html">Crytocurrency Trading
+                        <a href="{% url 'investment:category' category=4 %}">Crytocurrency Trading
                           Accounts
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/compare-online-brokerages-online-brokerage.html">Robo Advisory Accounts
+                        <a href="{% url 'investment:category' category=5 %}">Robo Advisory Accounts
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/compare-online-brokerages-online-brokerage.html">Funds Trading Accounts
+                        <a href="{% url 'investment:category' category=6 %}">Funds Trading Accounts
                         </a>
                       </li>
                     </ul>
