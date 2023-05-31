@@ -63,4 +63,4 @@ def investments(request, category=None):
     number, queryset = get_investments(category, provider)
     filters = Promotion.objects.all()
 
-    return render(request, "pages/investments/investments.html", {"cards": queryset, "number": number, "provider_caption":"Providers", "providers": providers, "prov": provider, "filter_caption":"Promotions", "filters":filters})
+    return render(request, "pages/investments/investments.html", {"Title":"Investment", "cards": queryset, "number": number, "provider_caption":"Providers", "providers": providers, "prov": provider, "feature_caption":"Online Brokerage Features", "filter_caption":"Promotions", "filters":filters})

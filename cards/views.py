@@ -16,10 +16,7 @@ def get_cards(category, provider):
             queryset = Card.objects.prefetch_related(
                 'card_usp').filter(provider_id=provider)[:20]
     else:
-        if category == 11:
-            query = str(category)
-        else:
-            query = str(category) + ','
+        query = ',' +str(category) + ','
         if provider == "0" or provider == None:
             number = Card.objects.filter(category__contains=query).count()
             queryset = Card.objects.filter(
@@ -66,7 +63,7 @@ def cards(request, category=None):
     # Retrieve all cards joined with their related card details
     number, queryset = get_cards(category, provider)
 
-    return render(request, "pages/cards/cards.html", {"cards": queryset, "number": number, "prov": provider, "provider_caption": "Providers", "providers": providers, "filter_caption": "Card Association", "filters":filters})
+    return render(request, "pages/cards/cards.html", {"Title":"Cards", "cards": queryset, "number": number, "prov": provider, "provider_caption": "Providers", "providers": providers, "filter_caption": "Card Association", "filters":filters})
 
 
 def airport_lounge_access(request):

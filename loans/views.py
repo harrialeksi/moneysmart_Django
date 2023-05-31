@@ -5,35 +5,33 @@ from django.db.models import Prefetch, Case, When, Value, BooleanField, Count, Q
 from utils.scrape.scrape import get_cards
 from .models import Loan, LoanUsp, Feature, Bank
 
-def get_loans(category, bank):
+
+def get_loans(category, provider):
     if category == None:
-        if bank == "0" or bank == None:
+        if provider == "0" or provider == None:
             number = Loan.objects.count()
             queryset = Loan.objects.prefetch_related('loan_usp').all()[:20]
         else:
-            number = Loan.objects.filter(bank_id=bank).count()
+            number = Loan.objects.filter(bank_id=provider).count()
             queryset = Loan.objects.prefetch_related(
-                'loan_usp').filter(bank_id=bank)[:20]
+                'loan_usp').filter(bank_id=provider)[:20]
     else:
-        if category == 11:
-            query = str(category)
-        else:
-            query = str(category) + ','
-        if bank == "0" or bank == None:
+        query = str(category) + ','
+        if provider == "0" or provider == None:
             number = Bank.objects.filter(category__contains=query).count()
             queryset = Bank.objects.filter(
                 category__contains=query).prefetch_related('loan_usp').all()[:20]
         else:
             number = Loan.objects.filter(category__contains=query).filter(
-                bank_id=bank).count()
+                bank_id=provider).count()
             queryset = Loan.objects.filter(category__contains=query).prefetch_related(
-                'loan_usp').filter(bank_id=bank)[:20]
+                'loan_usp').filter(bank_id=provider)[:20]
     return number, queryset
 
 
 def loans(request, category=None):
     url = 'https://www.moneysmart.hk/en/personal-loan'
-    bank = request.GET.get('provider')
+    provider = request.GET.get('provider')
     # loans = get_cards(url)
 
     # # Delete all rows in CardDetail, CardUsp table
@@ -60,10 +58,10 @@ def loans(request, category=None):
     # Retrieve all cards joined with their related card details
    
     banks = Bank.objects.all()
-    number, queryset = get_loans(category, bank)
+    number, queryset = get_loans(category, provider)
     filters = Feature.objects.all()
 
-    return render(request, "pages/loans/loans.html", {"cards": queryset, "number": number, "provider_caption":"Banks", "providers": banks, 'prov': bank, "filter_caption":"Loan Features", "filters":filters})
+    return render(request, "pages/loans/loans.html", {"Title":"Loans", "cards": queryset, "number": number, "provider_caption":"Banks", "providers": banks, 'prov': provider, "filter_caption":"Loan Features", "filters":filters})
 
 
 def airport_lounge_access(request):
