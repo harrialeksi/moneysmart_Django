@@ -1,25 +1,17 @@
 {% block sidebar %}
 <div class="col-sm-4 col-lg-3">
   <h6 class="text-capitalize fs-6">Refine your results</h6>
-  <h2 class="mt-3 small">Card Association</h2>
+  {% if filter_caption != None %}
+  <h2 class="mt-3 small">{{filter_caption}}</h2>
   <div>
     <form action="" class="d-flex flex-sm-column flex-wrap">
+      {% for filter in filters %}
       <div class="d-flex align-items-start me-2 me-sm-0">
-        <input class="me-2 mt-2" id="ass-1" type="checkbox" />
-        <label for="ass-1">Mastercard</label>
+        <input class="me-2 mt-2" id="ass-{{filter.id}}" type="checkbox" />
+        <label for="ass-{{filter.id}}">{{filter.name}}</label>
       </div>
-      <div class="d-flex align-items-start me-2 me-sm-0">
-        <input class="me-2 mt-2" id="ass-2" type="checkbox" />
-        <label for="ass-2">Visa</label>
-      </div>
-      <div class="d-flex align-items-start me-2 me-sm-0">
-        <input class="me-2 mt-2" id="ass-3" type="checkbox" />
-        <label for="ass-3">UnionPay</label>
-      </div>
-      <div class="d-flex align-items-start me-2 me-sm-0">
-        <input class="me-2 mt-2" id="ass-4" type="checkbox" />
-        <label for="ass-4">American Express</label>
-      </div>
+      {% endfor %}
+      {% if feature_caption == None %}
       <div class="d-block w-100">
         <button
           type="reset"
@@ -28,9 +20,22 @@
           Reset Filter
         </button>
       </div>
+      {% endif %}
     </form>
   </div>
-  <h2 class="mt-3 small">Providers</h2>
+  {% endif %}
+  {% if feature_caption != None %}
+  <h2 class="mt-3 small">{{feature_caption}}</h2>
+  <div>
+    <form action="" class="d-flex flex-sm-column flex-wrap">
+      <div class="d-flex align-items-start me-2 me-sm-0">
+        <input class="me-2 mt-2" id="fea-1" type="checkbox" />
+        <label for="fea-1">No Min. Funding</label>
+      </div>
+    </form>
+  </div>
+  {% endif %}
+  <h2 class="mt-3 small">{{provider_caption}}</h2>
   <div>
     <form action="" class="d-flex flex-sm-column flex-wrap">
       <div class="d-flex align-items-start me-2 me-sm-0">
@@ -52,7 +57,7 @@
           value="0"
         />
         {% endif %}
-        <label for="p0">All providers</label>
+        <label for="p0">All {{provider_caption}}</label>
       </div>
       {% for provider in providers %}
       <div class="d-flex align-items-start me-2 me-sm-0">
@@ -80,5 +85,6 @@
       {% endfor %}
     </form>
   </div>
+
 </div>
 {% endblock %}

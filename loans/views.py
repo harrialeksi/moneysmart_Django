@@ -1,9 +1,7 @@
-from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse, JsonResponse
-from django.core import serializers
-from django.db.models import Prefetch, Case, When, Value, BooleanField, Count, Q
+from django.shortcuts import render
+from django.db.models import Q
 from utils.scrape.scrape import get_data
-from .models import Loan, LoanUsp, Feature, Bank
+from .models import Loan, LoanUsp, Bank
 
 def scrape_loan(url):
     loans = get_data(url)
@@ -39,10 +37,7 @@ def get_loans(category, bank):
             queryset = Loan.objects.prefetch_related(
                 'loan_usp').filter(bank_id=bank)[:20]
     else:
-        if category == 11:
-            query = str(category)
-        else:
-            query = str(category) + ','
+        query = str(category) + ','
         if bank == "0" or bank == None:
             number = Bank.objects.filter(category__contains=query).count()
             queryset = Bank.objects.filter(

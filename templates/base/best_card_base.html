@@ -2,15 +2,17 @@
 
 {% load static %}
 {% block hero_section %}
+  <!-- Cards hero_section -->
+  {% if Title == "Cards" %}
   <div class="hero2-sec blue-bg py-4 ">
     <div class="hero px-4 px-md-0 position-relative ">
       <div class="container">
         <div class="d-flex flex-wrap align-items-center">
-          <a href="index.html" class="text-dark me-3 text-decoration-none">Home</a>
+          <a href="#" class="text-dark me-3 text-decoration-none">Home</a>
           <a href="#" class="text-dark me-3 text-decoration-none" style="pointer-events:none">
             <i class="fas fa-chevron-right"></i>
           </a>
-          <a href="#" class="text-dark me-3 text-decoration-none">Credit Cards</a>
+          <a href="{% url 'cards:cards' %}" class="text-dark me-3 text-decoration-none">Credit Cards</a>
         </div>
         <h3 class="text-dark mt-4">Best Credit Cards in Hong Kong</h3>
         <p class="fs-6 text-dark">Compare Hong Kong credit cards to earn most air miles, cashback and welcome offers,
@@ -20,23 +22,23 @@
           gives you the best credit card offers!
         </p>
         <div class="d-flex flex-wrap">
-          <a href="#"
+          <a href="{% url 'cards:cards' %}"
             class="rounded-pill text-dark text-decoration-none py-2 px-3 my-2 me-3 d-block fs-5 capitalize border border-1 border-dark active-card">
             Best credit cards
           </a>
-          <a href="#"
+          <a href="{% url 'cards:category' category=4 %}"
             class="rounded-pill text-dark text-decoration-none py-2 px-3 my-2 me-3 d-block fs-5 capitalize border border-1 border-dark">
             Welcome Offers
           </a>
-          <a href="#"
+          <a href="{% url 'cards:category' category=1 %}"
             class="rounded-pill text-dark text-decoration-none py-2 px-3 my-2 me-3 d-block fs-5 capitalize border border-1 border-dark">
             Cash Back
           </a>
-          <a href="#"
+          <a href="{% url 'cards:category' category=2 %}"
             class="rounded-pill text-dark text-decoration-none py-2 px-3 my-2 me-3 d-block fs-5 capitalize border border-1 border-dark">
             Air Miles
           </a>
-          <a href="#"
+          <a href="{% url 'cards:category' category=5 %}"
             class="rounded-pill text-dark text-decoration-none py-2 px-3 my-2 me-3 d-block fs-5 capitalize border border-1 border-dark">
             Online Shopping
           </a>
@@ -47,22 +49,210 @@
               More
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item text-dark" href="#">Octopus Card AAVS</a></li>
-              <li><a class="dropdown-item text-dark" href="#">Annual Fee Waiver</a></li>
-              <li><a class="dropdown-item text-dark" href="#">Bill Payment</a></li>
-              <li><a class="dropdown-item text-dark" href="#">Dining</a></li>
-              <li><a class="dropdown-item text-dark" href="#">Overseas Spending</a></li>
-              <li><a class="dropdown-item text-dark" href="#">Debit Card</a></li>
-              <li><a class="dropdown-item text-dark" href="#">UnionPay</a></li>
-              <li><a class="dropdown-item text-dark" href="#">Digital Wallets</a></li>
-              <li><a class="dropdown-item text-dark" href="#">Business Card</a></li>
-              <li><a class="dropdown-item text-dark" href="#">Student</a></li>
+              <li><a class="dropdown-item text-dark" href="{% url 'cards:category' category=11 %}">Octopus Card AAVS</a></li>
+              <li><a class="dropdown-item text-dark" href="{% url 'cards:category' category=6 %}">Annual Fee Waiver</a></li>
+              <li><a class="dropdown-item text-dark" href="{% url 'cards:category' category=12 %}">Bill Payment</a></li>
+              <li><a class="dropdown-item text-dark" href="{% url 'cards:category' category=13 %}">Dining</a></li>
+              <li><a class="dropdown-item text-dark" href="{% url 'cards:category' category=14 %}">Overseas Spending</a></li>
+              <li><a class="dropdown-item text-dark" href="{% url 'cards:category' category=15 %}">Debit Card</a></li>
+              <li><a class="dropdown-item text-dark" href="{% url 'cards:category' category=7 %}">UnionPay</a></li>
+              <li><a class="dropdown-item text-dark" href="{% url 'cards:category' category=9 %}">Digital Wallets</a></li>
+              <li><a class="dropdown-item text-dark" href="{% url 'cards:category' category=10 %}">Business Card</a></li>
+              <li><a class="dropdown-item text-dark" href="{% url 'cards:category' category=8 %}">Student</a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <!-- Loans hero_section -->
+  {% elif Title == "Loans" %}
+  <div class="hero2-sec blue-bg py-4 loan-hero">
+    <div class="hero px-4 px-md-0 position-relative ">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center">
+          <a href="index.html" class="text-dark me-3 text-decoration-none">Home</a>
+          <a href="#" class="text-dark me-3 text-decoration-none" style="pointer-events:none">
+            <i class="fas fa-chevron-right"></i>
+          </a>
+          <a href="#" class="text-dark me-3 text-decoration-none">Personal Loan</a>
+        </div>
+        <h3 class="text-dark mt-4">Get the Best HK Personal Installment Loans Rates and Offers Today</h3>
+        <p class="fs-6 text-dark">Compare personal loans in Hong Kong. Pick the best APR and apply through Crediboo to
+          get exclusive offers and cashback now!
+        </p>
+        <!-- -------------------------
+              Filters
+        ------------------------- -->
+        <div class="row flex-wrap m-0">
+          <div class="col-xl-11">
+            <div class="row flex-wrap">
+              <div class="col-sm-6 col-md-3 col-lg-2 my-2 ps-0 pe-2">
+                <div class="bg-white h-100 py-1 px-3">
+                  <span class="text-secondary small">Loan Amount</span>
+                  <div class="d-flex">
+                    <span class="fs-6 text-secondary ">HK$</span>
+                    <input type="text" placeholder="30,000" class="text-dark w-100 fs-6 py-0 border-0 ps-2">
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3 col-lg-2 my-2 ps-0 pe-2">
+                <div class="bg-white h-100 py-1 px-3">
+                  <span class="text-secondary small">Loan Tenure</span>
+                  <div>
+                    <select name="" id="" class="text-dark fs-6 py-0 border-0 form-control bg-transparent p-0">
+                      <option value="6 months">6 months</option>
+                      <option value="12 months">12 months</option>
+                      <option value="18 months">18 months</option>
+                      <option value="24 months">24 months</option>
+                      <option value="36 months">36 months</option>
+                      <option value="48 months">48 months</option>
+                      <option value="60 months">60 months</option>
+                      <option value="72 months">72 months</option>
+                      <option value="84 months">84 months</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3 col-lg-2 my-2 ps-0 pe-2">
+                <div class="bg-white h-100 py-1 px-3">
+                  <span class="text-secondary small">Monthly Income</span>
+                  <div class="d-flex">
+                    <span class="fs-6 text-secondary ">HK$</span>
+                    <input type="text" placeholder="20,000" class="text-dark w-100 fs-6 py-0 border-0 ps-2">
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3 col-lg-2 my-2 ps-0 pe-2">
+                <div class="bg-white h-100 py-1 px-3">
+                  <span class="text-secondary small">Loan Type</span>
+                  <div>
+                    <select name="" id="" class="text-dark fs-6 py-0 border-0 form-control bg-transparent p-0">
+                      <option value="All Personal Loan">All Personal Loan</option>
+                      <option value="Banks Loan">Banks Loan</option>
+                      <option value="Leading Companies">Leading Companies</option>
+                      <option value="Tex Loans">Tex Loans</option>
+                      <option value="Debit consolidation Loans">Debit consolidation Loans</option>
+                      <option value="Virtual Banks Loan">Virtual Banks Loan</option>
+                      <option value="Car Loan">Car Loan</option>
+                      <option value="SME Loan">SME Loan</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-3 col-lg-2 my-2 ps-0 pe-2">
+                <div class="h-100">
+                  <button type="submit"
+                    class="btn-bg w-100 h-100 d-flex justify-content-center align-items-center px-4 text-light fs-5 py-2">Search</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Accounts hero_section -->
+  {% elif Title == "Accounts" %}
+  <div class="hero2-sec blue-bg py-4 ">
+    <div class="hero px-4 px-md-0 position-relative ">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center">
+          <a href="index.html" class="text-dark me-3 text-decoration-none">Home</a>
+          <a href="#" class="text-dark me-3 text-decoration-none" style="pointer-events:none">
+            <i class="fas fa-chevron-right"></i>
+          </a>
+          <a href="#" class="text-dark me-3 text-decoration-none">Saving Account</a>
+        </div>
+        <h3 class="text-dark mt-4">Best Credit Cards in Hong Kong</h3>
+        <p class="fs-6 text-dark">Compare Hong Kong credit cards to earn most air miles, cashback and welcome offers,
+          apply through Crediboo to get extra rewards!
+          <br> Find out which credit cards suit your spending pattern the most to enjoy welcome offers, points, cash
+          rebates, air miles, cash vouchers, gifts and many more in your daily spending. Apply for the credit card that
+          gives you the best credit card offers!
+        </p>
+        <div class="d-flex flex-wrap">
+          <a href="{% url 'accounts:accounts' %}"
+            class="rounded-pill text-dark text-decoration-none py-2 px-3 my-2 me-3 d-block fs-5 capitalize border border-1 border-dark active-card">
+            Savings Account
+          </a>
+          <a href="{% url 'accounts:category' category=1 %}"
+            class="rounded-pill text-dark text-decoration-none py-2 px-3 my-2 me-3 d-block fs-5 capitalize border border-1 border-dark">
+            Business Account
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Investment hero_section -->
+  {% elif Title == "Investment" %}
+  <div class="hero2-sec blue-bg py-4 ">
+    <div class="hero px-4 px-md-0 position-relative ">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center">
+          <a href="index.html" class="text-dark me-3 text-decoration-none">Home</a>
+          <a href="#" class="text-dark me-3 text-decoration-none" style="pointer-events:none">
+            <i class="fas fa-chevron-right"></i>
+          </a>
+          <a href="#" class="text-dark me-3 text-decoration-none">Online Brokerage</a>
+          <a href="#" class="text-dark me-3 text-decoration-none" style="pointer-events:none">
+            <i class="fas fa-chevron-right"></i>
+          </a>
+          <a href="#" class="text-dark me-3 text-decoration-none">Options</a>
+        </div>
+        <h3 class="text-dark mt-4">Best Credit Cards in Hong Kong</h3>
+        <p class="fs-6 text-dark">Compare Hong Kong credit cards to earn most air miles, cashback and welcome offers,
+          apply through Crediboo to get extra rewards!
+          <br> Find out which credit cards suit your spending pattern the most to enjoy welcome offers, points, cash
+          rebates, air miles, cash vouchers, gifts and many more in your daily spending. Apply for the credit card that
+          gives you the best credit card offers!
+        </p>
+        <div class="d-flex flex-wrap">
+          <a href="{% url 'investment:investments' %}"
+            class="rounded-pill text-dark text-decoration-none py-2 px-3 my-2 me-3 d-block fs-5 capitalize border border-1 border-dark active-card">
+            Online Brokerage
+          </a>
+          <a href="{% url 'investment:category' category=1 %}"
+            class="rounded-pill text-dark text-decoration-none py-2 px-3 my-2 me-3 d-block fs-5 capitalize border border-1 border-dark">
+            HK Stock
+          </a>
+          <a href="{% url 'investment:category' category=2 %}"
+            class="rounded-pill text-dark text-decoration-none py-2 px-3 my-2 me-3 d-block fs-5 capitalize border border-1 border-dark">
+            US Stock
+          </a>
+          <a href="{% url 'investment:category' category=5 %}"
+            class="rounded-pill text-dark text-decoration-none py-2 px-3 my-2 me-3 d-block fs-5 capitalize border border-1 border-dark">
+            Robo Advisory
+          </a>
+          <a href="{% url 'investment:category' category=4 %}"
+            class="rounded-pill text-dark text-decoration-none py-2 px-3 my-2 me-3 d-block fs-5 capitalize border border-1 border-dark">
+            Cryptocurrency
+          </a>
+          <a href="{% url 'investment:category' category=6 %}"
+            class="rounded-pill text-dark text-decoration-none py-2 px-3 my-2 me-3 d-block fs-5 capitalize border border-1 border-dark">
+            Investment Funds
+          </a>
+          <a href="{% url 'investment:category' category=7 %}"
+            class="rounded-pill text-dark text-decoration-none py-2 px-3 my-2 me-3 d-block fs-5 capitalize border border-1 border-dark">
+            Options
+          </a>
+          <div class="dropdown">
+            <button type="button"
+              class="btn dropdown-toggle rounded-pill text-dark text-decoration-none py-2 px-3 my-2 d-block fs-5 text-capitalize border border-1 border-dark"
+              data-bs-toggle="dropdown">
+              More
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item text-dark" href="{% url 'investment:category' category=3 %}">IPO</a></li>
+              <li><a class="dropdown-item text-dark" href="{% url 'investment:category' category=8 %}">Monthly Stocks</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
 {% endblock %}
   <!-- =======================
          card descriptions

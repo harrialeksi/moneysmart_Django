@@ -63,7 +63,7 @@
                           Cards</a>
                       </li>
                       <li>
-                        <a href="{% url 'cards:category' category=3 %}">Online Shopping Credit
+                        <a href="{% url 'cards:category' category=5 %}">Online Shopping Credit
                           Cards</a>
                       </li>
                       <li>
@@ -71,25 +71,25 @@
                           Offers</a>
                       </li>
                       <li>
-                        <a href="{% url 'cards:category' category=5 %}">Credit Cards With Annual
+                        <a href="{% url 'cards:category' category=6 %}">Credit Cards With Annual
                           Fee Waiver</a>
                       </li>
                       <li>
-                        <a href="{% url 'cards:category' category=6 %}">Digital Wallet Credit
+                        <a href="{% url 'cards:category' category=9 %}">Digital Wallet Credit
                           Cards</a>
                       </li>
                       <li>
-                        <a href="{% url 'cards:category' category=7 %}">Bill Payment Credit
+                        <a href="{% url 'cards:category' category=12 %}">Bill Payment Credit
                           Cards</a>
                       </li>
                       <li>
-                        <a href="{% url 'cards:category' category=8 %}">UnionPay Credit Cards</a>
+                        <a href="{% url 'cards:category' category=7 %}">UnionPay Credit Cards</a>
                       </li>
                       <li>
-                        <a href="{% url 'cards:category' category=9 %}">Student Credit Cards</a>
+                        <a href="{% url 'cards:category' category=8 %}">Student Credit Cards</a>
                       </li>
                       <li>
-                        <a href="{% url 'cards:category' category=10 %}">Travel/Overseas Spending
+                        <a href="{% url 'cards:category' category=14 %}">Travel/Overseas Spending
                           Credit Cards</a>
                       </li>
                       <li>
@@ -106,7 +106,7 @@
                           Cards for Airport Lounge Access</a>
                       </li>
                       <li>
-                        <a href="{% url 'cards:best_asia_miles' %}"">Best Asia
+                        <a href="{% url 'cards:best_asia_miles' %}">Best Asia
                           Miles Credit Cards</a>
                       </li>
                       <li>
@@ -150,11 +150,33 @@
                       CREDIT CARD PROVIDERS
                     </h3>
                     <ul class="ps-0 ms-0">
-                      {% for provider in providers %}
                       <li>
-                        <a href="{% url 'cards:cards' %}?provider={{provider.id}}">{{ provider.name }}</a>
-                      </li>
-                      {% endfor %}
+                          <a href="{% url 'cards:cards' %}?provider=1">AEON Credit Card</a>
+                        </li>
+                        <li>
+                          <a href="{% url 'cards:cards' %}?provider=3">American Express</a>
+                        </li>
+                        <li>
+                          <a href="{% url 'cards:cards' %}?provider=8">Citibank Credit Card</a>
+                        </li>
+                        <li>
+                          <a href="{% url 'cards:cards' %}?provider=10">Dah Sing Credit Card</a>
+                        </li>
+                        <li>
+                          <a href="{% url 'cards:cards' %}?provider=11">DBS Credit Card</a>
+                        </li>
+                        <li>
+                          <a href="{% url 'cards:cards' %}?provider=13">Hang Seng Credit Card</a>
+                        </li>
+                        <li>
+                          <a href="{% url 'cards:cards' %}?provider=14">HSBC Credit Card</a>
+                        </li>
+                        <li>
+                          <a href="{% url 'cards:cards' %}?provider=18">PrimeCredit Credit Card</a>
+                        </li>
+                        <li>
+                          <a href="{% url 'cards:cards' %}?provider=20">Standard Chartered Credit Card</a>
+                        </li>
                     </ul>
                   </div>
                 </div>
@@ -179,28 +201,28 @@
                         <a href="{% url 'loans:loans' %}">Best Personal Loans</a>
                       </li>
                       <li>
-                        <a href="../loans/compare-loans-best-personal-loans.html">Tax Loans</a>
+                        <a href="{% url 'loans:category' category=1 %}">Tax Loans</a>
                       </li>
                       <li>
-                        <a href="../loans/compare-loans-best-personal-loans.html">Lending Companies</a>
+                        <a href="{% url 'loans:category' category=2 %}">Lending Companies</a>
                       </li>
                       <li>
-                        <a href="../loans/compare-loans-best-personal-loans.html">Bank Loans</a>
+                        <a href="{% url 'loans:category' category=3 %}">Bank Loans</a>
                       </li>
                       <li>
-                        <a href="../loans/compare-loans-best-personal-loans.html">Debt Consolidation</a>
+                        <a href="{% url 'loans:category' category=4 %}">Debt Consolidation</a>
                       </li>
                       <li>
-                        <a href="../loans/compare-loans-best-personal-loans.html">Virtual Bank Loans</a>
+                        <a href="{% url 'loans:category' category=5 %}">Virtual Bank Loans</a>
                       </li>
                       <li>
-                        <a href="../loans/compare-loans-best-personal-loans.html">Car Loans</a>
+                        <a href="{% url 'loans:category' category=6 %}">Car Loans</a>
                       </li>
                       <li>
-                        <a href="../loans/compare-loans-best-personal-loans.html">Mortgage</a>
+                        <a href="#">Mortgage</a>
                       </li>
                       <li>
-                        <a href="../loans/compare-loans-best-personal-loans.html">Refinance</a>
+                        <a href="#">Refinance</a>
                       </li>
                     </ul>
                   </div>
@@ -275,47 +297,44 @@
                     </h3>
                     <ul class="ps-0 ms-0">
                       <li>
-                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">AEON Credit Service</a>
+                        <a href="{% url 'loans:loans' %}?provider=1">AEON Credit Service</a>
                       </li>
                       <li>
-                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">AEON Credit Service</a>
+                        <a href="{% url 'loans:loans' %}?provider=3">BOC Bank of China</a>
                       </li>
                       <li>
-                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">BOC Bank of China</a>
+                        <a href="{% url 'loans:loans' %}?provider=8">Citibank</a>
                       </li>
                       <li>
-                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">Citibank</a>
+                        <a href="{% url 'loans:loans' %}?provider=11">DBS</a>
                       </li>
                       <li>
-                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">DBS</a>
+                        <a href="{% url 'loans:loans' %}?provider=17">Hang Seng</a>
                       </li>
                       <li>
-                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">Hang Seng</a>
+                        <a href="{% url 'loans:loans' %}?provider=23">PrimeCredit</a>
                       </li>
                       <li>
-                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">PrimeCredit</a>
+                        <a href="{% url 'loans:loans' %}?provider=24">Promise</a>
                       </li>
                       <li>
-                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">Promise</a>
+                        <a href="{% url 'loans:loans' %}?provider=25">Standard Chartered</a>
                       </li>
                       <li>
-                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">Standard Chartered</a>
+                        <a href="{% url 'loans:loans' %}?provider=26">UA Loan</a>
                       </li>
                       <li>
-                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">UA Loan</a>
+                        <a href="{% url 'loans:loans' %}?provider=28">WeLend</a>
                       </li>
                       <li>
-                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">WeLend</a>
-                      </li>
-                      <li>
-                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">CITIC Bank
+                        <a href="{% url 'loans:loans' %}?provider=9">CITIC Bank
                           International</a>
                       </li>
                       <li>
-                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">HSBC</a>
+                        <a href="{% url 'loans:loans' %}?provider=19">HSBC</a>
                       </li>
                       <li>
-                        <a href="../loans/personal-loan-providers-aeon-credit-service.html">WeLab Bank</a>
+                        <a href="{% url 'loans:loans' %}?provider=27">WeLab Bank</a>
                       </li>
                     </ul>
                   </div>
@@ -327,7 +346,7 @@
                   start::accounts
                ------------------- -->
           <li class="py-4 accounts-menu">
-            <a href="../accounts/compare-accounts-compare-saving-accounts.html">Accounts</a>
+            <a href="{% url 'accounts:accounts' %}">Accounts</a>
             <!-- -------accounts-menu----- -->
             <div class="sub-menu my-shadow accounts-sub-menu py-4">
               <div class="container">
@@ -339,11 +358,11 @@
                     </h3>
                     <ul class="ps-0 ms-0">
                       <li>
-                        <a href="../accounts/compare-accounts-compare-saving-accounts.html">Compare Saving
+                        <a href="{% url 'accounts:accounts' %}">Compare Saving
                           Accounts</a>
                       </li>
                       <li>
-                        <a href="../accounts/compare-accounts-compare-saving-accounts.html">Compare Business
+                        <a href="{% url 'accounts:category' category=1 %}">Compare Business
                           Accounts</a>
                       </li>
                     </ul>
@@ -381,16 +400,16 @@
                     </h3>
                     <ul class="ps-0 ms-0">
                       <li>
-                        <a href="../accounts/saving-accounts-providers-citybank-accounts.html">Citibank Accounts </a>
+                        <a href="{% url 'accounts:accounts' %}?provider=3">Citibank Accounts </a>
                       </li>
                       <li>
-                        <a href="../accounts/saving-accounts-providers-citybank-accounts.html">Mox Bank Accounts</a>
+                        <a href="{% url 'accounts:accounts' %}?provider=10">Mox Bank Accounts</a>
                       </li>
                       <li>
-                        <a href="../accounts/saving-accounts-providers-citybank-accounts.html">DBS Accounts</a>
+                        <a href="{% url 'accounts:accounts' %}?provider=6">DBS Accounts</a>
                       </li>
                       <li>
-                        <a href="../accounts/saving-accounts-providers-citybank-accounts.html">Standard Chartered
+                        <a href="{% url 'accounts:accounts' %}?provider=11">Standard Chartered
                           Accounts </a>
                       </li>
                     </ul>
@@ -420,7 +439,7 @@
                   start::investment
                ------------------- -->
           <li class="py-4 investment-menu">
-            <a href="../investment/compare-online-brokerages-online-brokerage.html">Investment</a>
+            <a href="{% url 'investment:investments' %}">Investment</a>
             <!-- -------investment-menu----- -->
             <div class="sub-menu my-shadow investment-sub-menu py-4">
               <div class="container">
@@ -432,34 +451,34 @@
                     </h3>
                     <ul class="ps-0 ms-0">
                       <li>
-                        <a href="../investment/compare-online-brokerages-online-brokerage.html">
+                        <a href="{% url 'investment:investments' %}">
                           Online Brokerage
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/compare-online-brokerages-online-brokerage.html">
+                        <a href="{% url 'investment:category' category=1 %}">
                           Hong Kong Stocks Accounts
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/compare-online-brokerages-online-brokerage.html">US Stocks Accounts
+                        <a href="{% url 'investment:category' category=2 %}">US Stocks Accounts
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/compare-online-brokerages-online-brokerage.html">IPO Accounts
+                        <a href="{% url 'investment:category' category=3 %}">IPO Accounts
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/compare-online-brokerages-online-brokerage.html">Crytocurrency Trading
+                        <a href="{% url 'investment:category' category=4 %}">Crytocurrency Trading
                           Accounts
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/compare-online-brokerages-online-brokerage.html">Robo Advisory Accounts
+                        <a href="{% url 'investment:category' category=5 %}">Robo Advisory Accounts
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/compare-online-brokerages-online-brokerage.html">Funds Trading Accounts
+                        <a href="{% url 'investment:category' category=6 %}">Funds Trading Accounts
                         </a>
                       </li>
                     </ul>
@@ -533,47 +552,47 @@
                     </h3>
                     <ul class="ps-0 ms-0">
                       <li>
-                        <a href="../investment/investment-accounts-providers-futu-hong.html">FUTU Hong Kong</a>
+                        <a href="{% url 'investment:investments' %}?provider=13">FUTU Hong Kong</a>
                       </li>
                       <li>
-                        <a href="../investment/investment-accounts-providers-futu-hong.html">
+                        <a href="{% url 'investment:investments' %}?provider=24">
                           Syfe
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/investment-accounts-providers-futu-hong.html">Webull
+                        <a href="{% url 'investment:investments' %}?provider=29">Webull
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/investment-accounts-providers-futu-hong.html"> Interactive Brokers
+                        <a href="{% url 'investment:investments' %}?provider=16"> Interactive Brokers
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/investment-accounts-providers-futu-hong.html"> Valuable Capital
+                        <a href="{% url 'investment:investments' %}?provider=28"> Valuable Capital
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/investment-accounts-providers-futu-hong.html">Huatai International
+                        <a href="{% url 'investment:investments' %}?provider=15">Huatai International
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/investment-accounts-providers-futu-hong.html">uSMART
+                        <a href="{% url 'investment:investments' %}?provider=27">uSMART
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/investment-accounts-providers-futu-hong.html">Longbridge
+                        <a href="{% url 'investment:investments' %}?provider=18">Longbridge
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/investment-accounts-providers-futu-hong.html">Kikitrade
+                        <a href="{% url 'investment:investments' %}?provider=17">Kikitrade
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/investment-accounts-providers-futu-hong.html">Tiger Brokers
+                        <a href="{% url 'investment:investments' %}?provider=26">Tiger Brokers
                         </a>
                       </li>
                       <li>
-                        <a href="../investment/investment-accounts-providers-futu-hong.html">Charles Schwab
+                        <a href="{% url 'investment:investments' %}?provider=2">Charles Schwab
                         </a>
                       </li>
                     </ul>
