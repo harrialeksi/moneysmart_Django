@@ -10,15 +10,15 @@ ORIGINAL_DOMAIN = os.getenv(
 
 
 def job():
-    from .views import scrape_card
-    url = ORIGINAL_DOMAIN + 'credit-cards'
-    scrape_card(url)
+    from .views import scrape_loan
+    url = ORIGINAL_DOMAIN + 'personal-loan'
+    scrape_loan(url)
     print("I'm working...")
 
 
 def task():
 
-    # while True:
+    while True:
         schedule.run_pending()
         time.sleep(1)
 

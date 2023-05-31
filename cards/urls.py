@@ -6,6 +6,7 @@ app_name = "cards"
 urlpatterns = [
     path("", views.cards, name="cards"),
     path("<int:category>", views.cards, name="category"),
+    path("detail/<int:card_id>", views.card_detail, name="detail"),
     path("airport-lounge-free-access-ms", views.airport_lounge_access, name="airport_lounge_access"),
     path("best-asia-miles", views.best_asia_miles, name="best_asia_miles"),    
     path("hotel_reward_booking", views.hotel_reward_booking, name="hotel_reward_booking"),

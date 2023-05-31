@@ -31,31 +31,29 @@ def get_accounts(category, provider):
 def accounts(request, category=None):
     url = 'https://www.moneysmart.hk/en/savings-account'
     provider = request.GET.get('provider')
-    # cards = get_cards(url)
+    accounts = get_cards(url)
 
-    # # Delete all rows in CardDetail, CardUsp table
-    # CardUsp.objects.all().delete()
+    # Delete all rows in CardDetail, CardUsp table
+    AccountUsp.objects.all().delete()
 
-    # for card in cards:
-    #     row = Card.objects.get(title=card['title'])
-    #     row.image = card['img_src']
-    #     row.disclosure = card['disclosure']
-    #     row.execlusive = card['badge_execlusive']
-    #     row.badge_label = card['badge_label']
-    #     row.badge_primary = card['badge_primary']
-    #     row.snippet = card['snippet']
-    #     row.snippet_img = card['snippet_img']
-    #     row.promotion = card['promotion']
-    #     row.keyfeatures = card['keyFeatures']
-    #     row.annualinterest = card['annualInterest']
-    #     row.incomeequirement = card['incomeRequirement']
-    #     row.cardassociation = card['cardAssociation']
-    #     row.wirelesspayment = card['wirelessPayment']
-    #     row.save()
+    for card in accounts:
+        row = Account.objects.get(title=card['title'])
+        row.image = card['img_src']
+        row.disclosure = card['disclosure']
+        row.execlusive = card['badge_execlusive']
+        row.badge_label = card['badge_label']
+        row.badge_primary = card['badge_primary']
+        row.snippet = card['snippet']
+        row.snippet_img = card['snippet_img']
+        row.promotion = card['promotion']
+        row.keyfeatures = card['keyFeatures']
+        row.interest_rate = card['interestRate']
+        row.bonus_interest_rate = card['bonusInterestRate']
+        row.save()
 
-    # for usp in card['usp']:
-    #     car_usp = CardUsp.objects.create(dd=usp['ratio'], dt=usp['text'], card_id=row.id)
-    #     car_usp.save()
+        for usp in card['usp']:
+            car_usp = AccountUsp.objects.create(dd=usp['ratio'], dt=usp['text'], card_id=row.id)
+            car_usp.save()
 
     providers = Provider.objects.all()
 
