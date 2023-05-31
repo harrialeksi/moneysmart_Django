@@ -128,6 +128,14 @@ def get_data(url):
             bonus_interest_rate = card.find_element('xpath', './/li[@class="tab-list"][@data-id="bonus_interest_rate"]').get_attribute('innerHTML')
         except NoSuchElementException:
             bonus_interest_rate = None
+        try:
+            accountopening = card.find_element('xpath', './/li[@class="tab-list"][@data-id="account_opening"]').get_attribute('innerHTML')
+        except NoSuchElementException:
+            accountopening = None
+        try:
+            commisionfees = card.find_element('xpath', './/li[@class="tab-list"][@data-id="commission_fees"]').get_attribute('innerHTML')
+        except NoSuchElementException:
+            commisionfees = None
 
         data.append({
             "img_src": img_src,
@@ -149,7 +157,9 @@ def get_data(url):
             'repayment': repayment,
             'travel_inconvenience': travel_inconvenience,
             "interestRate": interestRate,
-            "bonusInterestRate": bonus_interest_rate
+            "bonusInterestRate": bonus_interest_rate,
+            "accountopening": accountopening,
+            "commisionfees": commisionfees
         })
 
     driver.quit()
