@@ -1,5 +1,4 @@
-{% extends 'base/best_card_base.html' %} 
-{% block cards %}
+{% extends 'base/best_card_base.html' %} {% block cards %}
 <div class="col-sm-8 col-lg-9 mt-3 mt-sm-0">
   <div class="d-flex flex-wrap justify-content-between align-items-center">
     <p class="mb-0 pb-0">We found {{number}} credit cards for you</p>
@@ -36,7 +35,9 @@
         <p class="blue-bg text-dark ex-small">{{card.badge_primary}}</p>
         {% endif %}
       </div>
-      <h2 class="fs-5 text-capitalize text-dark">{{ card.title }}</h2>
+      <a href="{% url 'cards:detail' card.id %}">
+        <h2 class="fs-5 text-capitalize text-dark">{{ card.title }}</h2>
+      </a>
       <!-- -----------apply-------- -->
       <div class="d-flex flex-wrap align-items-start justify-content-between">
         <div class="row">
@@ -47,12 +48,12 @@
           </div>
           {% endfor %}
         </div>
-        <button
+        <a role="button" href="{{card.url}}"
           type="submit"
           class="my-btn d-inline-block text-light text-decoration-none fw-bold small text-capitalize btn-bg py-2 px-3 border-0"
         >
           Apply Now
-        </button>
+        </a>
       </div>
       <!-- --------detail-box-------- -->
       {% if card.snippet %}
@@ -93,30 +94,46 @@
             <li class="fs-6">
               <a href="#tabs{{card.id}}-4">Minimum Income Requirements</a>
             </li>
-            <li class="fs-6"><a href="#tabs{{card.id}}-5">Card Association</a></li>
-            <li class="fs-6"><a href="#tabs{{card.id}}-6">Wireless Payment</a></li>
+            <li class="fs-6">
+              <a href="#tabs{{card.id}}-5">Card Association</a>
+            </li>
+            <li class="fs-6">
+              <a href="#tabs{{card.id}}-6">Wireless Payment</a>
+            </li>
           </ul>
           <!-- -----------------------
                 -tab content
             ------------------------ -->
-          <div id="tabs{{card.id}}-1" class="tab">{{ card.promotion|safe }}</div>
+          <div id="tabs{{card.id}}-1" class="tab">
+            {{ card.promotion|safe }}
+          </div>
           <!-- -----------------------
             -tab content
               ------------------------ -->
-          <div id="tabs{{card.id}}-2" class="tab">{{ card.keyfeatures|safe }}</div>
+          <div id="tabs{{card.id}}-2" class="tab">
+            {{ card.keyfeatures|safe }}
+          </div>
           <!-- -----------------------
                 -tab content
             ------------------------ -->
-          <div id="tabs{{card.id}}-3" class="tab">{{ card.annualinterest|safe }}</div>
+          <div id="tabs{{card.id}}-3" class="tab">
+            {{ card.annualinterest|safe }}
+          </div>
           <!-- -----------------------
                   -tab content
             ------------------------ -->
-          <div id="tabs{{card.id}}-4" class="tab">{{ card.incomeequirement|safe }}</div>
+          <div id="tabs{{card.id}}-4" class="tab">
+            {{ card.incomeequirement|safe }}
+          </div>
           <!-- -----------------------
                   -tab content
             ------------------------ -->
-          <div id="tabs{{card.id}}-5" class="tab">{{ card.cardassociation|safe }}</div>
-          <div id="tabs{{card.id}}-6" class="tab">{{ card.wirelesspayment|safe }}</div>
+          <div id="tabs{{card.id}}-5" class="tab">
+            {{ card.cardassociation|safe }}
+          </div>
+          <div id="tabs{{card.id}}-6" class="tab">
+            {{ card.wirelesspayment|safe }}
+          </div>
         </div>
         <!-- ------------card buttons grp------ -->
         <div class="d-sm-flex flex-wrap">
@@ -155,8 +172,6 @@
   </div>
   {% endfor %}
 </div>
-{% endblock %}
-
-{% block table %}
-  <div>{{doc|safe}}</div>
+{% endblock %} {% block table %}
+<div>{{doc|safe}}</div>
 {% endblock %}

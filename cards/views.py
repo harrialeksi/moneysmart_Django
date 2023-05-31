@@ -1,10 +1,36 @@
-from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse, JsonResponse
-from django.core import serializers
-from django.db.models import Prefetch, Case, When, Value, BooleanField, Count, Q
-from utils.scrape.scrape import get_cards
-from .models import Card, CardUsp, Category, Provider
+from django.shortcuts import render
+from django.db.models import Q
+from utils.scrape.scrape import get_data
+from .models import Card, CardUsp, Provider
 
+def scrape_card(url):
+    cards = get_data(url)
+
+    # Delete all rows in CardDetail, CardUsp table
+    CardUsp.objects.all().delete()
+
+    for card in cards:
+        row = Card.objects.get(title=card['title'])
+        row.image = card['img_src']
+        row.disclosure = card['disclosure']
+        row.execlusive = card['badge_execlusive']
+        row.badge_label = card['badge_label']
+        row.badge_primary = card['badge_primary']
+        row.snippet = card['snippet']
+        row.snippet_img = card['snippet_img']
+        row.url = card['url']
+        row.promotion = card['promotion']
+        row.keyfeatures = card['keyFeatures']
+        row.annualinterest = card['annualInterest']
+        row.incomeequirement = card['incomeRequirement']
+        row.cardassociation = card['cardAssociation']
+        row.wirelesspayment = card['wirelessPayment']
+        row.save()
+
+        for usp in card['usp']:
+            car_usp = CardUsp.objects.create(
+                dd=usp['ratio'], dt=usp['text'], card_id=row.id)
+            car_usp.save()
 
 def get_cards(category, provider):
     if category == None:
@@ -33,34 +59,7 @@ def get_cards(category, provider):
 
 
 def cards(request, category=None):
-    url = 'https://www.moneysmart.hk/en/credit-cards'
     provider = request.GET.get('provider')
-    # cards = get_cards(url)
-
-    # # Delete all rows in CardDetail, CardUsp table
-    # CardUsp.objects.all().delete()
-
-    # for card in cards:
-    #     row = Card.objects.get(title=card['title'])
-    #     row.image = card['img_src']
-    #     row.disclosure = card['disclosure']
-    #     row.execlusive = card['badge_execlusive']
-    #     row.badge_label = card['badge_label']
-    #     row.badge_primary = card['badge_primary']
-    #     row.snippet = card['snippet']
-    #     row.snippet_img = card['snippet_img']
-    #     row.promotion = card['promotion']
-    #     row.keyfeatures = card['keyFeatures']
-    #     row.annualinterest = card['annualInterest']
-    #     row.incomeequirement = card['incomeRequirement']
-    #     row.cardassociation = card['cardAssociation']
-    #     row.wirelesspayment = card['wirelessPayment']
-    #     row.save()
-
-    # for usp in card['usp']:
-    #     car_usp = CardUsp.objects.create(dd=usp['ratio'], dt=usp['text'], card_id=row.id)
-    #     car_usp.save()
-
     providers = Provider.objects.all()
 
     # Retrieve all cards joined with their related card details
@@ -152,6 +151,9 @@ def expat_foreigner_hong_kong_ms(request):
     return render(request, "pages/cards/expat-foreigner-hong-kong-ms.html", {"broadcrump": broadcrump, "title": title, "description": desctiption,
                                                                        "subtitle": subtitle, "sub_desc": sub_desc, "categories": categories, "cards": queryset})
 
+def card_detail(request, card_id):
+    card = Card.objects.get(pk=card_id)
+    return render(request, "pages/cards/card-detail.html", {"card": card})
 
 def citibank(request):
     number = Card.objects.filter(provider_id=8).count()
@@ -167,7 +169,7 @@ def standard_chartered(request):
     return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number,"prov": 20})
 
 
-def american_express(request):  # ===========================================
+def american_express(request):
     number = Card.objects.filter(provider_id=3).count()
     cards = Card.objects.filter(provider_id=3)
     providers = Provider.objects.all()

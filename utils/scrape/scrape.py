@@ -7,11 +7,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 import time
-import requests
-from bs4 import BeautifulSoup
 
-
-def get_cards(url):
+def get_data(url):
 
     # initialize the webdriver
     driver = webdriver.Chrome()
@@ -81,7 +78,11 @@ def get_cards(url):
                 'xpath', './/div[@class="promotion-snippet__image"]//img').get_attribute("src")
         except NoSuchElementException:
             snippet_img = None
-
+        try:
+            url = card.find_element(
+                'xpath', './/div[@class="listing-card__cta"]//a').get_attribute("href")
+        except NoSuchElementException:
+            url = None
         card_usp = card.find_elements(By.CLASS_NAME, 'listing-card__usp-group')
         card_usp_data = []
         for i, element in enumerate(card_usp):
@@ -137,6 +138,7 @@ def get_cards(url):
             "badge_primary": badge_primary,
             "snippet": snippet,
             "snippet_img": snippet_img,
+            "url": url,
             'usp': card_usp_data,
             'promotion': promotion,
             'keyFeatures': keyFeatures,
