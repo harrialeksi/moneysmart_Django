@@ -327,7 +327,7 @@
                   start::accounts
                ------------------- -->
           <li class="py-4 accounts-menu">
-            <a href="../accounts/compare-accounts-compare-saving-accounts.html">Accounts</a>
+            <a href="{% url 'accounts:accounts' %}">Accounts</a>
             <!-- -------accounts-menu----- -->
             <div class="sub-menu my-shadow accounts-sub-menu py-4">
               <div class="container">
@@ -339,11 +339,11 @@
                     </h3>
                     <ul class="ps-0 ms-0">
                       <li>
-                        <a href="../accounts/compare-accounts-compare-saving-accounts.html">Compare Saving
+                        <a href="{% url 'accounts:accounts' %}">Compare Saving
                           Accounts</a>
                       </li>
                       <li>
-                        <a href="../accounts/compare-accounts-compare-saving-accounts.html">Compare Business
+                        <a href="{% url 'accounts:category' category=1 %}">Compare Business
                           Accounts</a>
                       </li>
                     </ul>

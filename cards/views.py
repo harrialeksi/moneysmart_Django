@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 from django.db.models import Prefetch, Case, When, Value, BooleanField, Count, Q
 from utils.scrape.scrape import get_cards
-from .models import Card, CardUsp, Category, Provider
+from .models import Card, CardUsp, Category, Provider, Association
 
 
 def get_cards(category, provider):
@@ -62,11 +62,11 @@ def cards(request, category=None):
     #     car_usp.save()
 
     providers = Provider.objects.all()
-
+    filters = Association.objects.all()
     # Retrieve all cards joined with their related card details
     number, queryset = get_cards(category, provider)
 
-    return render(request, "pages/cards/cards.html", {"cards": queryset, "providers": providers, "number": number, 'prov': provider})
+    return render(request, "pages/cards/cards.html", {"cards": queryset, "number": number, "prov": provider, "provider_caption": "Providers", "providers": providers, "filter_caption": "Card Association", "filters":filters})
 
 
 def airport_lounge_access(request):

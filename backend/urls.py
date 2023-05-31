@@ -35,5 +35,6 @@ urlpatterns = [
     path('verify/<str:token>/', verifyEmail, name='verify-email'),
     path('credit-cards/', include('cards.urls')),
     path('personal-loan/', include('loans.urls')),
+    path('savings-account/', include('accounts.urls')),
     # path('api/v1/', include(urls)),
 ]
