@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.db.models import Q
 from utils.scrape.scrape import get_data
-from .models import Card, CardUsp, Provider
+from .models import Card, CardUsp, Association, Provider
 
 def scrape_card(url):
     cards = get_data(url)
@@ -32,37 +32,35 @@ def scrape_card(url):
                 dd=usp['ratio'], dt=usp['text'], card_id=row.id)
             car_usp.save()
 
-def get_cards(category, provider):
-    if category == None:
-        if provider == "0" or provider == None:
-            number = Card.objects.count()
-            queryset = Card.objects.prefetch_related('card_usp').all()[:20]
-        else:
-            number = Card.objects.filter(provider_id=provider).count()
-            queryset = Card.objects.prefetch_related(
-                'card_usp').filter(provider_id=provider)[:20]
-    else:
+def get_cards(category, provider, assoc):
+    number = Card.objects
+    queryset = Card.objects.prefetch_related('card_usp')
+
+    if provider != "0" and provider != None:
+        number = number.filter(provider_id=provider)
+        queryset = queryset.filter(provider_id=provider)
+
+    if category != None:
         query = ',' +str(category) + ','
-        if provider == "0" or provider == None:
-            number = Card.objects.filter(category__contains=query).count()
-            queryset = Card.objects.filter(
-                category__contains=query).prefetch_related('card_usp').all()[:20]
-        else:
-            number = Card.objects.filter(category__contains=query).filter(
-                provider_id=provider).count()
-            queryset = Card.objects.filter(category__contains=query).prefetch_related(
-                'card_usp').filter(provider_id=provider)[:20]
-    return number, queryset
+        number = number.filter(category__contains=query)
+        queryset = queryset.filter(category__contains=query)
+
+    if assoc !=None:
+        number = number.filter(association__contains=assoc)
+        queryset = queryset.filter(association__contains=assoc)
+        
+    return number.count(), queryset.all()
 
 
 def cards(request, category=None):
     provider = request.GET.get('provider')
+    assoc = request.GET.get('assoc')
     providers = Provider.objects.all()
     filters = Association.objects.all()
     # Retrieve all cards joined with their related card details
-    number, queryset = get_cards(category, provider)
+    number, queryset = get_cards(category, provider, assoc)
 
-    return render(request, "pages/cards/cards.html", {"Title":"Cards", "cards": queryset, "number": number, "prov": provider, "provider_caption": "Providers", "providers": providers, "filter_caption": "Card Association", "filters":filters})
+    return render(request, "pages/cards/cards.html", {"Title":"Cards", "cards": queryset, "number": number, "prov": provider, "provider_caption": "Providers", "providers": providers, "filter_caption": "Card Association", "filters":filters, "assoc": assoc})
 
 
 def airport_lounge_access(request):
