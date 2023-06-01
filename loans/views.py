@@ -57,4 +57,7 @@ def loans(request, category=None):
     # Retrieve all loans joined with their related card details
     number, queryset = get_loans(category, bank)
 
-    return render(request, "pages/loans/loans.html", {"Title":"Loans", "cards": queryset, "providers": banks, "number": number, "provider_caption":"Banks", 'prov': bank})
+    return render(request, "pages/loans/loans.html", 
+                  {"Title":"Loans", "h3":"Get the Best HK Personal Installment Loans Rates and Offers Today", 
+                   "p":"Compare personal loans in Hong Kong. Pick the best APR and apply through Crediboo to get exclusive offers and cashback now!",
+                   "cards": queryset, "providers": banks, "number": number, "provider_caption":"Banks", 'prov': bank})

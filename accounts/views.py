@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.db.models import Q
 from utils.scrape.scrape import get_data
-from .models import Account, AccountUsp, Provider
+from .models import Account, AccountUsp, Provider, HeroSection
 
 def scrape_account(url):
     accounts = get_data(url)
@@ -56,5 +56,8 @@ def accounts(request, category=None):
 
     # Retrieve all cards joined with their related card details
     number, queryset = get_accounts(category, provider)
+    heros = HeroSection.objects.all()
 
-    return render(request, "pages/accounts/accounts.html", {"Title":"Accounts", "cards": queryset, "number": number, "provider_caption":"Providers", "providers": providers, "prov": provider,})
+    return render(request, "pages/accounts/accounts.html", 
+                  {"Title":"Accounts", "Heros":heros, "MoreIndex":3, "h3":"Compare Best Savings Accounts in Hong Kong", "p":"Search for the best saving accounts to align with your personal saving goals and earn interest on your balance. <br> Start earning extra cash rebate with high deposit interest rate upon opening a savings account. Compare the minimum account balance and savings interest rate to find the one that suits your needs.",
+                   "cards": queryset, "number": number, "provider_caption":"Providers", "providers": providers, "prov": provider})

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.db.models import Q
 from utils.scrape.scrape import get_data
-from .models import Investment, InvestmentUsp, Category, Provider, Promotion
+from .models import Investment, InvestmentUsp, Category, Provider, Promotion, HeroSection
 
 def scrape_investment(url):
     cards = get_data(url)
@@ -58,5 +58,8 @@ def investments(request, category=None):
     # Retrieve all cards joined with their related card details
     number, queryset = get_investments(category, provider)
     filters = Promotion.objects.all()
+    heros = HeroSection.objects.all()
 
-    return render(request, "pages/investments/investments.html", {"Title":"Investment", "cards": queryset, "number": number, "provider_caption":"Providers", "providers": providers, "prov": provider, "feature_caption":"Online Brokerage Features", "filter_caption":"Promotions", "filters":filters})
+    return render(request, "pages/investments/investments.html", 
+                  {"Title":"Investment", "Heros":heros, "MoreIndex":8, "h3":"Best Online Brokerages in Hong Kong 2023", "p":"Choose from MoneySmart's curated list of best brokerage accounts in Hong Kong! <br> Getting started to invest and need a stock trading account? Compare and find the best online investment brokerage stock account in Hong Kong in terms of fees and commission, platform capabilities and product portfolios. Learn how to open an investment brokerage account and start investing today!",
+                    "cards": queryset, "number": number, "provider_caption":"Providers", "providers": providers, "prov": provider, "feature_caption":"Online Brokerage Features", "filter_caption":"Promotions", "filters":filters})
