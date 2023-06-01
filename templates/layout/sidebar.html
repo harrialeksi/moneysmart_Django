@@ -7,7 +7,11 @@
     <form action="" class="d-flex flex-sm-column flex-wrap">
       {% for filter in filters %}
       <div class="d-flex align-items-start me-2 me-sm-0">
-        <input class="me-2 mt-2" id="ass-{{filter.id}}" type="checkbox" />
+        {% if filter.id|stringformat:"d" in assoc %}
+        <input class="me-2 mt-2 association" id="ass-{{filter.id}}" type="checkbox" name="association" value="{{filter.id}}" checked/>
+        {% else %}
+        <input class="me-2 mt-2 association" id="ass-{{filter.id}}" type="checkbox" name="association" value="{{filter.id}}" />
+        {% endif %}
         <label for="ass-{{filter.id}}">{{filter.name}}</label>
       </div>
       {% endfor %}

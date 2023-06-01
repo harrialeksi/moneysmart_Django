@@ -33,41 +33,38 @@ def scrape_card(url):
                 dd=usp['ratio'], dt=usp['text'], card_id=row.id)
             car_usp.save()
 
+def get_cards(category, provider, assoc):
+    number = Card.objects
+    queryset = Card.objects.prefetch_related('card_usp')
 
-def get_cards(category, provider):
-    if category == None:
-        if provider == "0" or provider == None:
-            number = Card.objects.count()
-            queryset = Card.objects.prefetch_related('card_usp').all()[:20]
-        else:
-            number = Card.objects.filter(provider_id=provider).count()
-            queryset = Card.objects.prefetch_related(
-                'card_usp').filter(provider_id=provider)[:20]
-    else:
-        query = ',' + str(category) + ','
-        if provider == "0" or provider == None:
-            number = Card.objects.filter(category__contains=query).count()
-            queryset = Card.objects.filter(
-                category__contains=query).prefetch_related('card_usp').all()[:20]
-        else:
-            number = Card.objects.filter(category__contains=query).filter(
-                provider_id=provider).count()
-            queryset = Card.objects.filter(category__contains=query).prefetch_related(
-                'card_usp').filter(provider_id=provider)[:20]
-    return number, queryset
+    if provider != "0" and provider != None:
+        number = number.filter(provider_id=provider)
+        queryset = queryset.filter(provider_id=provider)
+
+    if category != None:
+        query = ',' +str(category) + ','
+        number = number.filter(category__contains=query)
+        queryset = queryset.filter(category__contains=query)
+
+    if assoc !=None:
+        number = number.filter(association__contains=assoc)
+        queryset = queryset.filter(association__contains=assoc)
+        
+    return number.count(), queryset.all()
 
 
 def cards(request, category=None):
     provider = request.GET.get('provider')
+    assoc = request.GET.get('assoc')
     providers = Provider.objects.all()
     filters = Association.objects.all()
     heros = HeroSection.objects.all()
     # Retrieve all cards joined with their related card details
-    number, queryset = get_cards(category, provider)
+    number, queryset = get_cards(category, provider, assoc)
 
     return render(request, "pages/cards/cards.html",
                   {"Title": "Credit Cards", "Heros":heros, "MoreIndex":6, "h3":"Best Credit Cards in Hong Kong", "p":"Compare Hong Kong credit cards to earn most air miles, cashback and welcome offers, apply through Crediboo to get extra rewards! <br> Find out which credit cards suit your spending pattern the most to enjoy welcome offers, points, cash rebates, air miles, cash vouchers, gifts and many more in your daily spending. Apply for the credit card that gives you the best credit card offers!",
-                   "cards": queryset, "number": number, "prov": provider, "provider_caption": "Providers", "providers": providers, "filter_caption": "Card Association", "filters": filters})
+                   "cards": queryset, "number": number, "prov": provider, "provider_caption": "Providers", "providers": providers, "filter_caption": "Card Association", "filters": filters, "assoc": assoc})
 
 
 def airport_lounge_access(request):
