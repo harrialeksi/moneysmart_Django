@@ -16,6 +16,7 @@ class Loan(models.Model):
     badge_primary = models.CharField(max_length=20, null=True)
     snippet = models.TextField(null=True)
     snippet_img = models.CharField(max_length=200, null=True)
+    url = models.TextField(null=True)
     promotion = models.TextField(null=True)
     keyfeatures = models.TextField(null=True)
     repayment = models.TextField(null=True)

@@ -1,9 +1,32 @@
-from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse, JsonResponse
-from django.core import serializers
-from django.db.models import Prefetch, Case, When, Value, BooleanField, Count, Q
-from utils.scrape.scrape import get_cards
+from django.shortcuts import render
+from django.db.models import Q
+from utils.scrape.scrape import get_data
 from .models import Investment, InvestmentUsp, Category, Provider, Promotion
+
+def scrape_investment(url):
+    cards = get_data(url)
+
+    # Delete all rows in CardDetail, CardUsp table
+    InvestmentUsp.objects.all().delete()
+
+    for card in cards:
+        row = Investment.objects.get(title=card['title'])
+        row.image = card['img_src']
+        row.disclosure = card['disclosure']
+        row.execlusive = card['badge_execlusive']
+        row.badge_label = card['badge_label']
+        row.badge_primary = card['badge_primary']
+        row.snippet = card['snippet']
+        row.snippet_img = card['snippet_img']
+        row.promotion = card['promotion']
+        row.keyfeatures = card['keyFeatures']
+        row.accountopening = card['accountopening']
+        row.commissionfees = card['commissionfees']
+        row.save()
+
+        for usp in card['usp']:
+            car_usp = InvestmentUsp.objects.create(dd=usp['ratio'], dt=usp['text'], card_id=row.id)
+            car_usp.save()
 
 # Create your views here.
 def get_investments(category, provider):
@@ -29,34 +52,7 @@ def get_investments(category, provider):
     return number, queryset
 
 def investments(request, category=None):
-    url = 'https://www.moneysmart.hk/en/online-brokerage'
     provider = request.GET.get('provider')
-    # cards = get_cards(url)
-
-    # # Delete all rows in CardDetail, CardUsp table
-    # CardUsp.objects.all().delete()
-
-    # for card in cards:
-    #     row = Card.objects.get(title=card['title'])
-    #     row.image = card['img_src']
-    #     row.disclosure = card['disclosure']
-    #     row.execlusive = card['badge_execlusive']
-    #     row.badge_label = card['badge_label']
-    #     row.badge_primary = card['badge_primary']
-    #     row.snippet = card['snippet']
-    #     row.snippet_img = card['snippet_img']
-    #     row.promotion = card['promotion']
-    #     row.keyfeatures = card['keyFeatures']
-    #     row.annualinterest = card['annualInterest']
-    #     row.incomeequirement = card['incomeRequirement']
-    #     row.cardassociation = card['cardAssociation']
-    #     row.wirelesspayment = card['wirelessPayment']
-    #     row.save()
-
-    # for usp in card['usp']:
-    #     car_usp = CardUsp.objects.create(dd=usp['ratio'], dt=usp['text'], card_id=row.id)
-    #     car_usp.save()
-
     providers = Provider.objects.all()
 
     # Retrieve all cards joined with their related card details

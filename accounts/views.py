@@ -1,9 +1,31 @@
-from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse, JsonResponse
-from django.core import serializers
-from django.db.models import Prefetch, Case, When, Value, BooleanField, Count, Q
-from utils.scrape.scrape import get_cards
-from .models import Account, AccountUsp, Category, Provider
+from django.shortcuts import render
+from django.db.models import Q
+from utils.scrape.scrape import get_data
+from .models import Account, AccountUsp, Provider
+
+def scrape_account(url):
+    accounts = get_data(url)
+    # Delete all rows in CardDetail, CardUsp table
+    AccountUsp.objects.all().delete()
+
+    for card in accounts:
+        row = Account.objects.get(title=card['title'])
+        row.image = card['img_src']
+        row.disclosure = card['disclosure']
+        row.execlusive = card['badge_execlusive']
+        row.badge_label = card['badge_label']
+        row.badge_primary = card['badge_primary']
+        row.snippet = card['snippet']
+        row.snippet_img = card['snippet_img']
+        row.promotion = card['promotion']
+        row.keyfeatures = card['keyFeatures']
+        row.interestrate = card['interestRate']
+        row.bonusinterestrate = card['bonusInterestRate']
+        row.save()
+
+        for usp in card['usp']:
+            car_usp = AccountUsp.objects.create(dd=usp['ratio'], dt=usp['text'], card_id=row.id)
+            car_usp.save()
 
 # Create your views here.
 def get_accounts(category, provider):
@@ -29,32 +51,7 @@ def get_accounts(category, provider):
     return number, queryset
 
 def accounts(request, category=None):
-    url = 'https://www.moneysmart.hk/en/savings-account'
     provider = request.GET.get('provider')
-    accounts = get_cards(url)
-
-    # Delete all rows in CardDetail, CardUsp table
-    AccountUsp.objects.all().delete()
-
-    for card in accounts:
-        row = Account.objects.get(title=card['title'])
-        row.image = card['img_src']
-        row.disclosure = card['disclosure']
-        row.execlusive = card['badge_execlusive']
-        row.badge_label = card['badge_label']
-        row.badge_primary = card['badge_primary']
-        row.snippet = card['snippet']
-        row.snippet_img = card['snippet_img']
-        row.promotion = card['promotion']
-        row.keyfeatures = card['keyFeatures']
-        row.interest_rate = card['interestRate']
-        row.bonus_interest_rate = card['bonusInterestRate']
-        row.save()
-
-        for usp in card['usp']:
-            car_usp = AccountUsp.objects.create(dd=usp['ratio'], dt=usp['text'], card_id=row.id)
-            car_usp.save()
-
     providers = Provider.objects.all()
 
     # Retrieve all cards joined with their related card details
