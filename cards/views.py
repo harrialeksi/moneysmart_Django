@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.db.models import Q
 from utils.scrape.scrape import get_data
-from .models import Card, CardUsp, Provider
+from .models import Card, CardUsp, Provider, Association
 
 def scrape_card(url):
     cards = get_data(url)

@@ -57,4 +57,4 @@ def loans(request, category=None):
     # Retrieve all loans joined with their related card details
     number, queryset = get_loans(category, bank)
 
-    return render(request, "pages/loans/loans.html", {"cards": queryset, "providers": banks, "number": number, 'prov': bank})
+    return render(request, "pages/loans/loans.html", {"Title":"Loans", "cards": queryset, "providers": banks, "number": number, "provider_caption":"Banks", 'prov': bank})
