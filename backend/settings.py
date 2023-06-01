@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'insurance',
     'accounts',
     'investment',
+    'blog'
 ]
 
 MIDDLEWARE = [
