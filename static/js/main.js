@@ -46,16 +46,40 @@ $(document).ready(function () {
 $(document).ready(function () {
   $(".provider").click(function () {
     const currentUrl = window.location.href;
-	provider = $(this).val();
+    provider = $(this).val();
 
-    // Create a regular expression to match the "provider" query parameter    
+    // Create a regular expression to match the "provider" query parameter
     const regex = /(\?|&)provider=\d+(&|$)/;
     let i = currentUrl.search(regex);
+    let j = currentUrl.search(/\?/);
     let newUrl = "";
-    if (i < 0) newUrl = currentUrl + "?provider=" + provider;
+    if (i < 0)
+      if (j < 0) newUrl = currentUrl + "?provider=" + provider;
+      else newUrl = currentUrl + "&provider=" + provider;
     // Replace the "provider" query parameter with the new value
     else newUrl = currentUrl.replace(regex, `$1provider=${provider}$2`);
-	
+
+    window.location.replace(newUrl);
+  });
+  $(".association").click(function () {
+    const assoc = [];
+    $('input[name="association"]').each(function () {
+      if ($(this).is(":checked")) {
+        assoc.push($(this).val());
+      }
+    });
+    const currentUrl = window.location.href;
+    // Create a regular expression to match the "provider" query parameter
+    const regex = /(\?|&)assoc=[\d,]+(&|$)/;
+    let i = currentUrl.search("assoc");
+    let j = currentUrl.search(/\?/);
+    let newUrl = "";
+    if (i < 0)
+      if (j < 0) newUrl = currentUrl + "?assoc=" + assoc.join(",");
+      else newUrl = currentUrl + "&assoc=" + assoc.join(",");
+    // Replace the "provider" query parameter with the new value
+    else if (assoc.length === 0) newUrl = currentUrl.replace(regex, "");
+    else newUrl = currentUrl.replace(regex, `$1assoc=${assoc.join(",")}$2`);
     window.location.replace(newUrl);
   });
 });

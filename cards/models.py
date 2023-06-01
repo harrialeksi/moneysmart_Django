@@ -8,8 +8,7 @@ class Card(models.Model):
     category = models.CharField(max_length=100, null=True)
     provider = models.ForeignKey(
         "Provider", null=True, on_delete=models.PROTECT, related_name='provider')
-    association = models.ForeignKey(
-        "Association", null=True, on_delete=models.PROTECT, related_name='association')
+    association = models.CharField(max_length=100, null=True)
     image = models.CharField(max_length=200, null=True)
     disclosure = models.CharField(max_length=30, null=True)
     execlusive = models.CharField(max_length=20, null=True)
