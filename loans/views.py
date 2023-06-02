@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.db.models import Q
 from utils.scrape.scrape import get_data
-from .models import Loan, LoanUsp, Bank
+from .models import Loan, LoanUsp, Bank, Feature
 
 def scrape_loan(url):
     loans = get_data(url)
@@ -27,37 +27,35 @@ def scrape_loan(url):
             loan_usp = LoanUsp.objects.create(dd=usp['ratio'], dt=usp['text'], loan_id=row.id)
             loan_usp.save()
 
-def get_loans(category, bank):
-    if category == None:
-        if bank == "0" or bank == None:
-            number = Loan.objects.count()
-            queryset = Loan.objects.prefetch_related('loan_usp').all()[:20]
-        else:
-            number = Loan.objects.filter(bank_id=bank).count()
-            queryset = Loan.objects.prefetch_related(
-                'loan_usp').filter(bank_id=bank)[:20]
-    else:
-        query = str(category) + ','
-        if bank == "0" or bank == None:
-            number = Bank.objects.filter(category__contains=query).count()
-            queryset = Bank.objects.filter(
-                category__contains=query).prefetch_related('loan_usp').all()[:20]
-        else:
-            number = Loan.objects.filter(category__contains=query).filter(
-                bank_id=bank).count()
-            queryset = Loan.objects.filter(category__contains=query).prefetch_related(
-                'loan_usp').filter(bank_id=bank)[:20]
-    return number, queryset
+def get_loans(category, provider, assoc):
+    number = Loan.objects
+    queryset = Loan.objects.prefetch_related('loan_usp')
+
+    if provider != "0" and provider != None:
+        number = number.filter(provider_id=provider)
+        queryset = queryset.filter(provider_id=provider)
+
+    if category != None:
+        query = ',' +str(category) + ','
+        number = number.filter(category__contains=query)
+        queryset = queryset.filter(category__contains=query)
+
+    if assoc !=None:
+        number = number.filter(feature__contains=assoc)
+        queryset = queryset.filter(feature__contains=assoc)
+        
+    return number.count(), queryset.all()
 
 
 def loans(request, category=None):
     bank = request.GET.get('provider')
+    assoc = request.GET.get('assoc')
     banks = Bank.objects.all()
-    
+    filters = Feature.objects.all()
     # Retrieve all loans joined with their related card details
-    number, queryset = get_loans(category, bank)
+    number, queryset = get_loans(category, bank, assoc)
 
     return render(request, "pages/loans/loans.html", 
                   {"Title":"Loans", "h3":"Get the Best HK Personal Installment Loans Rates and Offers Today", 
                    "p":"Compare personal loans in Hong Kong. Pick the best APR and apply through Crediboo to get exclusive offers and cashback now!",
-                   "cards": queryset, "providers": banks, "number": number, "provider_caption":"Banks", 'prov': bank})
+                   "cards": queryset, "providers": banks, "number": number, "provider_caption":"Banks", 'prov': bank, "filter_caption":"Loan Features", "filters":filters, "assoc": assoc})

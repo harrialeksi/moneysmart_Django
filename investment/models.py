@@ -16,7 +16,7 @@ class Investment(models.Model):
     badge_primary = models.CharField(max_length=20, null=True)
     snippet = models.TextField(null=True)
     snippet_img = models.CharField(max_length=200, null=True)
-    promotion = models.TextField(null=True)
+    promotion = models.CharField(max_length=100, null=True)
     keyfeatures = models.TextField(null=True)
     accountopening = models.TextField(null=True)
     commissionfees = models.TextField(null=True)

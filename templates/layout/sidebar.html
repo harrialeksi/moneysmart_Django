@@ -6,6 +6,7 @@
   <div>
     <form action="" class="d-flex flex-sm-column flex-wrap">
       {% for filter in filters %}
+      {% if feature_caption != None and filter.id < 3 or feature_caption == None %}
       <div class="d-flex align-items-start me-2 me-sm-0">
         {% if filter.id|stringformat:"d" in assoc %}
         <input class="me-2 mt-2 association" id="ass-{{filter.id}}" type="checkbox" name="association" value="{{filter.id}}" checked/>
@@ -14,6 +15,7 @@
         {% endif %}
         <label for="ass-{{filter.id}}">{{filter.name}}</label>
       </div>
+      {% endif %}
       {% endfor %}
       {% if feature_caption == None %}
       <div class="d-block w-100">
@@ -33,8 +35,12 @@
   <div>
     <form action="" class="d-flex flex-sm-column flex-wrap">
       <div class="d-flex align-items-start me-2 me-sm-0">
-        <input class="me-2 mt-2" id="fea-1" type="checkbox" />
-        <label for="fea-1">No Min. Funding</label>
+        {% if 3|stringformat:"d" in assoc %}
+        <input class="me-2 mt-2 association" id="ass-3" type="checkbox" name="association" value="3" checked/>
+        {% else %}
+        <input class="me-2 mt-2 association" id="ass-3" type="checkbox" name="association" value="3" />
+        {% endif %}
+        <label for="ass-3">No Min.Funding</label>
       </div>
     </form>
   </div>
