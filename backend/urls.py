@@ -37,5 +37,6 @@ urlpatterns = [
     path('personal-loan/', include('loans.urls')),
     path('savings-account/', include('accounts.urls')),
     path('online-brokerage/', include('investment.urls')),
+    path('blogs/', include('blog.urls')),
     # path('api/v1/', include(urls)),
 ]
