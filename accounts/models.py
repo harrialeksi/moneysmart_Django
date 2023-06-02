@@ -38,3 +38,7 @@ class Category(models.Model):
     name = models.CharField(max_length=100, null=True)
     slug = models.CharField(max_length=100, null=True)
     doc = models.TextField(null=True)
+
+class HeroSection(models.Model):
+    category = models.TextField(null=True)
+    url = models.TextField(null=True)

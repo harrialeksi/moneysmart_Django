@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.db.models import Q
 from utils.scrape.scrape import get_data
-from .models import Card, CardUsp, Association, Provider
+from .models import Card, CardUsp, Provider, Association, HeroSection
+
 
 def scrape_card(url):
     cards = get_data(url)
@@ -57,10 +58,13 @@ def cards(request, category=None):
     assoc = request.GET.get('assoc')
     providers = Provider.objects.all()
     filters = Association.objects.all()
+    heros = HeroSection.objects.all()
     # Retrieve all cards joined with their related card details
     number, queryset = get_cards(category, provider, assoc)
 
-    return render(request, "pages/cards/cards.html", {"Title":"Cards", "cards": queryset, "number": number, "prov": provider, "provider_caption": "Providers", "providers": providers, "filter_caption": "Card Association", "filters":filters, "assoc": assoc})
+    return render(request, "pages/cards/cards.html",
+                  {"Title": "Credit Cards", "Heros":heros, "MoreIndex":6, "h3":"Best Credit Cards in Hong Kong", "p":"Compare Hong Kong credit cards to earn most air miles, cashback and welcome offers, apply through Crediboo to get extra rewards! <br> Find out which credit cards suit your spending pattern the most to enjoy welcome offers, points, cash rebates, air miles, cash vouchers, gifts and many more in your daily spending. Apply for the credit card that gives you the best credit card offers!",
+                   "cards": queryset, "number": number, "prov": provider, "provider_caption": "Providers", "providers": providers, "filter_caption": "Card Association", "filters": filters, "assoc": assoc})
 
 
 def airport_lounge_access(request):
@@ -80,7 +84,7 @@ def airport_lounge_access(request):
         title="American Express Explorer® Credit Card") | Q(title="The Platinum Card") | Q(title="Citi Prestige Card"))
 
     return render(request, "pages/cards/popular-guides_credit-cards-for-airport-lounge-access.html", {"broadcrump": broadcrump, "title": title, "description": desctiption,
-                                                                                                "subtitle": subtitle, "sub_desc": sub_desc, "categories": categories, "cards": queryset})
+                                                                                                      "subtitle": subtitle, "sub_desc": sub_desc, "categories": categories, "cards": queryset})
 
 
 def best_asia_miles(request):
@@ -123,7 +127,7 @@ def hotel_reward_booking(request):
         title="Citi PremierMiles Card") | Q(title="American Express® Platinum Credit Card") | Q(title="Citi Cash Back Card"))
 
     return render(request, "pages/cards/hotel_reward_booking.html", {"broadcrump": broadcrump, "title": title, "description": desctiption,
-                                                               "subtitle": subtitle, "sub_desc": sub_desc, "categories": categories, "cards": queryset})
+                                                                     "subtitle": subtitle, "sub_desc": sub_desc, "categories": categories, "cards": queryset})
 
 
 def expat_foreigner_hong_kong_ms(request):
@@ -144,11 +148,13 @@ def expat_foreigner_hong_kong_ms(request):
         title="Citi Prestige Card") | Q(title="Hang Seng enJoy Card") | Q(title="Citi Rewards MasterCard"))
 
     return render(request, "pages/cards/expat-foreigner-hong-kong-ms.html", {"broadcrump": broadcrump, "title": title, "description": desctiption,
-                                                                       "subtitle": subtitle, "sub_desc": sub_desc, "categories": categories, "cards": queryset})
+                                                                             "subtitle": subtitle, "sub_desc": sub_desc, "categories": categories, "cards": queryset})
+
 
 def card_detail(request, card_id):
     card = Card.objects.get(pk=card_id)
     return render(request, "pages/cards/card-detail.html", {"card": card})
+
 
 def citibank(request):
     number = Card.objects.filter(provider_id=8).count()
@@ -161,7 +167,7 @@ def standard_chartered(request):
     number = Card.objects.filter(provider_id=20).count()
     cards = Card.objects.filter(provider_id=20)
     providers = Provider.objects.all()
-    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number,"prov": 20})
+    return render(request, "pages/cards/cards.html", {"cards": cards, "providers": providers, "number": number, "prov": 20})
 
 
 def american_express(request):
