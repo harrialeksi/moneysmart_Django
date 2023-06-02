@@ -108,11 +108,12 @@ $(document).ready(function () {
 // ---card-provider select------
 $(document).ready(function () {
   $(".provider").click(function () {
-    const currentUrl = window.location.href;
+    let currentUrl = window.location.href;
     provider = $(this).val();
-
+    let regex = /(\?|&)end=\d+(&|$)/;
+    currentUrl = currentUrl.replace(regex, "");
     // Create a regular expression to match the "provider" query parameter
-    const regex = /(\?|&)provider=\d+(&|$)/;
+    regex = /(\?|&)provider=\d+(&|$)/;
     let i = currentUrl.search(regex);
     let j = currentUrl.search(/\?/);
     let newUrl = "";
@@ -131,9 +132,12 @@ $(document).ready(function () {
         assoc.push($(this).val());
       }
     });
-    const currentUrl = window.location.href;
+    let currentUrl = window.location.href;
+    let regex = /(\?|&)end=\d+(&|$)/;
+    currentUrl = currentUrl.replace(regex, "");
+
     // Create a regular expression to match the "provider" query parameter
-    const regex = /(\?|&)assoc=[\d,]+(&|$)/;
+    regex = /(\?|&)assoc=[\d,]+(&|$)/;
     let i = currentUrl.search("assoc");
     let j = currentUrl.search(/\?/);
     let newUrl = "";
@@ -143,6 +147,32 @@ $(document).ready(function () {
     // Replace the "provider" query parameter with the new value
     else if (assoc.length === 0) newUrl = currentUrl.replace(regex, "");
     else newUrl = currentUrl.replace(regex, `$1assoc=${assoc.join(",")}$2`);
+    window.location.replace(newUrl);
+  });
+});
+
+// --- load more result button click ----
+$(document).ready(function () {
+  const currentUrl = window.location.href;
+  let data_num = $("#data_number").attr("data-my-variable");
+  let data_limit = $("#data_end").attr("data-my-variable");
+
+  if (parseInt(data_num) < parseInt(data_limit)) $("#loadMore_btn").hide();
+  $("#loadMore_btn").click(function (e) {
+    e.preventDefault();
+    if (data_num < data_limit) $(this).hide();
+    data_limit = parseInt(data_limit) + 20;
+    // Create a regular expression to match the "provider" query parameter
+    const regex = /(\?|&)end=\d+(&|$)/;
+    let i = currentUrl.search(regex);
+    let j = currentUrl.search(/\?/);
+    let newUrl = "";
+    if (i < 0)
+      if (j < 0) newUrl = currentUrl + "?end=" + data_limit;
+      else newUrl = currentUrl + "&end=" + data_limit;
+    // Replace the "provider" query parameter with the new value
+    else newUrl = currentUrl.replace(regex, `$1end=${data_limit}$2`);
+
     window.location.replace(newUrl);
   });
 });
