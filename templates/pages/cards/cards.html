@@ -1,7 +1,9 @@
 {% extends 'base/best_card_base.html' %} {% block cards %}
+
 <div class="col-sm-8 col-lg-9 mt-3 mt-sm-0">
   <div class="d-flex flex-wrap justify-content-between align-items-center">
-    <p class="mb-0 pb-0">We found {{number}} credit cards for you</p>
+    <p class="mb-0 pb-0" id="data_number" data-my-variable="{{ number }}">We found {{number}} credit cards for you</p>
+    <p style="display: none;" id="data_end" data-my-variable="{{ data_end }}"></p>
     <div class="dropdown">
       <button
         type="button"
@@ -84,7 +86,7 @@
       </div>
       <div class="more-det-content">
         <!-- -------slider---------- -->
-        <div id="tabs{{card.id}}" class="mt-4 tabs">
+        <div id="tabs{{card.id}}" class="tab-container mt-4">
           <ul class="slider">
             <li class="fs-6"><a href="#tabs{{card.id}}-1">Promotions</a></li>
             <li class="fs-6"><a href="#tabs{{card.id}}-2">Key Features</a></li>
@@ -171,6 +173,10 @@
     </div>
   </div>
   {% endfor %}
+  <!-- ----load-more-btn---- -->
+  <div class="mt-4 d-flex justify-content-center">
+    <a href="#" id="loadMore_btn" class=" border boder-1 border-dark text-decoration-none text-dark py-2 px-3 rounded-pill">Load more results</a>
+  </div>
 </div>
 {% endblock %} {% block table %}
 <div>{{doc|safe}}</div>
