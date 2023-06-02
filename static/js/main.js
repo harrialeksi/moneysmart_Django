@@ -2,9 +2,9 @@ const APP_DOMAIN = "http://localhost:8000";
 
 $(document).ready(function () {
   $(".more-det-btn").click(function () {
-    $(".more-det-content").toggleClass("active-det");
-    $(".less-con").toggleClass("active");
-    $(".more-con").toggleClass("active");
+    $(this).siblings(".more-det-content").toggleClass("active-det");
+    $(this).find(".less-con").toggleClass("active");
+    $(this).find(".more-con").toggleClass("active");
   });
 });
 
@@ -39,6 +39,69 @@ $(document).ready(function () {
   $(".close-icon").click(function () {
     $(".mbl-nav").hide();
     $(".toggler").show();
+  });
+});
+
+// -blog---
+$(document).ready(function () {
+  $(".sidebox-btn").click(function () {
+    $(".sidebox-filter").addClass("show");
+    $(".sidebox-btn").hide();
+    $(".sidebox-close").show();
+  });
+  $(".sidebox-close").click(function () {
+    $(".sidebox-btn").show();
+    $(".sidebox-close").hide();
+    $(".sidebox-filter").removeClass("show");
+  });
+});
+
+// ----------tabs and slider--------
+$(function () {
+  $(".tab-container").each(function () {
+    var $slider = $(this).find(".slider");
+    var $tabContent = $(this).find(".tab");
+
+    $slider.tabs();
+    $tabContent.hide();
+    $tabContent.first().show();
+    $slider.find("li").first().addClass("active"); // Add "active" class to the first tab
+
+    $slider.on("click", "li", function () {
+      $tabContent.hide();
+      var activeTab = $(this).find("a").attr("href");
+      $(activeTab).show();
+      $(this).addClass("active").siblings().removeClass("active");
+    });
+  });
+});
+
+$(document).ready(function () {
+  $(".slider").slick({
+    autoplay: false,
+    arrows: true,
+    infinite: false,
+    slidesToShow: 4,
+    responsive: [
+      {
+        breakpoint: 1300,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   });
 });
 
