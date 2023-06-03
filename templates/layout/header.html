@@ -644,7 +644,7 @@
                   start::blog
                ------------------- -->
           <li class="py-4 blog-menu">
-            <a href="../blogs/blog-dining.html">Blog</a>
+            <a href="{% url 'blog:dining' %}">Blog</a>
             <!-- -------blog-menu----- -->
             <div class="sub-menu my-shadow blog-sub-menu py-4">
               <div class="container">
@@ -727,7 +727,7 @@
                   start::rewards
                ------------------- -->
           <li class="py-4 rewards-menu">
-            <a href="../rewards/latest-reward-deals.html">Rewards</a>
+            <a href="{% url 'rewards:lastestReward' %}">Rewards</a>
             <!-- -------rewards-menu----- -->
             <div class="sub-menu my-shadow rewards-sub-menu py-4">
               <div class="container">
@@ -738,15 +738,15 @@
                     </h3>
                     <ul class="ps-0 ms-0">
                       <li>
-                        <a href="../rewards/latest-reward-deals.html">Latest Reward Deals
+                        <a href="{% url 'rewards:lastestReward' %}">Latest Reward Deals
                         </a>
                       </li>
                       <li>
-                        <a href="../rewards/latest-reward-deals.html">Claim Rewards
+                        <a href="{% url 'rewards:claimReward' %}">Claim Rewards
                         </a>
                       </li>
                       <li>
-                        <a href="../rewards/latest-reward-deals.html"> Claim Status</a>
+                        <a href="{% url 'rewards:claimsStatus' %}"> Claim Status</a>
                       </li>
                     </ul>
                   </div>
@@ -755,7 +755,7 @@
             </div>
           </li>
           <li class="py-4 user-icon list-style-none">
-            <a href="../faqs.html" class="d-flex align-items-center">
+            <a href="{% url 'faqs:faqs' %}" class="d-flex align-items-center">
               FAQs
             </a>
           </li>

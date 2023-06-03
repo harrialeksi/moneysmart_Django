@@ -18,27 +18,27 @@
     <div class="row mt-4">
       <div class="col-6 col-sm-3">
         <a
-          href="../credit-cards/compare-credit-card_best-credit-cards.html"
+          href="{% url 'cards:cards' %}"
           class="text-dark d-block py-1"
           >Credit Cards</a
         >
         <a
-          href="../investment/compare-online-brokerages-online-brokerage.html"
+          href="{% url 'investment:investments' %}"
           class="text-dark d-block py-1"
           >Investment</a
         >
         <a
-          href="../loans/compare-loans-best-personal-loans.html"
+          href="{% url 'loans:loans' %}"
           class="text-dark d-block py-1"
           >Loans</a
         >
       </div>
       <div class="col-6 col-sm-3">
-        <a href="../blogs/blog-dining.html" class="text-dark d-block py-1"
+        <a href="{% url 'blog:dining' %}" class="text-dark d-block py-1"
           >Blog</a
         >
         <a
-          href="../accounts/compare-accounts-compare-saving-accounts.html"
+          href="{% url 'accounts:accounts' %}"
           class="text-dark d-block py-1"
           >Accounts</a
         >
