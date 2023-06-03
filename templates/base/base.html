@@ -19,58 +19,7 @@
     <!-- =======================
          footer
     ========================= -->
-    {% include 'layout/footer.html' %}
-    <script>
-      $(function () {
-        $("#tabs").tabs();
-      });
-    </script>
-    <script>
-      // ------accordian----
-      $(document).ready(function () {
-        $(".accordion-list > li > .answer").hide();
+  {% include 'layout/footer.html' %}
+</body>
 
-        $(".accordion-list > li").click(function () {
-          if ($(this).hasClass("active")) {
-            $(this).removeClass("active").find(".answer").slideUp();
-          } else {
-            $(".accordion-list > li.active .answer").slideUp();
-            $(".accordion-list > li.active").removeClass("active");
-            $(this).addClass("active").find(".answer").slideDown();
-          }
-          return false;
-        });
-      });
-    </script>
-    <script>
-      $(document).ready(function () {
-        $(".slider").slick({
-          autoplay: false,
-          arrows: true,
-          infinite: false,
-          slidesToShow: 4,
-          responsive: [
-            {
-              breakpoint: 1300,
-              settings: {
-                slidesToShow: 3,
-              },
-            },
-            {
-              breakpoint: 1000,
-              settings: {
-                slidesToShow: 2,
-              },
-            },
-            {
-              breakpoint: 768,
-              settings: {
-                slidesToShow: 1,
-              },
-            },
-          ],
-        });
-      });
-    </script>
-  </body>
 </html>
