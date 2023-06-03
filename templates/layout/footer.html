@@ -3,15 +3,15 @@
   <div class="container">
     <div class="row border-bottom border-1 border-light py-3">
       <div class="col d-sm-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo-ftr">
+        <a href="{% url 'index' %}" class="logo-ftr">
           <img src="{% static 'img/english-logo.png' %}" alt="" class="w-100" />
         </a>
         <div class="d-flex align-items-center py-3">
-          <a href="../index.html" class="text-dark fs-5 ms-sm-4">About</a>
-          <a href="../contact-us.html" class="text-dark fs-5 ms-4"
+          <a href="{% url 'index' %}" class="text-dark fs-5 ms-sm-4">About</a>
+          <a href="{% url 'contact' %}" class="text-dark fs-5 ms-4"
             >Contact Us</a
           >
-          <a href="../faqs.html" class="text-dark fs-5 ms-4">FAQs</a>
+          <a href="{% url 'faqs:faqs' %}" class="text-dark fs-5 ms-4">FAQs</a>
         </div>
       </div>
     </div>

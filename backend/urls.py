@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from users.views import login_user, signup_user, verifyEmail, reset_passowrd
-from .view import index
+from .view import index, contact
 
 # urls = [
 #     path('products/', include('base.urls.product_urls')),
@@ -40,5 +40,6 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('rewards/', include('reward.urls')),
     path('FAQs/', include('faqs.urls')),
+    path('contact-us/', contact, name='contact'),
     # path('api/v1/', include(urls)),
 ]

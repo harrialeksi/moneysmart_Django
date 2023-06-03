@@ -1,0 +1,59 @@
+{% extends 'base/base.html' %} {% block content %}
+<section class="py-5">
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-xl-5 col-lg-6 col-md-12 ">
+          <p class="text-secondary mb-0 fs-5" style="font-weight: 500;">Contact Us</p>
+
+          <p class="fs-1 fw-md lh-sm">Feel free to get in
+            touch with our
+            expert.</p>
+          <p class="text-secondary  ">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used
+            to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem
+            ipsum may be used as a placeholder before final copy is available.</p>
+          <div class="row mt-4">
+            <div class="col-sm-6  ">
+              <div class="d-flex ">
+                <div><img class="img-fluid" src="img/phone.png" alt="" style="height: 42px; "></div>
+                <div class=" ">
+                  <p class="mb-0 fw-semibold fs-6" style="font-size: 13px;">+92 318 321 332 4</p>
+                  <p class="text-secondary fs-6" style="font-size: 12px;">Info@gamil.com</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 ">
+              <div class="d-flex align-items-center  gap-2 ">
+                <div><i class="fas fa-map-marker-alt"></i></div>
+                <div class=" ">
+                  <p class=" fw-semibold fs-6 pb-0 mb-0" style="font-size: 12px;">Address will be here</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-7 col-lg-6 col-md-12  mt-lg-0 ">
+          <form action="">
+            <div class="row py-lg-3">
+              <div class="col-sm-6 py-2"><input type="text" placeholder="Name"
+                  class="form-control rounded-2 shadow-none " style="border: 2px solid #808080;"></div>
+              <div class="col-sm-6 py-2"><input type="text" placeholder="Email"
+                  class="form-control rounded-2 shadow-none " style="border: 2px solid #808080;"></div>
+              <div class="col-sm-6 py-2"><input type="text" placeholder="Phone No "
+                  class="form-control rounded-2 shadow-none " style="border: 2px solid #808080;"></div>
+              <div class="col-sm-6 py-2"><input type="text" placeholder="Subject"
+                  class="form-control rounded-2 shadow-none " style="border: 2px solid #808080;"></div>
+              <div class="col-12 py-2"><textarea class="form-control shadow-none" placeholder="Message" name="Message"
+                  id="" cols="10" rows="6" style="border: 2px solid #808080;"></textarea></div>
+            </div>
+            <div class="mt-lg-0 mt-md-5 mt-2  ">
+              <button type="button" class=" btn-bg   p-3 rounded-2 text-white  border-0 fw-bold">Send Message <i
+                  class="fa-sharp fa-solid fa-paper-plane ps-2" style="color: #f7f9fd;"></i></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
