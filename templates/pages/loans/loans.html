@@ -19,7 +19,7 @@
                  card-details 
   ------------------------- -->
   {% for card in cards %}
-  <div class="mt-3 row border border-1 pt-3 pb-5 px-0 position-relative">
+  <div class="mt-3 mb-5 row border border-1 pt-3 pb-5 px-0 position-relative">
     <div class="col-8 col-sm-6 col-md-4 col-lg-2">
       {% if card.image %}
       <img src="{{card.image}}" class="w-100" alt="card-img" />
@@ -39,19 +39,21 @@
       <!-- -----------apply-------- -->
       <div class="d-flex flex-wrap align-items-start justify-content-between">
         <div class="row">
-          {% for usp in card.card_usp.all %}
+          {% for usp in card.loan_usp.all %}
           <div class="col-6 col-sm-4">
             <h3 class="fs-5 mb-0 pb-0">{{usp.dd}}</h3>
             <p class="exx-sm">{{usp.dt}}</p>
           </div>
           {% endfor %}
         </div>
-        <button
+        <a
+          role="button"
+          href="{{card.url}}"
           type="submit"
           class="my-btn d-inline-block text-light text-decoration-none fw-bold small text-capitalize btn-bg py-2 px-3 border-0"
         >
           Apply Now
-        </button>
+        </a>
       </div>
       <!-- --------detail-box-------- -->
       {% if card.snippet %}
@@ -88,20 +90,26 @@
             <li class="fs-6"><a href="#tabs{{card.id}}-2">Key Features</a></li>
             <li class="fs-6">
               <a href="#tabs{{card.id}}-3">Repayment summary</a>
-            </li>            
+            </li>
           </ul>
           <!-- -----------------------
                 -tab content
             ------------------------ -->
-          <div id="tabs{{card.id}}-1" class="tab">{{ card.promotion|safe }}</div>
+          <div id="tabs{{card.id}}-1" class="tab">
+            {{ card.promotion|safe }}
+          </div>
           <!-- -----------------------
             -tab content
               ------------------------ -->
-          <div id="tabs{{card.id}}-2" class="tab">{{ card.keyfeatures|safe }}</div>
+          <div id="tabs{{card.id}}-2" class="tab">
+            {{ card.keyfeatures|safe }}
+          </div>
           <!-- -----------------------
                 -tab content
             ------------------------ -->
-          <div id="tabs{{card.id}}-3" class="tab">{{ card.repayment|safe }}</div>          
+          <div id="tabs{{card.id}}-3" class="tab">
+            {{ card.repayment|safe }}
+          </div>
         </div>
         <!-- ------------card buttons grp------ -->
         <div class="d-sm-flex flex-wrap">
@@ -122,18 +130,19 @@
   </div>
   {% endfor %}
 </div>
-{% endblock %}
-{% block table %}
-<section class=" bg-light py-5 my-4">
+{% endblock %} {% block table %}
+<section class="bg-light py-5 my-4">
   <div class="container">
-    <p class=" mb-0 pb-0 fs-6">
-      <b> Disclaimer:</b> At Crediboo.hk, we strive to keep our information accurate and up to date. This
-      information may be different than what you see when you visit a financial institution, service provider or
-      specific product’s site. For any discrepancy in product information, please refer to the financial
-      institution’s website for the most updated version. All financial products and services are presented
-      without warranty. Additionally, this site may be compensated through third party advertisers. However, the
-      results of our comparison tools which are not marked as sponsored are always based on objective analysis
-      first.
+    <p class="mb-0 pb-0 fs-6">
+      <b> Disclaimer:</b> At Crediboo.hk, we strive to keep our information
+      accurate and up to date. This information may be different than what you
+      see when you visit a financial institution, service provider or specific
+      product’s site. For any discrepancy in product information, please refer
+      to the financial institution’s website for the most updated version. All
+      financial products and services are presented without warranty.
+      Additionally, this site may be compensated through third party
+      advertisers. However, the results of our comparison tools which are not
+      marked as sponsored are always based on objective analysis first.
     </p>
   </div>
 </section>

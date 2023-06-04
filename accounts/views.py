@@ -8,47 +8,41 @@ def scrape_account(url):
     # Delete all rows in CardDetail, CardUsp table
     AccountUsp.objects.all().delete()
 
-    for card in accounts:
-        row = Account.objects.get(title=card['title'])
-        row.image = card['img_src']
-        row.disclosure = card['disclosure']
-        row.execlusive = card['badge_execlusive']
-        row.badge_label = card['badge_label']
-        row.badge_primary = card['badge_primary']
-        row.snippet = card['snippet']
-        row.snippet_img = card['snippet_img']
-        row.promotion = card['promotion']
-        row.keyfeatures = card['keyFeatures']
-        row.interestrate = card['interestRate']
-        row.bonusinterestrate = card['bonusInterestRate']
+    for account in accounts:
+        row = Account.objects.get(title=account['title'])
+        row.image = account['img_src']
+        row.disclosure = account['disclosure']
+        row.execlusive = account['badge_execlusive']
+        row.badge_label = account['badge_label']
+        row.badge_primary = account['badge_primary']
+        row.snippet = account['snippet']
+        row.snippet_img = account['snippet_img']
+        row.promotion = account['promotion']
+        row.keyfeatures = account['keyFeatures']
+        row.interestrate = account['interestRate']
+        row.bonusinterestrate = account['bonusInterestRate']
+        row.bonuscashrebate = account['bonusCashRebate']
         row.save()
 
-        for usp in card['usp']:
-            car_usp = AccountUsp.objects.create(dd=usp['ratio'], dt=usp['text'], card_id=row.id)
-            car_usp.save()
+        for usp in account['usp']:
+            account_usp = AccountUsp.objects.create(dd=usp['ratio'], dt=usp['text'], account_id=row.id)
+            account_usp.save()
 
 # Create your views here.
 def get_accounts(category, provider):
-    if category == None:
-        if provider == "0" or provider == None:
-            number = Account.objects.count()
-            queryset = Account.objects.prefetch_related('account_usp').all()[:20]
-        else:
-            number = Account.objects.filter(provider_id=provider).count()
-            queryset = Account.objects.prefetch_related(
-                'account_usp').filter(provider_id=provider)[:20]
-    else:
+    number = Account.objects
+    queryset = Account.objects.prefetch_related('account_usp')
+
+    if provider != "0" and provider != None:
+        number = number.filter(provider_id=provider)
+        queryset = queryset.filter(provider_id=provider)
+
+    if category != None:
         query = str(category) + ','
-        if provider == "0" or provider == None:
-            number = Account.objects.filter(category__contains=query).count()
-            queryset = Account.objects.filter(
-                category__contains=query).prefetch_related('account_usp').all()[:20]
-        else:
-            number = Account.objects.filter(category__contains=query).filter(
-                provider_id=provider).count()
-            queryset = Account.objects.filter(category__contains=query).prefetch_related(
-                'account_usp').filter(provider_id=provider)[:20]
-    return number, queryset
+        number = number.filter(category__contains=query)
+        queryset = queryset.filter(category__contains=query)
+        
+    return number.count(), queryset.all()
 
 def accounts(request, category=None):
     provider = request.GET.get('provider')

@@ -11,7 +11,7 @@ def scrape_card(url):
     CardUsp.objects.all().delete()
 
     for card in cards:
-        row = Card.objects.get(title=card['title'])
+        row = Card.objects.get(url=card['url'])
         row.image = card['img_src']
         row.disclosure = card['disclosure']
         row.execlusive = card['badge_execlusive']
@@ -19,7 +19,7 @@ def scrape_card(url):
         row.badge_primary = card['badge_primary']
         row.snippet = card['snippet']
         row.snippet_img = card['snippet_img']
-        row.url = card['url']
+        # row.url = card['url']
         row.promotion = card['promotion']
         row.keyfeatures = card['keyFeatures']
         row.annualinterest = card['annualInterest']

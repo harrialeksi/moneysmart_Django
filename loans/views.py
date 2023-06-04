@@ -3,6 +3,7 @@ from django.db.models import Q
 from utils.scrape.scrape import get_data
 from .models import Loan, LoanUsp, Bank, Feature
 
+
 def scrape_loan(url):
     loans = get_data(url)
 
@@ -10,7 +11,7 @@ def scrape_loan(url):
     LoanUsp.objects.all().delete()
 
     for loan in loans:
-        row = Loan.objects.get(title=loan['title'])
+        row = Loan.objects.get(title=loan['title'], url=loan['url'])
         row.image = loan['img_src']
         row.disclosure = loan['disclosure']
         row.execlusive = loan['badge_execlusive']
@@ -32,11 +33,11 @@ def get_loans(category, provider, assoc):
     queryset = Loan.objects.prefetch_related('loan_usp')
 
     if provider != "0" and provider != None:
-        number = number.filter(provider_id=provider)
-        queryset = queryset.filter(provider_id=provider)
+        number = number.filter(bank_id=provider)
+        queryset = queryset.filter(bank_id=provider)
 
     if category != None:
-        query = ',' +str(category) + ','
+        query = str(category) + ','
         number = number.filter(category__contains=query)
         queryset = queryset.filter(category__contains=query)
 

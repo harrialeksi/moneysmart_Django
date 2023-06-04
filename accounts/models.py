@@ -20,6 +20,7 @@ class Account(models.Model):
     keyfeatures = models.TextField(null=True)
     interestrate = models.TextField(null=True)
     bonusinterestrate = models.TextField(null=True)
+    bonuscashrebate = models.TextField(null=True)
 
     def __str__(self):
         return self.title

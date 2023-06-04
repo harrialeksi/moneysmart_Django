@@ -20,7 +20,7 @@
                  card-details 
   ------------------------- -->
   {% for card in cards %}
-  <div class="mt-3 row border border-1 pt-3 pb-5 px-0 position-relative">
+  <div class="mt-3 mb-5 row border border-1 pt-3 pb-5 px-0 position-relative">
     <div class="col-8 col-sm-6 col-md-4 col-lg-2">
       {% if card.image %}
       <img src="{{card.image}}" class="w-100" alt="card-img" />
@@ -40,19 +40,19 @@
       <!-- -----------apply-------- -->
       <div class="d-flex flex-wrap align-items-start justify-content-between">
         <div class="row">
-          {% for usp in card.card_usp.all %}
+          {% for usp in card.account_usp.all %}
           <div class="col-6 col-sm-4">
             <h3 class="fs-5 mb-0 pb-0">{{usp.dd}}</h3>
             <p class="exx-sm">{{usp.dt}}</p>
           </div>
           {% endfor %}
         </div>
-        <button
-          type="submit"
+        <a role="button" href="{{card.url}}"
+        type="submit"
           class="my-btn d-inline-block text-light text-decoration-none fw-bold small text-capitalize btn-bg py-2 px-3 border-0"
         >
           Apply Now
-        </button>
+      </a>
       </div>
       <!-- --------detail-box-------- -->
       {% if card.snippet %}
@@ -83,40 +83,31 @@
       </div>
       <div class="more-det-content">
         <!-- -------slider---------- -->
-        <div id="tabs{{card.id}}" class="mt-4 tabs">
+        <div id="tabs{{card.id}}" class="tab-container mt-4">
           <ul class="slider">
+            {% if card.promotion != None %}
             <li class="fs-6"><a href="#tabs{{card.id}}-1">Promotions</a></li>
+            {% endif %}
+            {% if card.keyfeatures != None %}
             <li class="fs-6"><a href="#tabs{{card.id}}-2">Key Features</a></li>
+            {% endif %}
+            {% if card.interestrate != None %}
+            <li class="fs-6"><a href="#tabs{{card.id}}-3">Interest Rate</a></li>
+            {% endif %}
+            {% if card.bonusinterestrate != None %}
             <li class="fs-6">
-              <a href="#tabs{{card.id}}-3">Annual Interest Rate and Fees</a>
+              <a href="#tabs{{card.id}}-4">Bonus Interest Rate</a>
             </li>
-            <li class="fs-6">
-              <a href="#tabs{{card.id}}-4">Minimum Income Requirements</a>
-            </li>
-            <li class="fs-6"><a href="#tabs{{card.id}}-5">Card Association</a></li>
-            <li class="fs-6"><a href="#tabs{{card.id}}-6">Wireless Payment</a></li>
+            {% endif %}
+            {% if card.bonuscashrebate != None %}
+            <li class="fs-6"><a href="#tabs{{card.id}}-5">Bonus Cash Rebate</a></li>
+            {% endif %}
           </ul>
-          <!-- -----------------------
-                -tab content
-            ------------------------ -->
           <div id="tabs{{card.id}}-1" class="tab">{{ card.promotion|safe }}</div>
-          <!-- -----------------------
-            -tab content
-              ------------------------ -->
           <div id="tabs{{card.id}}-2" class="tab">{{ card.keyfeatures|safe }}</div>
-          <!-- -----------------------
-                -tab content
-            ------------------------ -->
-          <div id="tabs{{card.id}}-3" class="tab">{{ card.annualinterest|safe }}</div>
-          <!-- -----------------------
-                  -tab content
-            ------------------------ -->
-          <div id="tabs{{card.id}}-4" class="tab">{{ card.incomeequirement|safe }}</div>
-          <!-- -----------------------
-                  -tab content
-            ------------------------ -->
-          <div id="tabs{{card.id}}-5" class="tab">{{ card.cardassociation|safe }}</div>
-          <div id="tabs{{card.id}}-6" class="tab">{{ card.wirelesspayment|safe }}</div>
+          <div id="tabs{{card.id}}-3" class="tab">{{ card.interestrate|safe }}</div>
+          <div id="tabs{{card.id}}-4" class="tab">{{ card.bonusinterestrate|safe }}</div>
+          <div id="tabs{{card.id}}-5" class="tab">{{ card.bonuscashrebate|safe }}</div>
         </div>
         <!-- ------------card buttons grp------ -->
         <div class="d-sm-flex flex-wrap">
@@ -128,26 +119,8 @@
               <i class="fas fa-arrow-right small"></i>
             </a>
             <p class="mb-0 text-center pb-0 small text-primary">
-              See all card details
+              See all details
             </p>
-          </div>
-          <div class="d-flex flex-column my-1 justify-content-center me-2 py-2">
-            <a
-              href="#"
-              class="d-block card-btn border border-1 border-primary text-center hov-opacity rounded-2 text-primary"
-            >
-              <i class="fas fa-file-alt small"></i>
-            </a>
-            <p class="mb-0 text-center pb-0 small text-primary">T&Cs</p>
-          </div>
-          <div class="d-flex flex-column my-1 justify-content-center me-2 py-2">
-            <a
-              href="#"
-              class="d-block card-btn border border-1 border-primary text-center hov-opacity rounded-2 text-primary"
-            >
-              <i class="fas fa-edit small"></i>
-            </a>
-            <p class="mb-0 text-center pb-0 small text-primary">Claim Form</p>
           </div>
         </div>
       </div>

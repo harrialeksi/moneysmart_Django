@@ -21,7 +21,7 @@
                  card-details 
   ------------------------- -->
   {% for card in cards %}
-  <div class="mt-3 row border border-1 pt-3 pb-5 px-0 position-relative">
+  <div class="mt-3 mb-5 row border border-1 pt-3 pb-5 px-0 position-relative">
     <div class="col-8 col-sm-6 col-md-4 col-lg-2">
       {% if card.image %}
       <img src="{{card.image}}" class="w-100" alt="card-img" />
@@ -38,7 +38,7 @@
         {% endif %}
       </div>
       <a href="{% url 'cards:detail' card.id %}">
-        <h2 class="fs-5 text-capitalize text-dark">{{ card.title }}</h2>
+        <h2 class="fs-5 text-capitalize text-dark text-decoration-none fw-md">{{ card.title }}</h2>
       </a>
       <!-- -----------apply-------- -->
       <div class="d-flex flex-wrap align-items-start justify-content-between">

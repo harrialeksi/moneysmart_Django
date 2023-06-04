@@ -18,7 +18,7 @@ def job():
 
 def task():
 
-    # while True:
+    while True:
         schedule.run_pending()
         time.sleep(1)
 

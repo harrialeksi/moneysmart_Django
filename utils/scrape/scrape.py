@@ -129,6 +129,10 @@ def get_data(url):
         except NoSuchElementException:
             bonus_interest_rate = None
         try:
+            bonus_cash_rebate = card.find_element('xpath', './/li[@class="tab-list"][@data-id="bonus_cash_rebate"]').get_attribute('innerHTML')
+        except NoSuchElementException:
+            bonus_cash_rebate = None
+        try:
             accountopening = card.find_element('xpath', './/li[@class="tab-list"][@data-id="account_opening"]').get_attribute('innerHTML')
         except NoSuchElementException:
             accountopening = None
@@ -158,8 +162,9 @@ def get_data(url):
             'travel_inconvenience': travel_inconvenience,
             "interestRate": interestRate,
             "bonusInterestRate": bonus_interest_rate,
+            "bonusCashRebate": bonus_cash_rebate,
             "accountopening": accountopening,
-            "commisionfees": commisionfees
+            "commissionfees": commisionfees
         })
 
     driver.quit()

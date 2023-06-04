@@ -18,6 +18,7 @@ def scrape_investment(url):
         row.badge_primary = card['badge_primary']
         row.snippet = card['snippet']
         row.snippet_img = card['snippet_img']
+        row.url = card['url']
         row.promotion = card['promotion']
         row.keyfeatures = card['keyFeatures']
         row.accountopening = card['accountopening']
@@ -25,7 +26,7 @@ def scrape_investment(url):
         row.save()
 
         for usp in card['usp']:
-            car_usp = InvestmentUsp.objects.create(dd=usp['ratio'], dt=usp['text'], card_id=row.id)
+            car_usp = InvestmentUsp.objects.create(dd=usp['ratio'], dt=usp['text'], investment_id=row.id)
             car_usp.save()
 
 # Create your views here.

@@ -20,6 +20,7 @@ class Investment(models.Model):
     keyfeatures = models.TextField(null=True)
     accountopening = models.TextField(null=True)
     commissionfees = models.TextField(null=True)
+    url = models.TextField(null=True)
 
     def __str__(self):
         return self.title
@@ -28,7 +29,7 @@ class Investment(models.Model):
 class InvestmentUsp(models.Model):
     dd = models.CharField(max_length=30)
     dt = models.CharField(max_length=200)
-    account = models.ForeignKey("Investment", related_name='investment_usp', on_delete=models.CASCADE)
+    investment = models.ForeignKey("Investment", related_name='investment_usp', on_delete=models.CASCADE)
 
 class Promotion(models.Model):
     name = models.CharField(max_length=50)
