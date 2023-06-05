@@ -78,7 +78,7 @@ def signup_user(request):
                 username=data['email'],
                 email=data['email'],
                 password=make_password(data['password']),
-                is_active=False,
+                is_active=True,
             )
 
             # create token

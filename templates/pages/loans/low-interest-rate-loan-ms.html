@@ -1,0 +1,154 @@
+{% extends 'base/base.html' %} {% load static %} {% block hero_section %}
+{%include 'layout/head_section.html' %} {% endblock %} {% block content %}
+<!-- =======================
+             txt+img
+        ========================= -->
+<section class="py-3 py-md-5">
+  <div class="container">
+    <!-- ---------text------ -->
+    <div class="row mt-5" id="lowinterest">
+      <div class="col-md-4">
+        <h3 class="fs-3">What is a low interest rate loan?</h3>
+      </div>
+      <div class="col-md-8">
+        <p>
+          A low interest rate loan only focuses on interest rate alone, but
+          handling and administrative fees are not taken into account. To make
+          an informed decision, loan borrowers are recommended to compare the
+          Annual Percentage Rates (APR) of personal instalment loans when
+          choosing the best personal loan.
+        </p>
+      </div>
+    </div>
+    <div class="row mt-5" id="apr">
+      <div class="col-md-4">
+        <h3 class="fs-3">What is Annual Percentage Rate (APR)?</h3>
+      </div>
+      <div class="col-md-8">
+        <p>
+          APR reflects all expenses of your loans including interest rate, admin
+          fees, handling fees etc. If you only consider the monthly flat rate
+          when comparing the personal loan that you would like to apply for, you
+          may be surprised by the hidden charges.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- =======================
+         card descriptions
+    ========================= -->
+<section class="py-4">
+  <div class="container">
+    <div class="">
+      <h2 class="fs-2">{{title0}}</h2>
+      {% for loan in loans %}
+      <div
+        class="mt-3 row justify-content-center px-0 mt-5 border-bottom border-1 pb-4"
+      >
+        <div
+          class="col-8 col-sm-6 col-md-3 col-lg-2 d-flex flex-column align-items-center"
+        >
+          <img src="{{loan.image}}" class="w-100" alt="card-img" />
+          <a
+            href="#"
+            class="d-inline-block text-primary border border-1 text-decoration-none mt-3 mx-auto text-center border-primary rounded-pill px-3 py-2 small"
+          >
+            <span class="me-2 more-con">More Details</span>
+          </a>
+        </div>
+        <div class="col-md-9 col-lg-8 mt-4 mt-md-0">
+          <div class="d-flex flex-wrap">
+            {% if loan.execlusive %}
+            <p class="bg-warning text-dark ex-small me-2">
+              {{loan.execlusive}}
+            </p>
+            {% endif %} {% if loan.badge_label %}
+            <p class="blue-bg text-dark ex-small">{{loan.badge_label}}</p>
+            {% endif %} {% if loan.badge_primary %}
+            <p class="blue-bg text-dark ex-small">{{loan.badge_primary}}</p>
+            {% endif %}
+          </div>
+          <h2 class="fs-5 text-capitalize text-dark">{{loan.title}}</h2>
+          <!-- -----------apply-------- -->
+          <div
+            class="d-flex flex-wrap align-items-start justify-content-between"
+          >
+            <div class="col-8 col-md-9 col-xl-10">
+              <div class="row">
+                {% for usp in loan.loan_usp.all %}
+                <div class="col-6 col-sm-4">
+                  <h3 class="fs-5 mb-0 pb-0">{{usp.dd}}</h3>
+                  <p class="exx-sm">{{usp.dt}}</p>
+                </div>
+                {% endfor %}
+              </div>
+
+              {% if loan.snippet %}
+              <div
+                class="mt-3 border-start border-warning border-3 card-det-box p-2"
+              >
+                <div class="row align-items-center">
+                  <div class="col-md-9 col-lg-10">{{ loan.snippet|safe }}</div>
+                  {% if loan.snippet_img %}
+                  <div class="col-5 col-md-3 col-lg-2 mt-4 mt-md-0">
+                    <img
+                      src="{{loan.snippet_img}}"
+                      alt=""
+                      class="w-100 rounded-circle"
+                    />
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+              {% endif %}
+              <br>
+              <div class="col-8 col-md-9 col-xl-10">
+                {% if loan.id == 3 %}
+                    {{descriptions.2}}
+                {% elif loan.id == 7 %}
+                    {{descriptions.1}}
+                {% else %}
+                    {{descriptions.0}}
+                {% endif %}
+              </div>
+            </div>
+            <div class="col-4 col-md-3 col-xl-2 d-flex justify-content-end">
+              <a
+                role="button"
+                href="{{loan.url}}"
+                type="submit"
+                class="my-btn d-inline-block text-light text-decoration-none fw-bold small text-capitalize btn-bg py-2 px-3 border-0"
+              >
+                Apply Now
+              </a>
+            </div>
+            <!-- --------detail-box-------- -->
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- --------banner--------- -->
+<section class="bg-warning py-4">
+  <div class="container">
+    <div class="row align-items-md-center">
+      <div class="col-md-8">
+        <h2 class="fs-1">Find out more aboutPersonal Loan</h2>
+      </div>
+      <div class="col-md-4 d-flex justify-content-end">
+        <a
+          href="{% url 'loans:loans' %}"
+          target="_blank"
+          class="rounded-3 text-white text-decoration-none fw-md hov-opacity bg-dark py-3 d-inline-block py-2 text-capitalize px-3"
+        >
+          Learn more
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

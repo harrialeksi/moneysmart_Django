@@ -1,0 +1,205 @@
+{% extends 'base/base.html' %} {% load static %} 
+{% block hero_section %} 
+{%include 'layout/head_section.html' %} 
+{% endblock %} 
+{% block content %}
+<!-- =======================
+         card descriptions
+    ========================= -->
+
+<section class="py-4" id="{{title0}}">
+    <div class="container">
+        <div class="">
+        <h2 class="fs-2">{{title0}}</h2>
+        <div
+            class="mt-3 row justify-content-center px-0 mt-5 border-bottom border-1 pb-4"
+        >
+            <div
+            class="col-8 col-sm-6 col-md-3 col-lg-2 d-flex flex-column align-items-center"
+            >
+            <img src="{{loan.image}}" class="w-100" alt="card-img" />
+            </div>
+            <div class="col-md-9 col-lg-8 mt-4 mt-md-0">
+                <h2 class="fs-5 text-capitalize text-dark">DBS Cashline Revolving Loan</h2>
+                <!-- -----------apply-------- -->
+                <div
+                class="col-8 col-md-9 col-xl-10"
+                >
+                        {{snippet0|safe}}
+            </div>
+        </div>
+    </div>
+</section>
+  <!-- --------banner--------- -->
+  <section class="bg-warning py-4">
+    <div class="container">
+      <div class="row align-items-md-center">
+        <div class="col-md-8">
+          <h2 class="fs-1">
+            Check out morePersonal loan from DBS Bank
+          </h2>
+          <p>MoneySmart helps you compare all personal loans available from DBS Bank, so that you can find a personal loan most suitable for your needs.</p>
+        </div>
+        <div class="col-md-4 d-flex justify-content-end">
+          <a href="{% url 'loans:loans' %}?provider=11" target="_blank"
+            class="rounded-3 text-white text-decoration-none fw-md hov-opacity bg-dark py-3 d-inline-block py-2 text-capitalize px-3">
+            Best DBS Bank Personal Loans
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- =======================
+                 txt+img
+            ========================= -->
+<section class="py-3 py-md-5">
+  <div class="container">
+    <div class="row align-items-end">
+      <div class="col-md-6">
+        <img
+          src="{% static 'img/things-need-to-know.png' %}"
+          alt=""
+          class="w-100"
+        />
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <h2 class="fs-3 fw-bold mb-3">
+            How to Apply for DBS Personal Loan?
+        </h2>
+        <div class="my-3">
+          <h3 class="fs-5">Choose Your Loan Product</h3>
+          <p class="mb-0 pb-0">
+            Find a suitable loan product that best fits your financial needs. Make sure you read the fine print and understand the loan structure. Once selected, fill in the application form and submit all the required documents. You can also submit an application on the DBS website or DBS Loans app.
+          </p>
+        </div>
+        <div class="my-3">
+          <h3 class="fs-5">Wait for Your Loan Approval Result</h3>
+          <p class="mb-0 pb-0">
+            For the DBS Personal Instalment Loan, the application result is instant once you upload your HKID, which cuts short the loan approval process to as little as one minute. Otherwise, a DBS Loan Specialist will contact you after reviewing your application to confirm the terms of the loan.
+          </p>
+        </div>
+        <div class="my-3">
+          <h3 class="fs-5">Disbursement of Your Loan</h3>
+          <p class="mb-0 pb-0">
+            If you opt for the DBS Personal Instalment Loan, once approved, the loan will be disbursed into your designated bank account on the same day. For the Debt Consolidation Loan, DBS will disburse the loan amount directly to your outstanding credit card accounts. There is no disbursement for the Cashline Revolving Loan until you decide to withdraw against your credit limit.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- ---------text------ -->
+    <div class="row mt-5">
+      <div class="col-md-4">
+        <h3 class="fs-3">DBS Loan Offers & Promotions</h3>
+      </div>
+      <div class="col-md-8">
+        <p>
+            DBS may offer seasonal promotions for their personal loan products, for example, a cash coupon for online application or reduced promotional interest rate for new customers. While such promotions are tempting, a personal loan is a major financial commitment and it would be unwise to base your decision on a limited-time-only offer. Check the terms of each loan type to make sure that it's the right one for your needs before you apply for it. Also, note that the bank may choose to claw back the offer in certain scenarios, such as if you decide to make early repayment of your loan.
+        </p>
+      </div>
+    </div>
+    <!-- ---------card+img------ -->
+    <div class="mt-5">
+      <div class="row"></div>
+      <div class="row mt-4 d-flex justify-content-end justify-content-lg-start">
+        <div class="col-lg-8">
+          <div class="row">
+            <div>
+              <h2 class="fs-2">
+                DBS Loan Application Requirements
+              </h2>
+              <p class="mb-0 pb-0">
+                The basic criteria for DBS personal loans are listed above. Minimally, you must be a Hong Kong resident, at least 18 years old, and earn HK$80,000 a year. More stringent criteria will apply if you opt for the DBS Debt Consolidation Loan. You will need to furnish your HKID card and disbursement account to apply for a loan, as well as the following:
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 my-3 col-lg-6 my-lg-2">
+              <div class="h-100 bg-white">
+                <h3
+                  class="text-dark d-block py-1 text-decoration-none fw-md fs-5 m-0 p-0"
+                >
+                  Proof of income
+                </h3>
+                <p class="mb-0 pb-0">
+                    DBS does not state the specific type of income proof they require, but it is standard practice to submit at least the past month's payslip or bank statement showing your salary credit. Those who are self-employed or freelancers may need to show additional documents, such as a Tax Demand Note. DBS may also request a practicing certificate issued by a relevant association if it applies to your profession.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6 my-3 col-lg-6 my-lg-2">
+              <div class="h-100 bg-white">
+                <h3
+                  class="text-dark d-block py-1 text-decoration-none fw-md fs-5 m-0 p-0"
+                >
+                  Residential proof
+                </h3>
+                <p class="mb-0 pb-0">
+                    Proof of address is another standard document that most banks will ask for before they will lend you any money. For DBS, this needs to be something that was issued within the past two months. It can be a government letter or utility bill with your name and address stated on it.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8 col-md-6 col-lg-4 my-3 my-lg-2">
+          <img src="{% static 'img/vector-1.jpg' %}" class="w-100" alt="" />
+        </div>
+      </div>
+    </div>
+    <!-- ----------card-main----- -->
+    <div class="mt-5">
+      <h2 class="fs-2">DBS Loan Fees & Charges</h2>
+      <p>
+        We have discussed interest rates and loan structures quite a bit above, but it is also important to know about any hidden fees that DBS might charge.
+      </p>
+      <div class="row mt-4">
+        <div class="col-md-6 my-3 col-lg-4 my-lg-2">
+          <h3
+            class="text-dark d-block py-1 text-decoration-none fw-md fs-5 m-0 p-0 lh-1"
+          >
+            Handling Fee
+          </h3>
+          <p class="mb-0 pb-0">
+            For personal instalment loans, DBS charges 1% to 1.5% handling fee depending on your loan amount. The handling fee for the debt consolidation loan is 1.5%. By law, all banks must include the handling fee in the stated APR interest rate. There is no handling fee for DBS Cashline revolving loan.
+          </p>
+        </div>
+        <div class="col-md-6 my-3 col-lg-4 my-lg-2">
+          <h3
+            class="text-dark d-block py-1 text-decoration-none fw-md fs-5 m-0 p-0 lh-1"
+          >
+          Late Repayment Fee
+          </h3>
+          <p class="mb-0 pb-0">
+            It pays to be punctual with your personal loan or debt consolidation loan repayments. Otherwise, you'll be charged HK$300 for each month you do not make the monthly payment in full when it's due. The late repayment fee of HK$150 to HK$250 for Cashline appears more lenient, but you will be charged much higher interest (42.58% per annum) on overdue amounts.
+          </p>
+        </div>
+        <div class="col-md-6 my-3 col-lg-4 my-lg-2">
+          <h3
+            class="text-dark d-block py-1 text-decoration-none fw-md fs-5 m-0 p-0 lh-1"
+          >
+          Early Settlement Fee
+          </h3>
+          <p class="mb-0 pb-0">
+            Want to settle your personal loan ahead of schedule? DBS charges a hefty fee of 1.5% multiplied by the number of years left on the loan. So if you have 3 years left on the loan tenure, that's 4.5% of the principal you need to pay. This is a potential cost to bear in mind when deciding on your loan tenure - it doesn't always make sense to choose the longest option, even if the instalments are smaller.
+          </p>
+        </div>
+      </div>
+  </div>
+</section>
+<!-- --------banner--------- -->
+<section class="bg-warning py-4">
+    <div class="container">
+        <div class="row align-items-md-center">
+        <div class="col-md-8">
+            <h2 class="fs-1">
+            Find the best DBS Personal Loans
+            </h2>
+        </div>
+        <div class="col-md-4 d-flex justify-content-end">
+            <a href="{% url 'loans:loans' %}?provider=11" target="_blank"
+            class="rounded-3 text-white text-decoration-none fw-md hov-opacity bg-dark py-3 d-inline-block py-2 text-capitalize px-3">
+            Find the best personal
+            </a>
+        </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -85,7 +85,7 @@ def airport_lounge_access(request):
     queryset = Card.objects.prefetch_related('card_usp').filter(Q(title="Citi Prestige Card") | Q(title="Citi Rewards MasterCard") | Q(
         title="American Express Explorer® Credit Card") | Q(title="The Platinum Card") | Q(title="Citi Prestige Card"))
 
-    return render(request, "pages/cards/popular-guides_credit-cards-for-airport-lounge-access.html", {"broadcrump": broadcrump, "title": title, "description": desctiption,
+    return render(request, "pages/cards/popular-guides_credit-cards-for-airport-lounge-access.html", {"section":"Credit Cards", "url":"../credit-cards", "broadcrump": broadcrump, "title": title, "description": desctiption,
                                                                                                       "subtitle": subtitle, "sub_desc": sub_desc, "categories": categories, "cards": queryset})
 
 
@@ -105,7 +105,7 @@ def best_asia_miles(request):
     queryset = Card.objects.prefetch_related('card_usp').filter(Q(title="Citi Prestige Card") | Q(title="Citi Rewards MasterCard") | Q(
         title="American Express Explorer® Credit Card") | Q(title="The Platinum Card") | Q(title="Citi Prestige Card"))
 
-    return render(request, "pages/cards/best-asia-miles-cards.html", {"broadcrump": broadcrump, "title": title, "description": desctiption,
+    return render(request, "pages/cards/best-asia-miles-cards.html", {"section":"Credit Cards", "url":"../credit-cards", "broadcrump": broadcrump, "title": title, "description": desctiption,
                                                                                                 "subtitle": subtitle, "sub_desc": sub_desc, "categories": categories, "cards": queryset})
 
 
@@ -128,7 +128,7 @@ def hotel_reward_booking(request):
     queryset = Card.objects.prefetch_related('card_usp').filter(Q(title="The Platinum Card") | Q(
         title="Citi PremierMiles Card") | Q(title="American Express® Platinum Credit Card") | Q(title="Citi Cash Back Card"))
 
-    return render(request, "pages/cards/hotel_reward_booking.html", {"broadcrump": broadcrump, "title": title, "description": desctiption,
+    return render(request, "pages/cards/hotel_reward_booking.html", {"section":"Credit Cards", "url":"../credit-cards", "broadcrump": broadcrump, "title": title, "description": desctiption,
                                                                      "subtitle": subtitle, "sub_desc": sub_desc, "categories": categories, "cards": queryset})
 
 
@@ -149,7 +149,7 @@ def expat_foreigner_hong_kong_ms(request):
     queryset = Card.objects.prefetch_related('card_usp').filter(Q(title="Citi Cash Back Card") | Q(title="Standard Chartered Smart Card") | Q(title="DBS Black World Mastercard") | Q(title="Standard Chartered Cathay Mastercard") | Q(
         title="Citi Prestige Card") | Q(title="Hang Seng enJoy Card") | Q(title="Citi Rewards MasterCard"))
 
-    return render(request, "pages/cards/expat-foreigner-hong-kong-ms.html", {"broadcrump": broadcrump, "title": title, "description": desctiption,
+    return render(request, "pages/cards/expat-foreigner-hong-kong-ms.html", {"section":"Credit Cards", "url":"../credit-cards", "broadcrump": broadcrump, "title": title, "description": desctiption,
                                                                              "subtitle": subtitle, "sub_desc": sub_desc, "categories": categories, "cards": queryset})
 
 

@@ -2,7 +2,9 @@
 <section class="py-4 bg-grey">
   <div class="container">
     <div class="d-flex flex-wrap align-items-center">
-      <a href="index.html" class="text-dark me-3 text-decoration-none">Home</a>
+      <a href="{% url 'index' %}" class="text-dark me-3 text-decoration-none"
+        >Home</a
+      >
       <a
         href="#"
         class="text-dark me-3 text-decoration-none"
@@ -10,7 +12,9 @@
       >
         <i class="fas fa-chevron-right"></i>
       </a>
-      <a href="#" class="text-dark me-3 text-decoration-none">Credit Cards</a>
+      <a href="{{url}}" class="text-dark me-3 text-decoration-none"
+        >{{section}}</a
+      >
       <a
         href="#"
         class="text-dark me-3 text-decoration-none"
@@ -35,25 +39,43 @@
     </div>
   </div>
 </section>
+{% if subtitle %}
 <section class="py-4 blue-bg">
   <div class="container">
     <h2 class="fs-5 text-dark">{{subtitle}}</h2>
     <p class="mt-4 mb-0 pb-0 text-dark">{{ sub_desc}}</p>
     <div class="mt-2 row">
-      {% for category in categories %}
-      <div class="col-sm-6 my-2 my-md-0 col-md-4">
+      {% for category in categories %} {% if forloop.counter <= 3 %}
+      <div class="col-sm-6 my-2 my-md-0 col-md-4 mb-2">
         <a
           href="#{{category.link}}"
           class="d-block text-decoration-none text-dark h-100"
         >
           <div class="bg-white h-100 py-3 px-3">
-            <h3 class="fs-6 fw-normal">{{category.category}}</h3>
+            <h3 class="fs-6 fw-normal">{{category.category|upper}}</h3>
             <h3 class="fs-6 fw-md">{{category.desc}}</h3>
           </div>
         </a>
       </div>
-      {% endfor %}
+      {% endif %} {% endfor %}
     </div>
+    {% if categories|length > 3 %}
+    <div class="mt-2 row">
+      {% for category in categories %} {% if forloop.counter > 3 %}
+      <div class="col-sm-6 my-2 my-md-0 col-md-4 mb-2">
+        <a
+          href="#{{category.link}}"
+          class="d-block text-decoration-none text-dark h-100"
+        >
+          <div class="bg-white h-100 py-3 px-3">
+            <h3 class="fs-6 fw-normal">{{category.category|upper}}</h3>
+            <h3 class="fs-6 fw-md">{{category.desc}}</h3>
+          </div>
+        </a>
+      </div>
+      {% endif %} {% endfor %}
+    </div>
+    {% endif %}
   </div>
 </section>
-{% endblock %}
+{% endif %} {% endblock %}
